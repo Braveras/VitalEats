@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splash_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/splash_parent">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,37 +16,40 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/fondo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitStart" />
+
+            <ImageView
                 android:id="@+id/foodtray_lid"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/foodtray_lid"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="100dp"/>
+                android:layout_marginTop="100dp"
+                android:src="@drawable/foodtray_lid" />
 
             <ImageView
                 android:id="@+id/foodtray_base"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/foodtray_base"
                 android:layout_alignTop="@+id/foodtray_lid"
                 android:layout_alignBottom="@+id/foodtray_lid"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="100dp"
-                />
+                android:src="@drawable/foodtray_base" />
 
             <ImageView
                 android:id="@+id/app_name_splash"
-                android:src="@drawable/logo_no_background"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="106dp"
                 android:layout_marginLeft="110dp"
-                />
+                android:layout_marginTop="106dp"
+                android:src="@drawable/logo_no_background" />
 
         </RelativeLayout>
-
 
     </LinearLayout>
 

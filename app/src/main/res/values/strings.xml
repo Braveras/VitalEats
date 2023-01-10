@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">VitalEats</string>
+    <string name="app_name">Vital Eats</string>
+    <string name="slogan">Healthy meals, minimal waste</string>
+    <string name="crearCuenta">EMPIEZA AHORA</string>
+    <string name="tengoCuenta">YA TENGO UNA CUENTA</string>
+    <string name="volver">Volver</string>
+    <string name="mail">Email</string>
+    <string name="pass">Contraseña</string>
+    <string name="acceder">ACCEDER</string>
+    <string name="google">ACCEDER CON GOOGLE</string>
+    <string name="tambien">O también puedes</string>
+    <string name="olvidado">¿HAS OLVIDADO TU CONTRASEÑA?</string>
+    <string name="bienvenido">Bienvenido de nuevo</string>
+    <string name="hola">¡HOLA!</string>
+    <string name="hola2">Ayudanos a conocer más sobre ti</string>
+    <string name="hombre">HOMBRE</string>
+    <string name="mujer">MUJER</string>
+    <string name="frase">El mail con el que hiciste tu perfil.</string>
+    <string name="reset">RESTABLECER CONTRASEÑA</string>
 </resources>

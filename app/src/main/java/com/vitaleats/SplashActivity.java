@@ -1,10 +1,11 @@
 package com.vitaleats;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.ObjectAnimator;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -15,7 +16,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.os.Bundle;
+
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
@@ -24,12 +25,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.example.vitaleats.R;
+import com.vitaleats.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    ImageView foodTray_lid, foodTray_base, app_name;
+    ImageView foodTray_lid, foodTray_base, app_name, fondo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +42,15 @@ public class SplashActivity extends AppCompatActivity {
         foodTray_lid = findViewById(R.id.foodtray_lid);
         foodTray_base = findViewById(R.id.foodtray_base);
         app_name = findViewById(R.id.app_name_splash);
+        fondo = findViewById(R.id.fondo);
 
-        //Gradient color changing animation for the background
+        Glide.with(this)
+                .load(R.drawable.frutas)
+                .transition(DrawableTransitionOptions.withCrossFade(100))
+                .centerCrop()
+                .into(fondo);
+
         LinearLayout splashLayout = findViewById(R.id.splash_parent);
-        ObjectAnimator colorAnim = ObjectAnimator.ofArgb(splashLayout, "backgroundColor", Color.parseColor("#FF0000"), Color.parseColor("#FFFF00"));
-        colorAnim.setDuration(3000);
-        colorAnim.start();
 
         app_name.setVisibility(View.INVISIBLE);
 
@@ -65,8 +70,14 @@ public class SplashActivity extends AppCompatActivity {
 
         foodTray_lid.startAnimation(shakeAnim);
         shakeAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override public void onAnimationStart(Animation animation) {}
-            @Override public void onAnimationRepeat(Animation animation) {}
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
             @Override
             public void onAnimationEnd(Animation animation) {
                 foodTray_lid.startAnimation(openLidAnim);
@@ -74,58 +85,48 @@ public class SplashActivity extends AppCompatActivity {
         });
 
         openLidAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override public void onAnimationStart(Animation animation) {
+            @Override
+            public void onAnimationStart(Animation animation) {
                 app_name.setVisibility(View.VISIBLE);
                 app_name.startAnimation(app_name_anim);
             }
-            @Override public void onAnimationRepeat(Animation animation) {}
-            @Override public void onAnimationEnd(Animation animation) {
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 foodTray_base.startAnimation(shrink);
             }
         });
-
 
 
         shrink.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 foodTray_lid.startAnimation(lid_close);
-                Glide.with(getApplicationContext()) // Load the drawable resource into a Bitmap object using Glide
-                        .asBitmap()
-                        .load(R.drawable.foodtray_lid)
-                        .into(new SimpleTarget<Bitmap>() {
-                            @Override public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                                // I created a function to reuse the code that returns a TransitionDrawable
-                                TransitionDrawable transitionFilter = applyFilter(resource, "#5EBC67");
-                                // Set the TransitionDrawable on the ImageView
-                                foodTray_lid.setImageDrawable(transitionFilter);
-                                // Start the transition animation
-                                transitionFilter.startTransition(500); // 500ms = 0.5s
-                            }
-                        });
-                Glide.with(getApplicationContext())
-                        .asBitmap()
-                        .load(R.drawable.foodtray_base)
-                        .into(new SimpleTarget<Bitmap>() {
-                            @Override public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                                TransitionDrawable transitionFilter = applyFilter(resource, "#5EBC67");
-                                foodTray_base.setImageDrawable(transitionFilter);
-                                transitionFilter.startTransition(500);
-                            }
-                        });
-
             }
 
-            @Override public void onAnimationEnd(Animation animation) {
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 foodTray_lid.startAnimation(fade_out);
                 foodTray_base.startAnimation(fade_out);
             }
-            @Override public void onAnimationRepeat(Animation animation) {}
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
         });
 
         fade_out.setAnimationListener(new Animation.AnimationListener() {
-            @Override public void onAnimationStart(Animation animation) {}
-            @Override public void onAnimationRepeat(Animation animation) {}
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -145,8 +146,7 @@ public class SplashActivity extends AppCompatActivity {
     private void openApp() {
 
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable()
-        {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
@@ -177,5 +177,4 @@ public class SplashActivity extends AppCompatActivity {
         return transitionDrawable;
 
     }
-
 }
