@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,23 +13,63 @@
         android:theme="@style/Theme.VitalEats"
         tools:targetApi="31">
         <activity
-            android:name=".SplashActivity"
+            android:name="com.vitaleats.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:noHistory="true"
+            android:theme="@style/Theme.VitalEats">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.vitaleats.NewAccount"
+            android:exported="false"
+            android:label="@string/volver"
+            android:parentActivityName="com.vitaleats.MainActivity"
+            android:theme="@style/Theme.VitalEats">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.vitaleats.ResetPassword"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
+            android:label="@string/volver"
+            android:parentActivityName="com.vitaleats.Login"
+            android:theme="@style/Theme.VitalEats">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.vitaleats.Login"
+            android:exported="false"
+            android:label="@string/volver"
+            android:parentActivityName="com.vitaleats.MainActivity"
+            android:theme="@style/Theme.VitalEats">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.vitaleats.Improve"
+            android:exported="false"
+            android:label="@string/volver"
+            android:parentActivityName="com.vitaleats.NewAccount"
+            android:theme="@style/Theme.VitalEats">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.vitaleats.MainActivity"
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
