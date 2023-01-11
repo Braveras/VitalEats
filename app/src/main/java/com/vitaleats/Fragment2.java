@@ -1,32 +1,28 @@
 package com.vitaleats;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+public class Fragment2 extends AppCompatActivity {
 
-public class NewAccount extends AppCompatActivity {
-
-    Button hombre, mujer;
+    TextView siguiente, atras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_account);
+        setContentView(R.layout.fragment_2);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        siguiente = findViewById(R.id.siguiente);
+        atras = findViewById(R.id.atras);
 
-        hombre = findViewById(R.id.hombre);
-        mujer = findViewById(R.id.mujer);
-
-        hombre.setOnClickListener(new View.OnClickListener() {
+        siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(NewAccount.this, Improve.class);
+                Intent i = new Intent(Fragment2.this, Fragment3.class);
                 startActivity(i);
 
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -34,16 +30,16 @@ public class NewAccount extends AppCompatActivity {
             }
         });
 
-        mujer.setOnClickListener(new View.OnClickListener() {
+        atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(NewAccount.this, Improve.class);
+                Intent i = new Intent(Fragment2.this, Fragment1.class);
                 startActivity(i);
 
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             }
         });
+
     }
-
 }
