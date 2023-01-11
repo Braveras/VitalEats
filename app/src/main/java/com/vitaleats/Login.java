@@ -9,8 +9,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.vitaleats.R;
-
 public class Login extends AppCompatActivity {
 
     TextView olvidado;

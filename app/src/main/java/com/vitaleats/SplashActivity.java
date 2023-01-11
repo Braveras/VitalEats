@@ -26,8 +26,6 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.example.vitaleats.R;
-import com.vitaleats.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
