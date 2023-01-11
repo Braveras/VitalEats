@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.vitaleats'
+    namespace 'com.vitaleats'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.vitaleats"
+        applicationId "com.vitaleats"
         minSdk 26
         targetSdk 32
         versionCode 1

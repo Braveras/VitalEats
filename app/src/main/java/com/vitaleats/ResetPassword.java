@@ -9,8 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.vitaleats.R;
-
 public class ResetPassword extends AppCompatActivity {
 
     Button reset;
