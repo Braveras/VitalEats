@@ -17,4 +17,6 @@
     <string name="mujer">MUJER</string>
     <string name="frase">El mail con el que hiciste tu perfil.</string>
     <string name="reset">RESTABLECER CONTRASEÑA</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="atras">Atrás</string>
 </resources>
