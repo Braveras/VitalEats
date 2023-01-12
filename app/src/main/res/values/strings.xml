@@ -23,4 +23,10 @@
     <string name="datos">Información básica sobre Protección de Datos</string>
     <string name="responsable">Responsable</string>
     <string name="responsable2">VITALEATS S.L.</string>
+    <string name="finalidad">Finalidad</string>
+    <string name="finalidad2">Envío de comunicaciones comerciales.</string>
+    <string name="destinatario">Destinatarios</string>
+    <string name="destinatario2">Únicamente se cederán datos en caso de obligación legal.</string>
+    <string name="info">Información detallada</string>
+    <string name="info2">Al pulsar aceptar aceptas nuestros términos y condiciones.</string>
 </resources>
