@@ -19,4 +19,8 @@
     <string name="reset">RESTABLECER CONTRASEÑA</string>
     <string name="siguiente">Siguiente</string>
     <string name="atras">Atrás</string>
+    <string name="aceptar">ACEPTAR</string>
+    <string name="datos">Información básica sobre Protección de Datos</string>
+    <string name="responsable">Responsable</string>
+    <string name="responsable2">VITALEATS S.L.</string>
 </resources>
