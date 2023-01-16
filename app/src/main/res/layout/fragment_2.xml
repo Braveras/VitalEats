@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".Fragment2">
 
     <TextView
@@ -15,7 +14,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/siguiente"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorSurface"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +28,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/atras"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorSurface"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

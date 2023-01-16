@@ -12,7 +12,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="70dp"
         android:text="Registro"
-        android:textColor="@color/green2"
+        android:textColor="?attr/colorPrimaryVariant"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/tilmail" />
 
@@ -86,7 +86,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_buttton"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="?attr/colorPrimary"
         android:backgroundTintMode="screen"
         android:fontFamily="sans-serif"
         android:padding="10dp"

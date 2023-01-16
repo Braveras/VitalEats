@@ -11,7 +11,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="17dp"
         android:text="hola2"
-        android:textColor="@color/green2"
+        android:textColor="?attr/colorPrimaryVariant"
         android:textSize="35dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
