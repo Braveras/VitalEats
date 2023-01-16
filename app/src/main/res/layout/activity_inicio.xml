@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Inicio">
+
+    <LinearLayout
+        android:id="@+id/barra"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/barra"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/buttoninicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="inicio"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="5dp">
+        </Button>
+        <Button
+            android:id="@+id/buttonalimetos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="alimentos"
+            android:layout_margin="5dp">
+        </Button>
+        <Button
+            android:id="@+id/buttonrecetas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="recetas"
+            android:layout_marginTop="5dp">
+        </Button>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
