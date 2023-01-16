@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 public class NewAccount extends AppCompatActivity {
 
@@ -17,33 +18,10 @@ public class NewAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_account);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Handle the fragments sliding
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(new FormPagerAdapter(getSupportFragmentManager()));
 
-        hombre = findViewById(R.id.hombre);
-        mujer = findViewById(R.id.mujer);
-
-        hombre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(NewAccount.this, Improve.class);
-                startActivity(i);
-
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
-        });
-
-        mujer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(NewAccount.this, Improve.class);
-                startActivity(i);
-
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
-        });
     }
 
 }
