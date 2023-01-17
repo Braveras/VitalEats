@@ -30,7 +30,7 @@ public class Login extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        olvidado = findViewById(R.id.olvidado);
+        olvidado = findViewById(R.id.registerTextView);
         button = findViewById(R.id.button);
         editmail = findViewById(R.id.editmail);
         editpass = findViewById(R.id.editpass);
