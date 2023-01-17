@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class FormPagerAdapter extends FragmentPagerAdapter {
     private int currentPosition = 0;
+
     public FormPagerAdapter(FragmentManager fm) {
         super(fm);
     }
