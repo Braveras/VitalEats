@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Inicio">
 
     <LinearLayout
@@ -16,26 +17,29 @@
 
         <ImageButton
             android:id="@+id/buttoninicio"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
             android:src="@drawable/inicio"
-            android:layout_marginLeft="115dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp"
-            style="@style/buttonselect">
+            android:layout_marginStart="100dp"
+            android:elevation="20dp"
+            android:background="@drawable/buttonbarraselect"
+            >
         </ImageButton>
         <ImageButton
             android:id="@+id/buttonalimetos"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:src="@drawable/alimentos"
-            android:layout_margin="5dp"
-            style="@style/button">
+            android:background="@drawable/buttonbarra">
         </ImageButton>
         <ImageButton
             android:id="@+id/buttonrecetas"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
             android:src="@drawable/recetas"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp"
-            style="@style/button">
+            android:background="@drawable/buttonbarra">
         </ImageButton>
     </LinearLayout>
 
