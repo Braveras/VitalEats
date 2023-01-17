@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="colorSurface">@color/black</item>
     </style>
 
     <style name="Toolbar">
@@ -22,7 +23,6 @@
             @dimen/cardview_compat_inset_shadow
         </item>
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <!--<item name="navigationIcon">?attr/homeAsUpIndicator</item>-->
     </style>
 
     <style name="Hint" parent="Theme.AppCompat.NoActionBar">
