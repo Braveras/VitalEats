@@ -33,7 +33,7 @@ public class ResetPassword extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (editmail.getText().toString().equals("")) {
+                if (editmail.getText().toString().isEmpty()) {
                     editmail.setError("DEBE COMPLETAR LOS CAMPOS OBLIGATORIOS");
 
                 } else if (!validarEmail(editmail.getText().toString())) {
