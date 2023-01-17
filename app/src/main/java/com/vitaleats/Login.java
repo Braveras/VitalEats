@@ -21,7 +21,7 @@ public class Login extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        olvidado = findViewById(R.id.olvidado);
+        olvidado = findViewById(R.id.registerTextView);
         button = findViewById(R.id.button);
 
         olvidado.setOnClickListener(new View.OnClickListener() {
