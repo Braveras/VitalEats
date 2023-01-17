@@ -14,28 +14,29 @@
         android:background="@drawable/barra"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
+        <ImageButton
             android:id="@+id/buttoninicio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="inicio"
-            android:layout_marginLeft="65dp"
-            android:layout_marginTop="5dp">
-        </Button>
-        <Button
+            android:src="@drawable/inicio"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            style="@style/buttonselect">
+        </ImageButton>
+        <ImageButton
             android:id="@+id/buttonalimetos"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="alimentos"
-            android:layout_margin="5dp">
-        </Button>
-        <Button
+            android:layout_height="match_parent"
+            android:src="@drawable/alimentos"
+            android:layout_margin="5dp"
+            style="@style/button">
+        </ImageButton>
+        <ImageButton
             android:id="@+id/buttonrecetas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="recetas"
-            android:layout_marginTop="5dp">
-        </Button>
+            android:src="@drawable/recetas"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            style="@style/button">
+        </ImageButton>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
