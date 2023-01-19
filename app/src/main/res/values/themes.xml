@@ -13,4 +13,10 @@
         <item name="android:background">@color/black</item>
     </style>
 
+    <style name="Hint" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/green2</item>
+        <item name="colorPrimaryDark">@color/green2</item>
+        <item name="colorAccent">@color/green2</item>
+        <item name="android:textColorHint">@color/green2</item>
+    </style>
 </resources>
