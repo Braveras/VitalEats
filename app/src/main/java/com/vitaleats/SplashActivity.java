@@ -26,6 +26,8 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -141,10 +143,22 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
+    /*@Override
+    public void onStart() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            currentUser.reload();
+        }
+    }*/
+
     private void openApp() {
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
+
             @Override
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, Fragment1.class);
@@ -153,7 +167,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }, 6500);
-
 
     }
 
