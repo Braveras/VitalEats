@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newPassword"
         android:layout_width="match_parent"
@@ -19,12 +17,12 @@
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/edad"
             android:hint="Edad"
             android:inputType="text"
             android:textColor="@color/green2"
             android:textSize="20dp"
-            android:theme="@style/Hint"
-            android:drawableRight="@drawable/edad" />
+            android:theme="@style/Hint" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,13 +39,12 @@
             android:id="@+id/repeatEditPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/altura"
             android:hint="Altura"
             android:inputType="text"
             android:textColor="@color/green2"
             android:textSize="20dp"
-            android:theme="@style/Hint"
-            android:drawableRight="@drawable/altura"
-            />
+            android:theme="@style/Hint" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,15 +61,14 @@
             android:id="@+id/editaltura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/peso"
             android:hint="Peso"
             android:inputType="text"
             android:textColor="@color/green2"
             android:textSize="20dp"
-            android:theme="@style/Hint"
-            android:drawableRight="@drawable/peso" />
+            android:theme="@style/Hint" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
