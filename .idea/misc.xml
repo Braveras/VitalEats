@@ -3,19 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/drawable-v24/barra.xml" value="0.2395" />
-        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/drawable-v24/botonbarra.xml" value="0.2395" />
-        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/drawable-v24/botonbarraselect.xml" value="0.2395" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_improve.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_inicio.xml" value="0.33" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_login.xml" value="0.17831813576494426" />
-        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_main.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_new_account.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_reset_password.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_splash.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_1.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_2.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_3.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats2/app/src/main/res/drawable-v24/buttonbarra.xml" value="0.2395" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats2/app/src/main/res/drawable-v24/rounded_buttton.xml" value="0.2395" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats2/app/src/main/res/layout/activity_inicio.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats2/app/src/main/res/layout/activity_login.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats2/app/src/main/res/layout/activity_main.xml" value="0.75" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats2/app/src/main/res/layout/activity_recetas.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

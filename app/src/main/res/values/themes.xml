@@ -1,16 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="button">
-        <item name="android:layout_width">50dp</item>
-        <item name="android:layout_height">60dp</item>
-        <item name="android:background">@color/greenbarra</item>
-
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.VitalEats" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green2</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/purple2</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="colorSurface">@color/black</item>
     </style>
 
-    <style name="buttonselect" >
-        <item name="android:layout_width">50dp</item>
-        <item name="android:layout_height">60dp</item>
-        <item name="android:background">@color/black</item>
+    <style name="Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/green</item>
+        <item name="android:elevation" tools:targetApi="lollipop">
+            @dimen/cardview_compat_inset_shadow
+        </item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
 
     <style name="Hint" parent="Theme.AppCompat.NoActionBar">
@@ -19,4 +31,5 @@
         <item name="colorAccent">@color/green2</item>
         <item name="android:textColorHint">@color/green2</item>
     </style>
+
 </resources>
