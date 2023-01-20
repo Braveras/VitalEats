@@ -39,12 +39,12 @@
             android:id="@+id/editmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/mail"
             android:hint="@string/mail"
             android:inputType="textEmailAddress"
             android:textColor="@color/green2"
             android:textSize="20dp"
-            android:theme="@style/Hint"
-            android:drawableRight="@drawable/mail" />
+            android:theme="@style/Hint" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -8,8 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Pattern;
 
@@ -40,14 +45,28 @@ public class ResetPassword extends AppCompatActivity {
                     editmail.setError("INTRODUCE UN CORREO VÁLIDO");
 
                 } else {
-                    Intent i = new Intent(ResetPassword.this, ResetPassword.class);
-                    startActivity(i);
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
 
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    auth.sendPasswordResetEmail(editmail.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
 
-                    Toast.makeText(ResetPassword.this, "CORREO ENVIADO", Toast.LENGTH_LONG).show();
-                    limpiar();
+                                        Intent i = new Intent(ResetPassword.this, ResetPassword.class);
+                                        startActivity(i);
+
+                                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                                        Toast.makeText(ResetPassword.this, "EMAIL ENVIADO", Toast.LENGTH_LONG).show();
+                                        limpiar();
+                                    } else {
+                                        Toast.makeText(ResetPassword.this, "EL EMAIL INTRODUCIDO NO ESTÁ REGISTRADO",
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                 }
             }
         });
