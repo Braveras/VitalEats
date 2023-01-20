@@ -1,51 +1,56 @@
 package com.vitaleats;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class Alimentos extends AppCompatActivity {
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-    ImageButton buttoninicio, buttonrecetas;
+public class Alimentos extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alimentos);
 
-        buttoninicio=findViewById(R.id.buttoninicio);
-        buttonrecetas=findViewById(R.id.buttonrecetas);
+        BottomNavigationView mybottomNavView = findViewById(R.id.bottom_navigation);
 
-        buttoninicio.setOnClickListener(new View.OnClickListener() {
+        // crear badges
+        BottomNavigationMenuView bottomNavigationMenuView =
+                (BottomNavigationMenuView) mybottomNavView.getChildAt(0);
+        View v = bottomNavigationMenuView.getChildAt(2);
+        BottomNavigationItemView itemView = (BottomNavigationItemView) v;
+
+
+        mybottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.inicio:
+                        intent = new Intent(Alimentos.this, Inicio.class);
+                        startActivity(intent);
+                        break;
 
-            public void onClick(View view) {
-                paginaSiguiente();
+                    case R.id.alimentos:
+
+                        break;
+
+                    case R.id.recetas:
+                        intent = new Intent(Alimentos.this, Recetas.class);
+                        startActivity(intent);
+                        break;
+                }
+                return false;
             }
         });
-        buttonrecetas.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View view) {
-                paginaSiguiente2();
-            }
-        });
-    }
-
-    public void paginaSiguiente() {
-        Intent intent=new Intent(this, Inicio.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //no volver para atras
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
-    public void paginaSiguiente2() {
-        Intent intent=new Intent(this, Recetas.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //no volver para atras
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
     }
 
 }
