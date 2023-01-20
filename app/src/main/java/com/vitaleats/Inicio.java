@@ -17,12 +17,20 @@ public class Inicio extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
 
         buttonalimentos=findViewById(R.id.buttonalimentos);
+        buttonrecetas=findViewById(R.id.buttonrecetas);
 
         buttonalimentos.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view) {
                 paginaSiguiente();
+            }
+        });
+        buttonrecetas.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                paginaSiguiente2();
             }
         });
     }
@@ -33,4 +41,11 @@ public class Inicio extends AppCompatActivity {
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
+    public void paginaSiguiente2() {
+        Intent intent=new Intent(this, Recetas.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //no volver para atras
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
 }
