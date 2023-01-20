@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "814436057524",
+    "project_id": "vitaleats-2023",
+    "storage_bucket": "vitaleats-2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814436057524:android:f287f8ff512356ea13f2e1",
+        "android_client_info": {
+          "package_name": "com.vitaleats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814436057524-bfqrj49ib0r996s02l9o681l2ak6uoa6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcUY9KYi6W5fBPXZiH3WRDUU_oDf8ntfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814436057524-bfqrj49ib0r996s02l9o681l2ak6uoa6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

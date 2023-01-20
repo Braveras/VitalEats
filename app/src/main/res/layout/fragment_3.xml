@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".Fragment3">
 
     <TextView
@@ -18,7 +17,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/datos"
-        android:textColor="@color/orange"
+        android:textColor="?attr/colorSecondary"
         android:textSize="22dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +34,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/responsable"
-        android:textColor="@color/green2"
+        android:textColor="?attr/colorPrimaryVariant"
         android:textSize="19dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/datos" />
@@ -51,7 +50,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/responsable2"
-        android:textColor="@color/orange"
+        android:textColor="?attr/colorSecondary"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/responsable"
@@ -68,7 +67,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/finalidad"
-        android:textColor="@color/green2"
+        android:textColor="?attr/colorPrimaryVariant"
         android:textSize="19dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/datos" />
@@ -84,7 +83,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/finalidad2"
-        android:textColor="@color/orange"
+        android:textColor="?attr/colorSecondary"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/datos" />
@@ -100,7 +99,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/destinatario"
-        android:textColor="@color/green2"
+        android:textColor="?attr/colorPrimaryVariant"
         android:textSize="19dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/datos" />
@@ -116,7 +115,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/destinatario2"
-        android:textColor="@color/orange"
+        android:textColor="?attr/colorSecondary"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/datos" />
@@ -132,7 +131,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/info"
-        android:textColor="@color/green2"
+        android:textColor="?attr/colorPrimaryVariant"
         android:textSize="19dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/datos" />
@@ -148,9 +147,26 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/info2"
-        android:textColor="@color/orange"
+        android:textColor="?attr/colorSecondary"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/datos" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="17dp"
+        android:checked="false"
+        android:text="@string/acepto"
+        android:textColor="?attr/colorSurface"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="@id/datos" />
 
     <Button
@@ -161,7 +177,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="45dp"
         android:background="@drawable/rounded_buttton"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="?attr/colorPrimary"
         android:backgroundTintMode="screen"
         android:fontFamily="monospace"
         android:text="@string/aceptar"

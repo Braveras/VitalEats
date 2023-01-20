@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context="com.vitaleats.Login">
 
     <androidx.appcompat.widget.Toolbar
@@ -17,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_flecha"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:titleTextColor="@color/green2"
+        app:titleTextColor="?attr/colorPrimaryVariant"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -28,7 +27,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="17dp"
         android:text="@string/bienvenido"
-        android:textColor="@color/green2"
+        android:textColor="?attr/colorPrimaryVariant"
         android:textSize="35dp"
         app:layout_constraintBottom_toTopOf="@+id/tilmail"
         app:layout_constraintStart_toStartOf="parent" />
@@ -49,8 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/mail"
-            android:inputType="text"
-            android:textColor="@color/green2"
+            android:inputType="textEmailAddress"
+            android:textColor="?attr/colorPrimaryVariant"
             android:textSize="20dp"
             android:theme="@style/Hint" />
 
@@ -67,7 +66,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilmail"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/green2">
+        app:passwordToggleTint="?attr/colorPrimaryVariant">
 
         <EditText
             android:id="@+id/editpass"
@@ -75,7 +74,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/pass"
             android:inputType="textPassword"
-            android:textColor="@color/green2"
+            android:textColor="?attr/colorPrimaryVariant"
             android:textSize="20dp"
             android:theme="@style/Hint"
             app:passwordToggleEnabled="true" />
@@ -92,10 +91,11 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/rounded_buttton"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="?attr/colorSecondary"
         android:backgroundTintMode="screen"
         android:fontFamily="monospace"
         android:text="@string/acceder"
+        android:textColor="@color/black"
         android:textSize="17dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
@@ -109,7 +109,7 @@
         android:layout_marginTop="95dp"
         android:text="@string/tambien"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorSurface"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,13 +125,14 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/rounded_buttton"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="?attr/colorPrimary"
         android:backgroundTintMode="screen"
         android:drawableStart="@drawable/ic_google"
         android:fontFamily="monospace"
         android:paddingLeft="15dp"
         android:paddingRight="28dp"
         android:text="@string/google"
+        android:textColor="@color/black"
         android:textSize="17dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,13 +140,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/olvidado"
+        android:id="@+id/registerTextView"
         android:layout_width="391dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="@string/olvidado"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorSurface"
         android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

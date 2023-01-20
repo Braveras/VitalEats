@@ -6,6 +6,7 @@
     <string name="volver">Volver</string>
     <string name="mail">Email</string>
     <string name="pass">Contraseña</string>
+    <string name="pass2">Repite contraseña</string>
     <string name="acceder">ACCEDER</string>
     <string name="google">ACCEDER CON GOOGLE</string>
     <string name="tambien">O también puedes</string>
@@ -29,4 +30,11 @@
     <string name="destinatario2">Únicamente se cederán datos en caso de obligación legal.</string>
     <string name="info">Información detallada</string>
     <string name="info2">Al pulsar aceptar aceptas nuestros términos y condiciones.</string>
+    <string name="dietas">Dietas saludables</string>
+    <string name="compra">Lista de la compra semanal</string>
+    <string name="acepto">Acepto los términos y condiciones.</string>
+    <string name="dieta">Te ayudaremos a controlar el tamaño de tus porciones y asegurarnos de que no comes en exceso y de que no te saltas comidas.</string>
+    <string name="dieta2">Limita el consumo de alimentos procesados, azúcar y grasas saturadas. Estos alimentos suelen ser altos en calorías y pobres en nutrientes.</string>
+    <string name="compra1">Te ayudamos a realizar una compra semanal basada en tu preferencia de alimentos.</string>
+    <string name="compra2">Hacemos recetas saludables con los alimentos de tu lista de la compra o aquellos que tengas en casa, aprovechando al máximo todo.</string>
 </resources>

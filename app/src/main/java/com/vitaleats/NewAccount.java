@@ -2,47 +2,36 @@ package com.vitaleats;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 public class NewAccount extends AppCompatActivity {
 
-    Button hombre, mujer;
+
+    private FormPagerAdapter adapter;
+    FragmentForm1 formFragment1;
+    FragmentForm2 formFragment2;
+    FragmentForm3 formFragment3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_account);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Handle the fragments sliding
+        NonSweepViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(new FormPagerAdapter(getSupportFragmentManager()));
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setCurrentItem(0);
 
-        hombre = findViewById(R.id.hombre);
-        mujer = findViewById(R.id.mujer);
-
-        hombre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(NewAccount.this, Improve.class);
-                startActivity(i);
-
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
-        });
-
-        mujer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(NewAccount.this, Improve.class);
-                startActivity(i);
-
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
+        Button next = findViewById(R.id.btn_next);
+        next.setOnClickListener(view -> {
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
         });
     }
 
