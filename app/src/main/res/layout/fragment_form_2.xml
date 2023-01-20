@@ -7,7 +7,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/newPassword"
+        android:id="@+id/newEdad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -15,8 +15,8 @@
         android:layout_marginRight="20dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/editPassword"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editEdad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Edad"
@@ -29,19 +29,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/repeatNewPassword"
+        android:id="@+id/newAltura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        app:layout_constraintTop_toBottomOf="@id/newPassword">
+        app:layout_constraintTop_toBottomOf="@id/newEdad">
 
-        <EditText
-            android:id="@+id/repeatEditPassword"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editAltura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Altura"
+            android:hint="Altura (cm)"
             android:inputType="text"
             android:textColor="@color/green2"
             android:textSize="20dp"
@@ -52,19 +52,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputaltura"
+        android:id="@+id/newPeso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        app:layout_constraintTop_toBottomOf="@id/repeatNewPassword">
+        app:layout_constraintTop_toBottomOf="@id/newAltura">
 
-        <EditText
-            android:id="@+id/editaltura"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editPeso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Peso"
+            android:hint="Peso (kg)"
             android:inputType="text"
             android:textColor="@color/green2"
             android:textSize="20dp"
@@ -73,6 +73,22 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
+    <Button
+        android:id="@+id/btn_next_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_buttton"
+        android:backgroundTint="@color/green"
+        android:backgroundTintMode="screen"
+        android:fontFamily="sans-serif"
+        android:padding="12dp"
+        android:text="Siguiente"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
