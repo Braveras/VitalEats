@@ -1,11 +1,7 @@
 package com.vitaleats;
 
-import static android.app.PendingIntent.getActivity;
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +25,7 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity {
 
     TextView olvidado;
-    Button button;
+    Button button, button2;
     EditText editmail, editpass;
     FirebaseAuth mAuth;
 
@@ -42,6 +38,7 @@ public class Login extends AppCompatActivity {
         setSupportActionBar(toolbar);
         olvidado = findViewById(R.id.registerTextView);
         button = findViewById(R.id.button);
+        button2 = findViewById(R.id.button2);
         editmail = findViewById(R.id.editmail);
         editpass = findViewById(R.id.editpass);
         mAuth = FirebaseAuth.getInstance();
@@ -60,9 +57,12 @@ public class Login extends AppCompatActivity {
                                         // success
                                         Toast.makeText(Login.this, "INICIO DE SESIÓN CORRECTO", Toast.LENGTH_LONG).show();
                                         limpiar();
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        updateUI(user);
                                     } else {
                                         Toast.makeText(Login.this, "USUARIO NO REGISTRADO",
                                                 Toast.LENGTH_LONG).show();
+                                        updateUI(null);
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -101,6 +101,9 @@ public class Login extends AppCompatActivity {
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             }
         });
+    }
+
+    private void updateUI(FirebaseUser user) {
     }
 
     private void limpiar() {//Clear email entered

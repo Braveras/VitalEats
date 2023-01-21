@@ -56,6 +56,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/compra1" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="230dp"
+        android:layout_height="213dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/compra2"
+        app:srcCompat="@drawable/lista"
+        tools:layout_editor_absoluteX="90dp"
+        tools:layout_editor_absoluteY="368dp" />
+
     <TextView
         android:id="@+id/siguiente"
         android:layout_width="wrap_content"
