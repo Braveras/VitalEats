@@ -1,31 +1,41 @@
 package com.vitaleats;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Toast;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+//import com.vitaleats.databinding.ActivityMainBinding;
 
-public class Inicio extends AppCompatActivity {
 
+public class MainBn extends AppCompatActivity {
 
+//    private ActivityMainBinding binding;
+    private MenuItem prevMenuItem;
+    private SectionsPagerAdapter sectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        setContentView(R.layout.mainbn);
+//        binding = ActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
+
+        //el adaptador coloca las Pages -los fragmentos con las diferentes vistas- dentro de la vista padre Viewpager del xml
+        sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+//        ViewPager viewPager = binding.viewPager;
+        ViewPager viewPager1 = findViewById(R.id.view_pager);
+        viewPager1.setAdapter(sectionsPagerAdapter);
+
 
         BottomNavigationView mybottomNavView = findViewById(R.id.bottom_navigation);
 
@@ -39,35 +49,61 @@ public class Inicio extends AppCompatActivity {
         mybottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent;
+
                 switch (item.getItemId()) {
                     case R.id.inicio:
+                        item.setChecked(true);
                         removeBadge(mybottomNavView,item.getItemId());
+                        viewPager1.setCurrentItem(0);
                         break;
 
                     case R.id.alimentos:
-                        intent = new Intent(Inicio.this, Alimentos.class);
-                        startActivity(intent);
                         item.setChecked(true);
                         removeBadge(mybottomNavView,item.getItemId());
+                        viewPager1.setCurrentItem(1);
                         break;
 
                     case R.id.recetas:
-                        intent = new Intent(Inicio.this, Recetas.class);
-                        startActivity(intent);
                         item.setChecked(true);
                         removeBadge(mybottomNavView,item.getItemId());
+                        viewPager1.setCurrentItem(2);
                         break;
                 }
                 return false;
             }
         });
 
+        viewPager1.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null)
+                    prevMenuItem.setChecked(false);
+
+                else
+                    mybottomNavView.getMenu().getItem(0).setChecked(false);
+                mybottomNavView.getMenu().getItem(position).setChecked(true);
+                removeBadge(mybottomNavView,mybottomNavView.getMenu().getItem(position).getItemId());
+                prevMenuItem = mybottomNavView.getMenu().getItem(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
+
     public static void removeBadge(BottomNavigationView bottomNavigationView, @IdRes int itemId) {
         BottomNavigationItemView itemView = bottomNavigationView.findViewById(itemId);
         if (itemView.getChildCount() == 3) {
             itemView.removeViewAt(2);
         }
     }
+
 }
