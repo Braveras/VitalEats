@@ -17,12 +17,12 @@
             android:id="@+id/editusername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableRight="@drawable/user"
             android:hint="Nombre de usuario"
             android:inputType="text"
-            android:textColor="@color/green2"
+            android:textColor="?attr/colorPrimary"
             android:textSize="20dp"
-            android:theme="@style/Hint"
-            android:drawableRight="@drawable/user" />
+            android:theme="@style/Hint" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,7 +42,7 @@
             android:drawableRight="@drawable/mail"
             android:hint="@string/mail"
             android:inputType="textEmailAddress"
-            android:textColor="@color/green2"
+            android:textColor="?attr/colorPrimary"
             android:textSize="20dp"
             android:theme="@style/Hint" />
 
@@ -55,15 +55,14 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_buttton"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="?attr/colorPrimary"
         android:backgroundTintMode="screen"
         android:fontFamily="sans-serif"
         android:padding="12dp"
         android:text="Siguiente"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

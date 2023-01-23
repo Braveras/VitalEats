@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,7 +41,7 @@ public class FragmentForm1 extends Fragment {
                         mUsernameEditText.setError("*");
                     if (TextUtils.isEmpty(mEmailEditText.getText()))
                         mEmailEditText.setError("*");
-                    Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Por favor rellena todos los campos", Toast.LENGTH_SHORT).show();
                 } else if (!validarEmail(mEmailEditText.getText().toString())) {
                     mEmailEditText.setError("INTRODUCE UN CORREO VÁLIDO");
                 } else {

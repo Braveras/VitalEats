@@ -9,22 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class FragmentForm4 extends Fragment {
 
-    private TextView mUsernameTextView;
-    private TextView mEmailTextView;
-    private TextView mHeightTextView;
-    private TextView mWeightTextView;
-    private TextView mAgeTextView;
-    private Button mCancelButton;
-    private Button mAcceptButton;
+    private TextView mUsernameTextView, mAgeTextView, mEmailTextView, mHeightTextView, mWeightTextView;
+    private Button mAcceptButton, mCancelButton;
 
     @Nullable
     @Override
@@ -36,8 +35,8 @@ public class FragmentForm4 extends Fragment {
         mHeightTextView = view.findViewById(R.id.height_text_view);
         mWeightTextView = view.findViewById(R.id.weight_text_view);
         mAgeTextView = view.findViewById(R.id.age_text_view);
-        mCancelButton = view.findViewById(R.id.cancel_button);
         mAcceptButton = view.findViewById(R.id.accept_button);
+        mCancelButton = view.findViewById(R.id.cancel_button);
 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         mUsernameTextView.setText(sharedPref.getString("username", ""));
@@ -55,12 +54,33 @@ public class FragmentForm4 extends Fragment {
 
         mAcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //Intent intent = new Intent(getContext(), AnotherActivity.class);
-                //startActivity(intent);
+            public void onClick(View view) {
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                String email = sharedPref.getString("email", "");
+                String password = sharedPref.getString("password", "");
+
+                createUser(email, password);
             }
         });
 
         return view;
+    }
+
+    private void createUser(String email, String password) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getContext(), "Usuario creado con éxito", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(getContext(), Login.class);
+                            startActivity(i);
+
+                        } else {
+                            Toast.makeText(getContext(), "Error al crear usuario", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }

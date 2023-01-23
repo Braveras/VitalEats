@@ -1,4 +1,5 @@
 package com.vitaleats;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -43,9 +44,9 @@ public class FragmentForm3 extends Fragment {
                         mPasswordEditText.setError("*");
                     if (mConfirmPasswordEditText.getText().toString().isEmpty())
                         mConfirmPasswordEditText.setError("*");
-                    Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                } else if(!mPasswordEditText.getText().toString().equals(mConfirmPasswordEditText.getText().toString())) {
-                    mConfirmPasswordEditText.setError("Passwords do not match");
+                    Toast.makeText(getContext(), "Por favor rellena todos los campos", Toast.LENGTH_SHORT).show();
+                } else if (!mPasswordEditText.getText().toString().equals(mConfirmPasswordEditText.getText().toString())) {
+                    mConfirmPasswordEditText.setError("Las contraseñas no coinciden");
                 } else {
                     String encryptedPassword = null;
                     try {
