@@ -69,12 +69,12 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(Login.this, "INICIO DE SESIÓN CORRECTO", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Login.this, "Inicio de sesión correcto", Toast.LENGTH_LONG).show();
                                         limpiar();
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         updateUI(user);
                                     } else {
-                                        Toast.makeText(Login.this, "USUARIO NO REGISTRADO", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Login.this, "Usuario no registrado", Toast.LENGTH_LONG).show();
                                         updateUI(null);
                                     }
                                 }
@@ -86,20 +86,20 @@ public class Login extends AppCompatActivity {
                             });
 
                 } else if (editmail.getText().toString().isEmpty() && editpass.getText().toString().isEmpty()) {
-                    editmail.setError("DEBE COMPLETAR LOS CAMPOS OBLIGATORIOS");
-                    editpass.setError("DEBE COMPLETAR LOS CAMPOS OBLIGATORIOS");
+                    editmail.setError("Debe completar los campos obligatorios");
+                    editpass.setError("Debe completar los campos obligatorios");
 
                 } else if (editmail.getText().toString().isEmpty()) {
-                    editmail.setError("DEBE COMPLETAR LOS CAMPOS OBLIGATORIOS");
+                    editmail.setError("Debe completar los campos obligatorios");
 
                 } else if (!validarEmail(editmail.getText().toString())) {
-                    editmail.setError("INTRODUCE UN CORREO VÁLIDO");
+                    editmail.setError("Introduce un correo válido");
 
                 } else if (editpass.getText().toString().isEmpty()) {
-                    editpass.setError("DEBE COMPLETAR LOS CAMPOS OBLIGATORIOS");
+                    editpass.setError("Debe completar los campos obligatorios");
 
                 } else {
-                    Toast.makeText(Login.this, "ERROR AL INICIAR SESIÓN", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, "Error al iniciar sesión", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -138,8 +138,9 @@ public class Login extends AppCompatActivity {
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
+                Toast.makeText(Login.this, "Inicio de sesión con Google correcto", Toast.LENGTH_LONG).show();
             } catch (ApiException e) {
-                Toast.makeText(Login.this, "FALLO AL INICIAR SESIÓN CON GOOGLE", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, "Fallo al iniciar sesión con Google", Toast.LENGTH_LONG).show();
                 updateUI(null);
             }
         }
@@ -152,11 +153,9 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Login.this, "INICIO DE SESIÓN CON GOOGLE CORRECTO", Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
-                            Toast.makeText(Login.this, "FALLO AL INICIAR SESIÓN CON GOOGLE", Toast.LENGTH_LONG).show();
                             updateUI(null);
                         }
                     }
@@ -165,7 +164,7 @@ public class Login extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Intent i = new Intent(Login.this, NewAccount.class);
+            Intent i = new Intent(Login.this, MainActivity.class);
             startActivity(i);
         }
     }

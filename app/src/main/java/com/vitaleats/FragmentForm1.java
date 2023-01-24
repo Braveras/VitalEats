@@ -43,7 +43,7 @@ public class FragmentForm1 extends Fragment {
                         mEmailEditText.setError("*");
                     Toast.makeText(getContext(), "Por favor rellena todos los campos", Toast.LENGTH_SHORT).show();
                 } else if (!validarEmail(mEmailEditText.getText().toString())) {
-                    mEmailEditText.setError("INTRODUCE UN CORREO VÁLIDO");
+                    mEmailEditText.setError("Introduce un correo válido");
                 } else {
                     SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
