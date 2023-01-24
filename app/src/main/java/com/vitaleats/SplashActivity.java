@@ -1,7 +1,10 @@
 package com.vitaleats;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,18 +30,23 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SplashActivity extends AppCompatActivity {
 
     ImageView foodTray_lid, foodTray_base, app_name, fondo;
+    boolean ToS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        openApp();
+
+        ToS = SharedPrefsUtil.getBoolean(this, "ToS");
+        openApp(ToS);
 
         foodTray_lid = findViewById(R.id.foodtray_lid);
         foodTray_base = findViewById(R.id.foodtray_base);
@@ -49,8 +58,6 @@ public class SplashActivity extends AppCompatActivity {
                 .transition(DrawableTransitionOptions.withCrossFade(100))
                 .centerCrop()
                 .into(fondo);
-
-        LinearLayout splashLayout = findViewById(R.id.splash_parent);
 
         app_name.setVisibility(View.INVISIBLE);
 
@@ -70,13 +77,8 @@ public class SplashActivity extends AppCompatActivity {
 
         foodTray_lid.startAnimation(shakeAnim);
         shakeAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
+            @Override public void onAnimationStart(Animation animation) {}
+            @Override public void onAnimationRepeat(Animation animation) {}
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -91,9 +93,7 @@ public class SplashActivity extends AppCompatActivity {
                 app_name.startAnimation(app_name_anim);
             }
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
+            @Override public void onAnimationRepeat(Animation animation) {}
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -106,27 +106,43 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 foodTray_lid.startAnimation(lid_close);
+                Glide.with(getApplicationContext()) // Load the drawable resource into a Bitmap object using Glide
+                        .asBitmap()
+                        .load(R.drawable.foodtray_lid)
+                        .into(new SimpleTarget<Bitmap>() {
+                            @Override public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                // I created a function to reuse the code that returns a TransitionDrawable
+                                TransitionDrawable transitionFilter = applyFilter(resource, "#5EBC67");
+                                // Set the TransitionDrawable on the ImageView
+                                foodTray_lid.setImageDrawable(transitionFilter);
+                                // Start the transition animation
+                                transitionFilter.startTransition(500); // 500ms = 0.5s
+                            }
+                        });
+                Glide.with(getApplicationContext())
+                        .asBitmap()
+                        .load(R.drawable.foodtray_base)
+                        .into(new SimpleTarget<Bitmap>() {
+                            @Override public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                TransitionDrawable transitionFilter = applyFilter(resource, "#5EBC67");
+                                foodTray_base.setImageDrawable(transitionFilter);
+                                transitionFilter.startTransition(500);
+                            }
+                        });
+
             }
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
+            @Override public void onAnimationEnd(Animation animation) {
                 foodTray_lid.startAnimation(fade_out);
                 foodTray_base.startAnimation(fade_out);
             }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
+            @Override public void onAnimationRepeat(Animation animation) {}
         });
 
         fade_out.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
+            @Override public void onAnimationStart(Animation animation) {}
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
+            @Override public void onAnimationRepeat(Animation animation) {}
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -154,14 +170,20 @@ public class SplashActivity extends AppCompatActivity {
         }
     }*/
 
-    private void openApp() {
+    private void openApp(boolean b) {
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, Fragment1.class);
+
+                Intent intent;
+                if (b) {
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                } else {
+                    intent = new Intent(SplashActivity.this, Fragment1.class);
+                }
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
