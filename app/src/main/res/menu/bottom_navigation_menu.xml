@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/inicio"
+        android:title="inicio"
+        android:icon="@drawable/logoinicio"
+        android:contentDescription="none"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/alimentos"
+        android:title="alimentos"
+        android:icon="@drawable/logoalimentos"
+        android:contentDescription="none"
+        app:showAsAction="always"
+        >
+    </item>
+
+    <item
+        android:id="@+id/recetas"
+        android:title="recetas"
+        android:icon="@drawable/logorecetas"
+        android:contentDescription="none"
+        app:showAsAction="always"
+        />
+</menu>
