@@ -39,10 +39,10 @@ public class ResetPassword extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (editmail.getText().toString().isEmpty()) {
-                    editmail.setError("DEBE COMPLETAR LOS CAMPOS OBLIGATORIOS");
+                    editmail.setError("Debe completar los campos obligatorios");
 
                 } else if (!validarEmail(editmail.getText().toString())) {
-                    editmail.setError("INTRODUCE UN CORREO VÁLIDO");
+                    editmail.setError("Introduce un correo válido");
 
                 } else {
                     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -59,10 +59,10 @@ public class ResetPassword extends AppCompatActivity {
                                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                                        Toast.makeText(ResetPassword.this, "EMAIL ENVIADO", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(ResetPassword.this, "Email enviado", Toast.LENGTH_LONG).show();
                                         limpiar();
                                     } else {
-                                        Toast.makeText(ResetPassword.this, "EL EMAIL INTRODUCIDO NO ESTÁ REGISTRADO",
+                                        Toast.makeText(ResetPassword.this, "El email introducido no está registrado",
                                                 Toast.LENGTH_LONG).show();
                                     }
                                 }
