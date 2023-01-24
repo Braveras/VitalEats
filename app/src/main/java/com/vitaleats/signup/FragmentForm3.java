@@ -45,9 +45,9 @@ public class FragmentForm3 extends Fragment {
                         mPasswordEditText.setError("*");
                     if (mConfirmPasswordEditText.getText().toString().isEmpty())
                         mConfirmPasswordEditText.setError("*");
-                    Toast.makeText(getContext(), "Por favor rellena todos los campos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
                 } else if (!mPasswordEditText.getText().toString().equals(mConfirmPasswordEditText.getText().toString())) {
-                    mConfirmPasswordEditText.setError("Las contraseñas no coinciden");
+                    mConfirmPasswordEditText.setError(getString(R.string.passwordsDoNotMatch));
                 } else {
                     String encryptedPassword = null;
                     try {

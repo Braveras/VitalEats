@@ -42,7 +42,7 @@ public class FragmentForm2 extends Fragment {
                         mWeightEditText.setError("*");
                     if (mAgeEditText.getText().toString().isEmpty())
                         mAgeEditText.setError("*");
-                    Toast.makeText(getContext(), "Por favor rellena todos los campos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
                 } else {
                     SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();

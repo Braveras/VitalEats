@@ -45,4 +45,10 @@
     <string name="googleLoginError">Fallo al iniciar sesión con Google</string>
     <string name="googleLoginSuccess">Inicio de sesión con Google correcto</string>
     <string name="userNotFound">Usuario no registrado</string>
+    <string name="sentEmail">Email enviado</string>
+    <string name="mailNotFound">El email introducido no está registrado</string>
+    <string name="passwordsDoNotMatch">Las contraseñas no coinciden</string>
+    <string name="newUserSuccess">Usuario creado con éxito</string>
+    <string name="newUserFail">Error al crear usuario</string>
+    <string name="acceptToS">Debes aceptar nuestros términos y condiciones</string>
 </resources>
