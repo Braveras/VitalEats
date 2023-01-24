@@ -62,4 +62,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        //Do not do anything
+    }
 }

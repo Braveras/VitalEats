@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilmail"
+        android:id="@+id/tilusername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -13,17 +13,56 @@
         android:layout_marginRight="20dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editusername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/user"
+            android:hint="Nombre de usuario"
+            android:inputType="text"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="20dp"
+            android:theme="@style/Hint" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tilusername">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/mail"
             android:hint="@string/mail"
-            android:inputType="text"
-            android:textColor="@color/green2"
+            android:inputType="textEmailAddress"
+            android:textColor="?attr/colorPrimary"
             android:textSize="20dp"
             android:theme="@style/Hint" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_next_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_buttton"
+        android:backgroundTint="?attr/colorPrimary"
+        android:backgroundTintMode="screen"
+        android:fontFamily="sans-serif"
+        android:padding="12dp"
+        android:text="Siguiente"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

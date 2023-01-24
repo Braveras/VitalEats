@@ -40,6 +40,11 @@ public class Fragment2 extends AppCompatActivity {
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             }
         });
-
     }
+
+    @Override
+    public void onBackPressed() {
+        //Do not do anything
+    }
+
 }
