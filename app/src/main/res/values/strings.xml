@@ -37,4 +37,12 @@
     <string name="dieta2">Limita el consumo de alimentos procesados, azúcar y grasas saturadas. Estos alimentos suelen ser altos en calorías y pobres en nutrientes.</string>
     <string name="compra1">Te ayudamos a realizar una compra semanal basada en tu preferencia de alimentos.</string>
     <string name="compra2">Hacemos recetas saludables con los alimentos de tu lista de la compra o aquellos que tengas en casa, aprovechando al máximo todo.</string>
+
+    <string name="emptyFields">Debe completar los campos obligatorios</string>
+    <string name="invalidEmail">Introduce un correo válido</string>
+    <string name="loginError">Error al iniciar sesión</string>
+    <string name="loginSuccess">Inicio de sesión correcto</string>
+    <string name="googleLoginError">Fallo al iniciar sesión con Google</string>
+    <string name="googleLoginSuccess">Inicio de sesión con Google correcto</string>
+    <string name="userNotFound">Usuario no registrado</string>
 </resources>

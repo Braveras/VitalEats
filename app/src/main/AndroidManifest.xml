@@ -13,7 +13,7 @@
         android:theme="@style/Theme.VitalEats"
         tools:targetApi="31">
         <activity
-            android:name=".MainBn"
+            android:name=".main.MainBn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,30 +22,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Fragment3"
+            android:name=".termsofservice.Fragment3"
             android:exported="false"
-            android:parentActivityName=".Fragment2">
+            android:parentActivityName=".termsofservice.Fragment2">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Fragment2"
+            android:name=".termsofservice.Fragment2"
             android:exported="false"
-            android:parentActivityName=".Fragment1">
+            android:parentActivityName=".termsofservice.Fragment1">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Fragment1"
+            android:name=".termsofservice.Fragment1"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name=".utilities.SplashActivity"
             android:exported="false"
             android:noHistory="true"
             android:theme="@style/Theme.VitalEats">
@@ -56,49 +56,39 @@
 
         </activity>
         <activity
-            android:name=".NewAccount"
+            android:name=".signup.NewAccount"
             android:exported="false"
             android:label="@string/volver"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".login.MainActivity"
             android:theme="@style/Theme.VitalEats">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ResetPassword"
+            android:name=".login.ResetPassword"
             android:exported="false"
             android:label="@string/volver"
-            android:parentActivityName=".Login"
+            android:parentActivityName=".login.Login"
             android:theme="@style/Theme.VitalEats">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Login"
+            android:name=".login.Login"
             android:exported="false"
             android:label="@string/volver"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".login.MainActivity"
             android:theme="@style/Theme.VitalEats">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Improve"
+            android:name=".login.MainActivity"
             android:exported="false"
-            android:label="@string/volver"
-            android:parentActivityName=".NewAccount"
-            android:theme="@style/Theme.VitalEats">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:parentActivityName=".Fragment3">
+            android:parentActivityName=".termsofservice.Fragment3">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vitaleats.NewAccount">
+    tools:context="com.vitaleats.signup.NewAccount">
 
     <TextView
         android:id="@+id/registerTextView"
@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerTextView">
 
-        <com.vitaleats.NonSweepViewPager
+        <com.vitaleats.utilities.NonSweepViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
