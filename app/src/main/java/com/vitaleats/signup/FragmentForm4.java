@@ -76,12 +76,12 @@ public class FragmentForm4 extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Usuario creado con éxito", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.newUserSuccess), Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getContext(), Login.class);
                             startActivity(i);
 
                         } else {
-                            Toast.makeText(getContext(), "Error al crear usuario", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.newUserFail), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

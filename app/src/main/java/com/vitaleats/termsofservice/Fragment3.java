@@ -37,7 +37,7 @@ public class Fragment3 extends AppCompatActivity {
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 } else {
-                    Toast.makeText(Fragment3.this, "Debes aceptar nuestros términos y condiciones", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Fragment3.this, getString(R.string.acceptToS), Toast.LENGTH_LONG).show();
                 }
             }
         });
