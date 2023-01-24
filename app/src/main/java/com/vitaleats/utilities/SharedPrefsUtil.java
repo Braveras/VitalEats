@@ -1,4 +1,4 @@
-package com.vitaleats;
+package com.vitaleats.utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;

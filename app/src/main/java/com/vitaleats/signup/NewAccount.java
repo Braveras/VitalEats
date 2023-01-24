@@ -1,9 +1,11 @@
-package com.vitaleats;
+package com.vitaleats.signup;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.vitaleats.R;
 
 public class NewAccount extends AppCompatActivity {
 

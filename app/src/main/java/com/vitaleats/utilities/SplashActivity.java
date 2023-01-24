@@ -1,10 +1,8 @@
-package com.vitaleats;
+package com.vitaleats.utilities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,19 +19,18 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.vitaleats.R;
+import com.vitaleats.login.MainActivity;
+import com.vitaleats.termsofservice.Fragment1;
 
 public class SplashActivity extends AppCompatActivity {
 

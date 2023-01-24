@@ -1,4 +1,4 @@
-package com.vitaleats;
+package com.vitaleats.termsofservice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,21 +7,35 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class Fragment1 extends AppCompatActivity {
+import com.vitaleats.R;
 
-    TextView siguiente;
+public class Fragment2 extends AppCompatActivity {
+
+    TextView siguiente, atras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_1);
+        setContentView(R.layout.fragment_2);
 
         siguiente = findViewById(R.id.siguiente);
+        atras = findViewById(R.id.atras);
 
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Fragment1.this, Fragment2.class);
+                Intent i = new Intent(Fragment2.this, Fragment3.class);
+                startActivity(i);
+
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            }
+        });
+
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Fragment2.this, Fragment1.class);
                 startActivity(i);
 
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

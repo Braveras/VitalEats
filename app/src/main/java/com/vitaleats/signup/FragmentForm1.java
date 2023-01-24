@@ -1,4 +1,4 @@
-package com.vitaleats;
+package com.vitaleats.signup;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.vitaleats.R;
 
 import java.util.regex.Pattern;
 
