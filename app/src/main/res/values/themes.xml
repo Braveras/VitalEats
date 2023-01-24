@@ -32,4 +32,10 @@
         <item name="android:textColorHint">@color/green2</item>
     </style>
 
+    <style name="BottomNavigation">
+        <item name="itemIconTint">@color/bottomselector</item>
+        <item name="android:background">@color/white</item>
+        <item name="itemTextColor">@color/bottomselector</item>
+    </style>
+
 </resources>

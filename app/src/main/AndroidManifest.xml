@@ -13,8 +13,14 @@
         android:theme="@style/Theme.VitalEats"
         tools:targetApi="31">
         <activity
-            android:name=".Inicio"
-            android:exported="false" />
+            android:name=".MainBn"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Fragment3"
             android:exported="false"
@@ -40,18 +46,14 @@
         </activity>
         <activity
             android:name=".SplashActivity"
-            android:exported="true"
+            android:exported="false"
             android:noHistory="true"
             android:theme="@style/Theme.VitalEats">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".NewAccount"
