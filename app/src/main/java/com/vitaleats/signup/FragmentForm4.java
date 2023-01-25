@@ -19,9 +19,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.vitaleats.R;
 import com.vitaleats.login.Login;
 import com.vitaleats.signup.FragmentForm1;
+import com.vitaleats.utilities.SharedPrefsUtil;
 
 public class FragmentForm4 extends Fragment {
 
@@ -41,12 +44,12 @@ public class FragmentForm4 extends Fragment {
         mAcceptButton = view.findViewById(R.id.accept_button);
         mCancelButton = view.findViewById(R.id.cancel_button);
 
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        mUsernameTextView.setText(sharedPref.getString("username", ""));
-        mEmailTextView.setText(sharedPref.getString("email", ""));
-        mHeightTextView.setText(sharedPref.getString("height", ""));
-        mWeightTextView.setText(sharedPref.getString("weight", ""));
-        mAgeTextView.setText(sharedPref.getString("age", ""));
+
+        mUsernameTextView.setText(SharedPrefsUtil.getString(getContext(), "username"));
+        mEmailTextView.setText(SharedPrefsUtil.getString(getContext(), "email"));
+        mHeightTextView.setText(SharedPrefsUtil.getString(getContext(), "height"));
+        mWeightTextView.setText(SharedPrefsUtil.getString(getContext(), "weight"));
+        mAgeTextView.setText(SharedPrefsUtil.getString(getContext(), "age"));
 
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,11 +61,7 @@ public class FragmentForm4 extends Fragment {
         mAcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                String email = sharedPref.getString("email", "");
-                String password = sharedPref.getString("password", "");
-
-                createUser(email, password);
+                createUser(SharedPrefsUtil.getString(getContext(), "email"), SharedPrefsUtil.getString(getContext(), "password"));
             }
         });
 
@@ -72,17 +71,23 @@ public class FragmentForm4 extends Fragment {
     private void createUser(String email, String password) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), getString(R.string.newUserSuccess), Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(getContext(), Login.class);
-                            startActivity(i);
-
-                        } else {
-                            Toast.makeText(getContext(), getString(R.string.newUserFail), Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(SharedPrefsUtil.getString(getContext(), "username"))
+                                .build();
+                        user.updateProfile(profileUpdates)
+                                .addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        Toast.makeText(getContext(), getString(R.string.newUserSuccess), Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(getContext(), Login.class);
+                                        startActivity(i);
+                                    }
+                                });
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.newUserFail), Toast.LENGTH_SHORT).show();
+                        System.out.println("Error creating user: " + task.getException());
                     }
                 });
     }

@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.vitaleats.R;
+import com.vitaleats.utilities.SharedPrefsUtil;
 
 public class FragmentForm2 extends Fragment {
     private TextInputEditText mHeightEditText;
@@ -35,26 +36,13 @@ public class FragmentForm2 extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mHeightEditText.getText().toString().isEmpty() || mWeightEditText.getText().toString().isEmpty() || mAgeEditText.getText().toString().isEmpty()) {
-                    if (mHeightEditText.getText().toString().isEmpty())
-                        mHeightEditText.setError("*");
-                    if (mWeightEditText.getText().toString().isEmpty())
-                        mWeightEditText.setError("*");
-                    if (mAgeEditText.getText().toString().isEmpty())
-                        mAgeEditText.setError("*");
-                    Toast.makeText(getContext(), getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
-                } else {
-                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("height", mHeightEditText.getText().toString());
-                    editor.putString("weight", mWeightEditText.getText().toString());
-                    editor.putString("age", mAgeEditText.getText().toString());
-                    editor.apply();
+                SharedPrefsUtil.saveString(getContext(), "height", mHeightEditText.getText().toString());
+                SharedPrefsUtil.saveString(getContext(), "weight", mWeightEditText.getText().toString());
+                SharedPrefsUtil.saveString(getContext(), "age", mAgeEditText.getText().toString());
 
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.container, new FragmentForm3());
-                    transaction.commit();
-                }
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, new FragmentForm3());
+                transaction.commit();
             }
         });
 
