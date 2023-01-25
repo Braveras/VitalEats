@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.vitaleats.R;
+import com.vitaleats.utilities.SharedPrefsUtil;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -49,16 +50,7 @@ public class FragmentForm3 extends Fragment {
                 } else if (!mPasswordEditText.getText().toString().equals(mConfirmPasswordEditText.getText().toString())) {
                     mConfirmPasswordEditText.setError(getString(R.string.passwordsDoNotMatch));
                 } else {
-                    String encryptedPassword = null;
-                    try {
-                        encryptedPassword = encrypt(mPasswordEditText.getText().toString());
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("password", encryptedPassword);
-                    editor.apply();
+                    SharedPrefsUtil.saveString(getContext(), "password", mPasswordEditText.getText().toString());
 
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.replace(R.id.container, new FragmentForm4());
@@ -70,11 +62,4 @@ public class FragmentForm3 extends Fragment {
         return view;
     }
 
-    public String encrypt(String password) throws Exception {
-        SecretKeySpec key = new SecretKeySpec(KEY.getBytes(), AES);
-        Cipher c = Cipher.getInstance(AES);
-        c.init(Cipher.ENCRYPT_MODE, key);
-        byte[] encVal = c.doFinal(password.getBytes());
-        return Base64.encodeToString(encVal, Base64.DEFAULT);
-    }
 }

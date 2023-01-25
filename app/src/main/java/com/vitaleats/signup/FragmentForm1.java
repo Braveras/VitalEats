@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.vitaleats.R;
+import com.vitaleats.utilities.SharedPrefsUtil;
 
 import java.util.regex.Pattern;
 
@@ -46,11 +47,8 @@ public class FragmentForm1 extends Fragment {
                 } else if (!validarEmail(mEmailEditText.getText().toString())) {
                     mEmailEditText.setError(getString(R.string.invalidEmail));
                 } else {
-                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("username", mUsernameEditText.getText().toString());
-                    editor.putString("email", mEmailEditText.getText().toString());
-                    editor.apply();
+                    SharedPrefsUtil.saveString(getContext(), "username", mUsernameEditText.getText().toString());
+                    SharedPrefsUtil.saveString(getContext(), "email", mEmailEditText.getText().toString());
 
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.replace(R.id.container, new FragmentForm2());
