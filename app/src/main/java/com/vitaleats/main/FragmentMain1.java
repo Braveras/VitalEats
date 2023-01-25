@@ -1,4 +1,4 @@
-package com.vitaleats;
+package com.vitaleats.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+
+import com.vitaleats.R;
 
 public class FragmentMain1 extends Fragment {
 

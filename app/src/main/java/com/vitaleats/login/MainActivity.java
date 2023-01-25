@@ -1,4 +1,4 @@
-package com.vitaleats;
+package com.vitaleats.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.vitaleats.R;
+import com.vitaleats.signup.NewAccount;
 
 public class MainActivity extends AppCompatActivity {
 

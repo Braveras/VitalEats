@@ -1,4 +1,4 @@
-package com.vitaleats;
+package com.vitaleats.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +26,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.vitaleats.R;
 
 import java.util.regex.Pattern;
 
@@ -41,15 +42,15 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(com.vitaleats.R.layout.activity_login);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(com.vitaleats.R.id.toolbar);
         setSupportActionBar(toolbar);
-        olvidado = findViewById(R.id.registerTextView);
-        button = findViewById(R.id.button);
-        button2 = findViewById(R.id.button2);
-        editmail = findViewById(R.id.editmail);
-        editpass = findViewById(R.id.editpass);
+        olvidado = findViewById(com.vitaleats.R.id.registerTextView);
+        button = findViewById(com.vitaleats.R.id.button);
+        button2 = findViewById(com.vitaleats.R.id.button2);
+        editmail = findViewById(com.vitaleats.R.id.editmail);
+        editpass = findViewById(com.vitaleats.R.id.editpass);
         mAuth = FirebaseAuth.getInstance();
 
         // Configure Google Sign In
@@ -69,12 +70,12 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(Login.this, "Inicio de sesión correcto", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Login.this, getString(R.string.loginSuccess), Toast.LENGTH_LONG).show();
                                         limpiar();
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         updateUI(user);
                                     } else {
-                                        Toast.makeText(Login.this, "Usuario no registrado", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
                                         updateUI(null);
                                     }
                                 }
@@ -85,21 +86,21 @@ public class Login extends AppCompatActivity {
                                 }
                             });
 
-                } else if (editmail.getText().toString().isEmpty() && editpass.getText().toString().isEmpty()) {
-                    editmail.setError("Debe completar los campos obligatorios");
-                    editpass.setError("Debe completar los campos obligatorios");
-
-                } else if (editmail.getText().toString().isEmpty()) {
-                    editmail.setError("Debe completar los campos obligatorios");
-
-                } else if (!validarEmail(editmail.getText().toString())) {
-                    editmail.setError("Introduce un correo válido");
-
-                } else if (editpass.getText().toString().isEmpty()) {
-                    editpass.setError("Debe completar los campos obligatorios");
-
-                } else {
-                    Toast.makeText(Login.this, "Error al iniciar sesión", Toast.LENGTH_LONG).show();
+                }
+                else if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty())
+                {
+                    if (editmail.getText().toString().isEmpty())
+                        editmail.setError(getString(R.string.emptyFields));
+                    if (editpass.getText().toString().isEmpty())
+                        editpass.setError(getString(R.string.emptyFields));
+                }
+                else if (!validarEmail(editmail.getText().toString()))
+                {
+                    editmail.setError(getString(R.string.invalidEmail));
+                }
+                else
+                {
+                    Toast.makeText(Login.this, getString(R.string.loginError), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -138,9 +139,9 @@ public class Login extends AppCompatActivity {
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
-                Toast.makeText(Login.this, "Inicio de sesión con Google correcto", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, getString(R.string.googleLoginSuccess), Toast.LENGTH_LONG).show();
             } catch (ApiException e) {
-                Toast.makeText(Login.this, "Fallo al iniciar sesión con Google", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, getString(R.string.googleLoginError), Toast.LENGTH_LONG).show();
                 updateUI(null);
             }
         }
