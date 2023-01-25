@@ -14,13 +14,7 @@
         tools:targetApi="31">
         <activity
             android:name=".main.MainBn"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".termsofservice.Fragment3"
             android:exported="false"
@@ -46,14 +40,17 @@
         </activity>
         <activity
             android:name=".utilities.SplashActivity"
-            android:exported="false"
+            android:exported="true"
             android:noHistory="true"
             android:theme="@style/Theme.VitalEats">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-
         </activity>
         <activity
             android:name=".signup.NewAccount"
