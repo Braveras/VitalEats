@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.vitaleats.R;
+import com.vitaleats.main.MainBn;
 
 import java.util.regex.Pattern;
 
@@ -86,20 +87,14 @@ public class Login extends AppCompatActivity {
                                 }
                             });
 
-                }
-                else if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty())
-                {
+                } else if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty()) {
                     if (editmail.getText().toString().isEmpty())
                         editmail.setError(getString(R.string.emptyFields));
                     if (editpass.getText().toString().isEmpty())
                         editpass.setError(getString(R.string.emptyFields));
-                }
-                else if (!validarEmail(editmail.getText().toString()))
-                {
+                } else if (!validarEmail(editmail.getText().toString())) {
                     editmail.setError(getString(R.string.invalidEmail));
-                }
-                else
-                {
+                } else {
                     Toast.makeText(Login.this, getString(R.string.loginError), Toast.LENGTH_LONG).show();
                 }
             }
@@ -165,7 +160,7 @@ public class Login extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Intent i = new Intent(Login.this, MainActivity.class);
+            Intent i = new Intent(Login.this, MainBn.class);
             startActivity(i);
         }
     }

@@ -18,7 +18,7 @@ import com.vitaleats.R;
 
 public class MainBn extends AppCompatActivity {
 
-//    private ActivityMainBinding binding;
+    //    private ActivityMainBinding binding;
     private MenuItem prevMenuItem;
     private SectionsPagerAdapter sectionsPagerAdapter;
 
@@ -52,19 +52,19 @@ public class MainBn extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.inicio:
                         item.setChecked(true);
-                        removeBadge(mybottomNavView,item.getItemId());
+                        removeBadge(mybottomNavView, item.getItemId());
                         viewPager1.setCurrentItem(0);
                         break;
 
                     case R.id.alimentos:
                         item.setChecked(true);
-                        removeBadge(mybottomNavView,item.getItemId());
+                        removeBadge(mybottomNavView, item.getItemId());
                         viewPager1.setCurrentItem(1);
                         break;
 
                     case R.id.recetas:
                         item.setChecked(true);
-                        removeBadge(mybottomNavView,item.getItemId());
+                        removeBadge(mybottomNavView, item.getItemId());
                         viewPager1.setCurrentItem(2);
                         break;
                 }
@@ -86,7 +86,7 @@ public class MainBn extends AppCompatActivity {
                 else
                     mybottomNavView.getMenu().getItem(0).setChecked(false);
                 mybottomNavView.getMenu().getItem(position).setChecked(true);
-                removeBadge(mybottomNavView,mybottomNavView.getMenu().getItem(position).getItemId());
+                removeBadge(mybottomNavView, mybottomNavView.getMenu().getItem(position).getItemId());
                 prevMenuItem = mybottomNavView.getMenu().getItem(position);
             }
 
