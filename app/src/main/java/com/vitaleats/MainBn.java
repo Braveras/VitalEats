@@ -1,12 +1,16 @@
 package com.vitaleats;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -19,7 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainBn extends AppCompatActivity {
 
-//    private ActivityMainBinding binding;
+    //    private ActivityMainBinding binding;
     private MenuItem prevMenuItem;
     private SectionsPagerAdapter sectionsPagerAdapter;
 
@@ -53,19 +57,19 @@ public class MainBn extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.inicio:
                         item.setChecked(true);
-                        removeBadge(mybottomNavView,item.getItemId());
+                        removeBadge(mybottomNavView, item.getItemId());
                         viewPager1.setCurrentItem(0);
                         break;
 
                     case R.id.alimentos:
                         item.setChecked(true);
-                        removeBadge(mybottomNavView,item.getItemId());
+                        removeBadge(mybottomNavView, item.getItemId());
                         viewPager1.setCurrentItem(1);
                         break;
 
                     case R.id.recetas:
                         item.setChecked(true);
-                        removeBadge(mybottomNavView,item.getItemId());
+                        removeBadge(mybottomNavView, item.getItemId());
                         viewPager1.setCurrentItem(2);
                         break;
                 }
@@ -87,7 +91,7 @@ public class MainBn extends AppCompatActivity {
                 else
                     mybottomNavView.getMenu().getItem(0).setChecked(false);
                 mybottomNavView.getMenu().getItem(position).setChecked(true);
-                removeBadge(mybottomNavView,mybottomNavView.getMenu().getItem(position).getItemId());
+                removeBadge(mybottomNavView, mybottomNavView.getMenu().getItem(position).getItemId());
                 prevMenuItem = mybottomNavView.getMenu().getItem(position);
             }
 
@@ -104,6 +108,23 @@ public class MainBn extends AppCompatActivity {
         if (itemView.getChildCount() == 3) {
             itemView.removeViewAt(2);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_appbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.item1) {
+            System.exit(0);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -6,20 +6,18 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/icono"
+        android:icon="@drawable/icono2"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icono"
+        android:roundIcon="@drawable/icono2"
         android:supportsRtl="true"
         android:theme="@style/Theme.VitalEats"
         tools:targetApi="31">
         <activity
             android:name=".MainBn"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
         <activity
             android:name=".Fragment3"
@@ -46,14 +44,17 @@
         </activity>
         <activity
             android:name=".SplashActivity"
-            android:exported="false"
+            android:exported="true"
             android:noHistory="true"
             android:theme="@style/Theme.VitalEats">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-
         </activity>
         <activity
             android:name=".NewAccount"
@@ -97,8 +98,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:parentActivityName=".Fragment3">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

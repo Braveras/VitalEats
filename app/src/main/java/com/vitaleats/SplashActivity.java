@@ -77,8 +77,13 @@ public class SplashActivity extends AppCompatActivity {
 
         foodTray_lid.startAnimation(shakeAnim);
         shakeAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override public void onAnimationStart(Animation animation) {}
-            @Override public void onAnimationRepeat(Animation animation) {}
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -93,7 +98,9 @@ public class SplashActivity extends AppCompatActivity {
                 app_name.startAnimation(app_name_anim);
             }
 
-            @Override public void onAnimationRepeat(Animation animation) {}
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -110,7 +117,8 @@ public class SplashActivity extends AppCompatActivity {
                         .asBitmap()
                         .load(R.drawable.foodtray_lid)
                         .into(new SimpleTarget<Bitmap>() {
-                            @Override public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            @Override
+                            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                                 // I created a function to reuse the code that returns a TransitionDrawable
                                 TransitionDrawable transitionFilter = applyFilter(resource, "#5EBC67");
                                 // Set the TransitionDrawable on the ImageView
@@ -123,7 +131,8 @@ public class SplashActivity extends AppCompatActivity {
                         .asBitmap()
                         .load(R.drawable.foodtray_base)
                         .into(new SimpleTarget<Bitmap>() {
-                            @Override public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            @Override
+                            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                                 TransitionDrawable transitionFilter = applyFilter(resource, "#5EBC67");
                                 foodTray_base.setImageDrawable(transitionFilter);
                                 transitionFilter.startTransition(500);
@@ -132,17 +141,25 @@ public class SplashActivity extends AppCompatActivity {
 
             }
 
-            @Override public void onAnimationEnd(Animation animation) {
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 foodTray_lid.startAnimation(fade_out);
                 foodTray_base.startAnimation(fade_out);
             }
-            @Override public void onAnimationRepeat(Animation animation) {}
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
         });
 
         fade_out.setAnimationListener(new Animation.AnimationListener() {
-            @Override public void onAnimationStart(Animation animation) {}
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
 
-            @Override public void onAnimationRepeat(Animation animation) {}
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -156,7 +173,6 @@ public class SplashActivity extends AppCompatActivity {
                 foodTray_base.startAnimation(fade_in);
             }
         });
-
     }
 
     /*@Override
@@ -187,6 +203,15 @@ public class SplashActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null) {
+                    Intent mainIntent = new Intent(SplashActivity.this, MainBn.class);
+                    startActivity(mainIntent);
+                    finish();
+                }
+
             }
         }, 6500);
 

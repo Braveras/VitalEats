@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*private long backPressedTime;
+    private long backPressedTime;
 
     @Override
     public void onBackPressed() {
@@ -75,10 +75,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Presiona de nuevo para salir", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
-    }*/
-
-    @Override
-    public void onBackPressed() {
-        //Do not do anything
     }
 }
