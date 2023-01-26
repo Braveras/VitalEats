@@ -76,7 +76,15 @@ public class Login extends AppCompatActivity {
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         updateUI(user);
                                     } else {
-                                        Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
+                                        try {
+                                            throw task.getException();
+                                        } catch (FirebaseAuthInvalidCredentialsException e) {
+                                            Toast.makeText(Login.this, getString(R.string.wrongPassword), Toast.LENGTH_LONG).show();
+                                        } catch (FirebaseAuthInvalidUserException e) {
+                                            Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
+                                        } catch (Exception e) {
+                                            Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
                                         updateUI(null);
                                     }
                                 }
