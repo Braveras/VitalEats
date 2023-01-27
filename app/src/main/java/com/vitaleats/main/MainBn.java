@@ -1,8 +1,10 @@
 package com.vitaleats.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -12,20 +14,22 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.vitaleats.R;
-//import com.vitaleats.databinding.ActivityMainBinding;
-
+import com.vitaleats.login.MainActivity;
 
 public class MainBn extends AppCompatActivity {
 
     //    private ActivityMainBinding binding;
     private MenuItem prevMenuItem;
     private SectionsPagerAdapter sectionsPagerAdapter;
+    Button cerrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainbn);
+        cerrar = findViewById(R.id.cerrar);
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
 
@@ -96,6 +100,16 @@ public class MainBn extends AppCompatActivity {
             }
         });
 
+        cerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainIntent);
+                finish();
+            }
+        });
+
     }
 
     public static void removeBadge(BottomNavigationView bottomNavigationView, @IdRes int itemId) {
@@ -103,6 +117,11 @@ public class MainBn extends AppCompatActivity {
         if (itemView.getChildCount() == 3) {
             itemView.removeViewAt(2);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Do not do anything
     }
 
 }

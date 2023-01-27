@@ -21,6 +21,7 @@
     <string name="siguiente">Siguiente</string>
     <string name="atras">Atrás</string>
     <string name="aceptar">ACEPTAR</string>
+    <string name="cerrar">CERRAR SESIÓN</string>
     <string name="datos">Información básica sobre Protección de Datos</string>
     <string name="responsable">Responsable</string>
     <string name="responsable2">VITALEATS S.L.</string>
@@ -45,6 +46,7 @@
     <string name="googleLoginError">Fallo al iniciar sesión con Google</string>
     <string name="googleLoginSuccess">Inicio de sesión con Google correcto</string>
     <string name="userNotFound">Usuario no registrado</string>
+    <string name="wrongPassword">Contraseña incorrecta</string>
     <string name="sentEmail">Email enviado</string>
     <string name="mailNotFound">El email introducido no está registrado</string>
     <string name="passwordsDoNotMatch">Las contraseñas no coinciden</string>

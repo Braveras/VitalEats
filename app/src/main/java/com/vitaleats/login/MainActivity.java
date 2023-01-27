@@ -3,7 +3,6 @@ package com.vitaleats.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     ImageView logo, fondo;
     TextView slogan, tengoCuenta;
     Button crearCuenta;
-    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         slogan = findViewById(R.id.slogan);
         tengoCuenta = findViewById(R.id.tengoCuenta);
         crearCuenta = findViewById(R.id.crearCuenta);
-        mp = MediaPlayer.create(this, R.raw.straw);
 
         Glide.with(this)
                 .load(R.drawable.fondo)
@@ -54,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         tengoCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mp.start();
 
                 Intent i = new Intent(MainActivity.this, Login.class);
                 startActivity(i);
