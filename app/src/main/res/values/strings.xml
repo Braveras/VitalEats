@@ -53,4 +53,5 @@
     <string name="newUserSuccess">Usuario creado con éxito</string>
     <string name="newUserFail">Error al crear usuario</string>
     <string name="acceptToS">Debes aceptar nuestros términos y condiciones</string>
+    <string name="passwordSecurity">La contraseña debe tener al menos 7 caracteres, 1 mayúscula y 2 números</string>
 </resources>
