@@ -1,9 +1,6 @@
 package com.vitaleats.signup;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +16,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.vitaleats.R;
 import com.vitaleats.utilities.SharedPrefsUtil;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-
 public class FragmentForm3 extends Fragment {
     private TextInputEditText mPasswordEditText;
     private TextInputEditText mConfirmPasswordEditText;
 
-    private final String AES = "AES";
-    private final String KEY = "Xp2s5v8y/B?E(G+KbPeShVmYq3t6w9z$";
 
     @Nullable
     @Override
@@ -49,6 +41,8 @@ public class FragmentForm3 extends Fragment {
                     Toast.makeText(getContext(), getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
                 } else if (!mPasswordEditText.getText().toString().equals(mConfirmPasswordEditText.getText().toString())) {
                     mConfirmPasswordEditText.setError(getString(R.string.passwordsDoNotMatch));
+                } else if (!isPasswordValid(mPasswordEditText.getText().toString())) {
+                    mConfirmPasswordEditText.setError(getString(R.string.passwordSecurity));
                 } else {
                     SharedPrefsUtil.saveString(getContext(), "password", mPasswordEditText.getText().toString());
 
@@ -60,6 +54,30 @@ public class FragmentForm3 extends Fragment {
         });
 
         return view;
+    }
+
+    private boolean isPasswordValid(String password) {
+        // Comprobar la longitud de la contraseña
+        if (password.length() < 7) {
+            return false;
+        }
+
+        // Comprobar si contiene al menos 1 mayúscula y 2 números
+        int upperCase = 0, digits = 0;
+        for (int i = 0; i < password.length(); i++) {
+            char c = password.charAt(i);
+            if (Character.isUpperCase(c)) {
+                upperCase++;
+            } else if (Character.isDigit(c)) {
+                digits++;
+            }
+        }
+        if (upperCase < 1 || digits < 2) {
+            return false;
+        }
+
+        // La contraseña cumple los requisitos de seguridad
+        return true;
     }
 
 }
