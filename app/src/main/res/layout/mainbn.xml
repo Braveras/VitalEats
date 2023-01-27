@@ -13,7 +13,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="250dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/rounded_buttton"
+        android:background="@drawable/rounded_button_primary"
         android:backgroundTint="?attr/colorPrimary"
         android:backgroundTintMode="screen"
         android:fontFamily="monospace"
