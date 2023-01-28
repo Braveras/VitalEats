@@ -4,26 +4,29 @@
 
     <item
         android:id="@+id/inicio"
-        android:title="inicio"
-        android:icon="@drawable/logoinicio"
         android:contentDescription="none"
-        app:showAsAction="always"
-        />
+        android:icon="@drawable/logoinicio"
+        android:title="inicio"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/alimentos"
-        android:title="alimentos"
-        android:icon="@drawable/logoalimentos"
         android:contentDescription="none"
-        app:showAsAction="always"
-        >
-    </item>
+        android:icon="@drawable/logoalimentos"
+        android:title="alimentos"
+        app:showAsAction="always"></item>
 
     <item
         android:id="@+id/recetas"
-        android:title="recetas"
-        android:icon="@drawable/logorecetas"
         android:contentDescription="none"
-        app:showAsAction="always"
-        />
+        android:icon="@drawable/logorecetas"
+        android:title="recetas"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/perfil"
+        android:contentDescription="none"
+        android:icon="@drawable/logoperfil"
+        android:title="perfil"
+        app:showAsAction="always" />
 </menu>
