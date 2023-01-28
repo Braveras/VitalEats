@@ -132,13 +132,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="80dp"
-            android:background="@drawable/rounded_buttton"
-            android:backgroundTint="?attr/colorSecondary"
+            android:background="@drawable/rounded_button_secondary"
             android:backgroundTintMode="screen"
             android:fontFamily="sans-serif"
             android:padding="10dp"
             android:text="Cancelar"
-            android:textColor="@color/white"
+            android:textColor="@color/textselectorprimary"
             android:textSize="20sp" />
 
         <Button
@@ -146,13 +145,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/rounded_buttton"
-            android:backgroundTint="?attr/colorSecondary"
+            android:background="@drawable/rounded_button_secondary"
             android:backgroundTintMode="screen"
             android:fontFamily="sans-serif"
             android:padding="12dp"
             android:text="Confirmar"
-            android:textColor="@color/white"
+            android:textColor="@color/textselectorprimary"
             android:textSize="18sp" />
     </LinearLayout>
 
