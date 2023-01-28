@@ -13,12 +13,11 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="250dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/rounded_buttton"
-        android:backgroundTint="?attr/colorPrimary"
+        android:background="@drawable/rounded_button_primary"
         android:backgroundTintMode="screen"
         android:fontFamily="monospace"
         android:text="@string/cerrar"
-        android:textColor="@color/white"
+        android:textColor="@color/textselectorprimary"
         android:textStyle="bold" />
 
     <androidx.viewpager.widget.ViewPager
