@@ -70,22 +70,27 @@ public class Login extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(Login.this, getString(R.string.loginSuccess), Toast.LENGTH_LONG).show();
-                                        limpiar();
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        updateUI(user);
-                                    } else {
-                                        try {
-                                            throw task.getException();
-                                        } catch (FirebaseAuthInvalidCredentialsException e) {
-                                            Toast.makeText(Login.this, getString(R.string.wrongPassword), Toast.LENGTH_LONG).show();
-                                        } catch (FirebaseAuthInvalidUserException e) {
-                                            Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
-                                        } catch (Exception e) {
-                                            Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    if (user.isEmailVerified()) {
+                                        // Correo electrónico verificado
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(Login.this, getString(R.string.loginSuccess), Toast.LENGTH_LONG).show();
+                                            limpiar();
+                                            updateUI(user);
+                                        } else {
+                                            try {
+                                                throw task.getException();
+                                            } catch (FirebaseAuthInvalidCredentialsException e) {
+                                                Toast.makeText(Login.this, getString(R.string.wrongPassword), Toast.LENGTH_LONG).show();
+                                            } catch (FirebaseAuthInvalidUserException e) {
+                                                Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
+                                            } catch (Exception e) {
+                                                Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                            }
+                                            updateUI(null);
                                         }
-                                        updateUI(null);
+                                    } else {
+                                        Toast.makeText(Login.this, getString(R.string.mailNotVerified), Toast.LENGTH_LONG).show();
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {

@@ -25,6 +25,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new FragmentMain2();
             case 2:
                 return new FragmentMain3();
+            case 3:
+                return new FragmentMain4();
             // Add additional cases for each fragment
             default:
                 return null;
@@ -42,6 +44,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3; // Number of fragments
+        return 4; // Number of fragments
     }
 }
