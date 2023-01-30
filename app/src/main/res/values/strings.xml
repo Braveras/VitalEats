@@ -46,7 +46,7 @@
     <string name="googleLoginError">Fallo al iniciar sesión con Google</string>
     <string name="googleLoginSuccess">Inicio de sesión con Google correcto</string>
     <string name="userNotFound">Usuario no registrado</string>
-    <string name="wrongPassword">Contraseña incorrecta</string>
+    <string name="wrongPassword">Contraseña o email incorrectos</string>
     <string name="sentEmail">Email enviado</string>
     <string name="mailNotFound">El email introducido no está registrado</string>
     <string name="passwordsDoNotMatch">Las contraseñas no coinciden</string>
