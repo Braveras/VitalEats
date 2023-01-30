@@ -33,9 +33,9 @@
     </style>
 
     <style name="BottomNavigation">
-        <item name="itemIconTint">@color/bottomselector</item>
+        <item name="itemIconTint">@color/textselectorprimary</item>
         <item name="android:background">@color/white</item>
-        <item name="itemTextColor">@color/bottomselector</item>
+        <item name="itemTextColor">@color/textselectorprimary</item>
     </style>
 
 </resources>
