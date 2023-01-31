@@ -46,11 +46,11 @@
     <string name="googleLoginError">Fallo al iniciar sesión con Google</string>
     <string name="googleLoginSuccess">Inicio de sesión con Google correcto</string>
     <string name="userNotFound">Usuario no registrado</string>
-    <string name="wrongPassword">Contraseña incorrecta</string>
+    <string name="wrongPassword">Contraseña o email incorrectos</string>
     <string name="sentEmail">Email enviado</string>
     <string name="mailNotFound">El email introducido no está registrado</string>
     <string name="passwordsDoNotMatch">Las contraseñas no coinciden</string>
-    <string name="newUserSuccess">Usuario creado con éxito</string>
+    <string name="newUserSuccess">Usuario creado con éxito, correo de verificación enviado</string>
     <string name="newUserFail">Error al crear usuario</string>
     <string name="acceptToS">Debes aceptar nuestros términos y condiciones</string>
     <string name="passwordSecurity">La contraseña debe tener al menos 7 caracteres, 1 mayúscula y 2 números</string>
@@ -61,4 +61,6 @@
     <string name="height_cm">Altura (cm)</string>
     <string name="weight">Peso (kg)</string>
     <string name="next">Siguiente</string>
+    <string name="mailNotVerified">El email no ha sido verificado</string>
+    
 </resources>

@@ -82,6 +82,7 @@ public class FragmentForm4 extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
+                        user.sendEmailVerification();
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                 .setDisplayName(SharedPrefsUtil.getString(getContext(), "username"))
                                 .build();
@@ -95,7 +96,6 @@ public class FragmentForm4 extends Fragment {
                                 });
                     } else {
                         Toast.makeText(getContext(), getString(R.string.newUserFail), Toast.LENGTH_SHORT).show();
-                        System.out.println("Error creating user: " + task.getException());
                     }
                 });
     }

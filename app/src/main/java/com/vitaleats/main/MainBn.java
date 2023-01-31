@@ -1,10 +1,8 @@
 package com.vitaleats.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -14,28 +12,24 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.vitaleats.R;
-import com.vitaleats.login.MainActivity;
 
 public class MainBn extends AppCompatActivity {
 
-    //    private ActivityMainBinding binding;
+    //private ActivityMainBinding binding;
     private MenuItem prevMenuItem;
     private SectionsPagerAdapter sectionsPagerAdapter;
-    Button cerrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainbn);
-        cerrar = findViewById(R.id.cerrar);
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
 
         //el adaptador coloca las Pages -los fragmentos con las diferentes vistas- dentro de la vista padre Viewpager del xml
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-//        ViewPager viewPager = binding.viewPager;
+        //ViewPager viewPager = binding.viewPager;
         ViewPager viewPager1 = findViewById(R.id.view_pager);
         viewPager1.setAdapter(sectionsPagerAdapter);
 
@@ -45,7 +39,7 @@ public class MainBn extends AppCompatActivity {
         // crear badges
         BottomNavigationMenuView bottomNavigationMenuView =
                 (BottomNavigationMenuView) mybottomNavView.getChildAt(0);
-        View v = bottomNavigationMenuView.getChildAt(2);
+        View v = bottomNavigationMenuView.getChildAt(3);
         BottomNavigationItemView itemView = (BottomNavigationItemView) v;
 
 
@@ -70,6 +64,12 @@ public class MainBn extends AppCompatActivity {
                         item.setChecked(true);
                         removeBadge(mybottomNavView, item.getItemId());
                         viewPager1.setCurrentItem(2);
+                        break;
+
+                    case R.id.perfil:
+                        item.setChecked(true);
+                        removeBadge(mybottomNavView, item.getItemId());
+                        viewPager1.setCurrentItem(3);
                         break;
                 }
                 return false;
@@ -99,23 +99,12 @@ public class MainBn extends AppCompatActivity {
 
             }
         });
-
-        cerrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(mainIntent);
-                finish();
-            }
-        });
-
     }
 
     public static void removeBadge(BottomNavigationView bottomNavigationView, @IdRes int itemId) {
         BottomNavigationItemView itemView = bottomNavigationView.findViewById(itemId);
-        if (itemView.getChildCount() == 3) {
-            itemView.removeViewAt(2);
+        if (itemView.getChildCount() == 4) {
+            itemView.removeViewAt(3);
         }
     }
 
