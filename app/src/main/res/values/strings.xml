@@ -54,4 +54,11 @@
     <string name="newUserFail">Error al crear usuario</string>
     <string name="acceptToS">Debes aceptar nuestros términos y condiciones</string>
     <string name="passwordSecurity">La contraseña debe tener al menos 7 caracteres, 1 mayúscula y 2 números</string>
+    <string name="optional">(Opcional)</string>
+    <string name="age">Edad</string>
+    <string name="confirm_data">Confirma tus datos</string>
+    <string name="name">Nombre:</string>
+    <string name="height_cm">Altura (cm)</string>
+    <string name="weight">Peso (kg)</string>
+    <string name="next">Siguiente</string>
 </resources>
