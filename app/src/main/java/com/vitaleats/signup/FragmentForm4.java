@@ -51,6 +51,14 @@ public class FragmentForm4 extends Fragment {
         mWeightTextView.setText(SharedPrefsUtil.getString(getContext(), "weight"));
         mAgeTextView.setText(SharedPrefsUtil.getString(getContext(), "age"));
 
+        TextView[] textViews = {mHeightTextView, mWeightTextView, mAgeTextView};
+        for (TextView textView : textViews) {
+            if (textView.getText().toString().isEmpty()) {
+                textView.setVisibility(View.INVISIBLE);
+            }
+        }
+
+
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
