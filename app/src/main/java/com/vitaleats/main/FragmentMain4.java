@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.vitaleats.R;
@@ -32,6 +33,7 @@ public class FragmentMain4 extends Fragment {
                 // Redirigir al usuario a la pantalla de inicio de sesión
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
+                Toast.makeText(getActivity(), getString(R.string.closedSession), Toast.LENGTH_LONG).show();
                 getActivity().finish();
             }
         });
