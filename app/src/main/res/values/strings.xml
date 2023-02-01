@@ -62,5 +62,6 @@
     <string name="weight">Peso (kg)</string>
     <string name="next">Siguiente</string>
     <string name="mailNotVerified">El email no ha sido verificado</string>
-    
+    <string name="closedSession">Sesión cerrada</string>
+    <string name="scan">SCAN</string>
 </resources>
