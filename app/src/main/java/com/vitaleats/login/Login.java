@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity {
 
     TextView olvidado;
-    Button button, button2;
+    Button button, button2, guestButton;
     EditText editmail, editpass;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
@@ -50,6 +50,7 @@ public class Login extends AppCompatActivity {
         olvidado = findViewById(com.vitaleats.R.id.registerTextView);
         button = findViewById(com.vitaleats.R.id.button);
         button2 = findViewById(com.vitaleats.R.id.button2);
+        guestButton = findViewById(R.id.guest);
         editmail = findViewById(com.vitaleats.R.id.editmail);
         editpass = findViewById(com.vitaleats.R.id.editpass);
         mAuth = FirebaseAuth.getInstance();
@@ -120,6 +121,13 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        guestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginAnonymous();
+            }
+        });
+
         olvidado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -187,4 +195,23 @@ public class Login extends AppCompatActivity {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
     }
+
+    private void loginAnonymous() {
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(new Intent(Login.this, MainBn.class));
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Login.this, "Error al acceder", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }
