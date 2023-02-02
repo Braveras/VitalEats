@@ -9,6 +9,7 @@
     <string name="pass2">Repite contraseña</string>
     <string name="acceder">ACCEDER</string>
     <string name="google">ACCEDER CON GOOGLE</string>
+    <string name="guest">ACCEDER COMO INVITADO</string>
     <string name="tambien">O también puedes</string>
     <string name="olvidado">¿HAS OLVIDADO TU CONTRASEÑA?</string>
     <string name="bienvenido">Bienvenido de nuevo</string>
@@ -64,4 +65,8 @@
     <string name="mailNotVerified">El email no ha sido verificado</string>
     <string name="closedSession">Sesión cerrada</string>
     <string name="scan">SCAN</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="uploadImageSuccess">Imágen cargada con éxito</string>
+    <string name="uploadImageError">Error al cargar la imágen</string>
 </resources>
