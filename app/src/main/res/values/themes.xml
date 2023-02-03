@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="colorSurface">@color/black</item>
+        <item name="colorOnSurface">@color/white</item>
     </style>
 
     <style name="Toolbar">
@@ -33,9 +34,9 @@
     </style>
 
     <style name="BottomNavigation">
-        <item name="itemIconTint">@color/textselectorprimary</item>
+        <item name="itemIconTint">?attr/colorSurface</item>
         <item name="android:background">@color/white</item>
-        <item name="itemTextColor">@color/textselectorprimary</item>
+        <item name="itemTextColor">?attr/colorSurface</item>
     </style>
 
 </resources>

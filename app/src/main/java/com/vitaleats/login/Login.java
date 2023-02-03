@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity {
 
     TextView olvidado;
-    Button button, button2;
+    Button button, button2, guestButton;
     EditText editmail, editpass;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
@@ -50,6 +50,7 @@ public class Login extends AppCompatActivity {
         olvidado = findViewById(com.vitaleats.R.id.registerTextView);
         button = findViewById(com.vitaleats.R.id.button);
         button2 = findViewById(com.vitaleats.R.id.button2);
+        guestButton = findViewById(R.id.guest);
         editmail = findViewById(com.vitaleats.R.id.editmail);
         editpass = findViewById(com.vitaleats.R.id.editpass);
         mAuth = FirebaseAuth.getInstance();
@@ -70,22 +71,27 @@ public class Login extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(Login.this, getString(R.string.loginSuccess), Toast.LENGTH_LONG).show();
-                                        limpiar();
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        updateUI(user);
-                                    } else {
-                                        try {
-                                            throw task.getException();
-                                        } catch (FirebaseAuthInvalidCredentialsException e) {
-                                            Toast.makeText(Login.this, getString(R.string.wrongPassword), Toast.LENGTH_LONG).show();
-                                        } catch (FirebaseAuthInvalidUserException e) {
-                                            Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
-                                        } catch (Exception e) {
-                                            Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    if (user.isEmailVerified()) {
+                                        // Correo electrónico verificado
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(Login.this, getString(R.string.loginSuccess), Toast.LENGTH_LONG).show();
+                                            limpiar();
+                                            updateUI(user);
+                                        } else {
+                                            try {
+                                                throw task.getException();
+                                            } catch (FirebaseAuthInvalidCredentialsException e) {
+                                                Toast.makeText(Login.this, getString(R.string.wrongPassword), Toast.LENGTH_LONG).show();
+                                            } catch (FirebaseAuthInvalidUserException e) {
+                                                Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
+                                            } catch (Exception e) {
+                                                Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                            }
+                                            updateUI(null);
                                         }
-                                        updateUI(null);
+                                    } else {
+                                        Toast.makeText(Login.this, getString(R.string.mailNotVerified), Toast.LENGTH_LONG).show();
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -112,6 +118,13 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signInWithGoogle();
+            }
+        });
+
+        guestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginAnonymous();
             }
         });
 
@@ -182,4 +195,23 @@ public class Login extends AppCompatActivity {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
     }
+
+    private void loginAnonymous() {
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(new Intent(Login.this, MainBn.class));
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Login.this, "Error al acceder", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }

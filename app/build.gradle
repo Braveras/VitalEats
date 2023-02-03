@@ -11,10 +11,11 @@ android {
         applicationId "com.vitaleats"
         minSdk 26
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 01
+        versionName "0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -27,13 +28,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    sourceSets {
-        main {
-            res {
-                srcDirs 'src\\main\\res', 'src\\main\\res\\layouts\\fragments', 'src\\main\\res\\layouts\\activities'
-            }
-        }
-    }
+
     buildFeatures {
         viewBinding true
         dataBinding true
@@ -56,4 +51,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth:21.1.0'
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
+    implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
+    implementation 'com.google.zxing:core:3.3.3'
+    implementation 'com.google.firebase:firebase-storage:20.1.0'
+    implementation 'com.google.firebase:firebase-firestore:24.4.2'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
 }
