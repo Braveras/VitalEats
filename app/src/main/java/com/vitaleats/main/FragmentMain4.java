@@ -2,14 +2,15 @@ package com.vitaleats.main;
 
 import static android.app.Activity.RESULT_OK;
 
-import static com.google.common.io.Files.getFileExtension;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,24 +21,34 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.vitaleats.R;
 import com.vitaleats.login.MainActivity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 public class FragmentMain4 extends Fragment {
 
-    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int PICK_IMAGE_REQUEST = 1000;
+    private static final int CAMERA_REQUEST = 1888;
     private Button cerrar, editar, eliminar;
     private ImageView imagen;
     private StorageReference mStorageRef;
-    private Uri filePath;
+    private String storage_path = "images/";
+    private StorageReference storageReference;
     private ContentResolver contentResolver;
 
     @Override
@@ -49,6 +60,8 @@ public class FragmentMain4 extends Fragment {
         imagen = view.findViewById(R.id.imagen);
         mStorageRef = FirebaseStorage.getInstance().getReference();
         contentResolver = getContentResolver();
+
+        loadImage();
 
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,11 +78,24 @@ public class FragmentMain4 extends Fragment {
 
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Abrir galería para seleccionar una imagen
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Selecciona una imágen"), PICK_IMAGE_REQUEST);
+            public void onClick(View v) {
+                final CharSequence[] options = {"Tomar foto", "Elegir de galería"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Elige una opción");
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int item) {
+                        if (options[item].equals("Tomar foto")) {
+                            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                        } else if (options[item].equals("Elegir de galería")) {
+                            Intent pickImageIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            pickImageIntent.setType("image/*");
+                            startActivityForResult(pickImageIntent, PICK_IMAGE_REQUEST);
+                        }
+                    }
+                });
+                builder.show();
             }
         });
 
@@ -83,6 +109,7 @@ public class FragmentMain4 extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(getActivity(), "Imagen eliminada con éxito", Toast.LENGTH_SHORT).show();
+                        imagen.setImageBitmap(null);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -92,7 +119,6 @@ public class FragmentMain4 extends Fragment {
                 });
             }
         });
-
         return view;
     }
 
@@ -103,29 +129,105 @@ public class FragmentMain4 extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Uri selectedImage = data.getData();
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            filePath = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                imagen.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case CAMERA_REQUEST:
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    uploadImageToFirebase(imageBitmap);
+                    break;
+                case PICK_IMAGE_REQUEST:
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                        uploadImageToFirebase(bitmap);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
             }
         }
+    }
 
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/" + System.currentTimeMillis() + "." + getFileExtension(filePath.toString()));
-        storageReference.putFile(filePath)
+    private void saveProfilePicture(Bitmap imageBitmap) {
+        try {
+            FileOutputStream fos = getContext().openFileOutput("profile_picture.png", getContext().MODE_PRIVATE);
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadImage() {
+        // Obtiene la ruta de la imagen guardada en el dispositivo
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        File imagePath = new File(getContext().getFilesDir(), "profile_picture.png");
+        if (imagePath.exists()) {
+            // Carga la imagen en el ImageView
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath.getAbsolutePath());
+            imagen.setImageBitmap(bitmap);
+        } else {
+            if (user != null) {
+                Bitmap bitmap = BitmapFactory.decodeFile(imagePath.getAbsolutePath());
+                imagen.setImageBitmap(bitmap);
+            } else {
+                // Carga la imagen predeterminada
+                imagen.setImageBitmap(null);
+            }
+        }
+    }
+
+    /*public void loadImage(String userId) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference imagesRef = storageRef.child("images/" + userId + "/profile_picture.png");
+
+        imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(getContext())
+                        .load(uri)
+                        .into(imagen);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }*/
+
+    private void uploadImageToFirebase(Bitmap imageBitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/" + UUID.randomUUID().toString());
+        storageReference.putBytes(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(getActivity(), "Imagen subida con éxito", Toast.LENGTH_SHORT).show();
+                        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                // Imagen subida con éxito
+                                Toast.makeText(getActivity(), "Imagen subida con éxito", Toast.LENGTH_SHORT).show();
+                                Picasso.with(getActivity())
+                                        .load(uri)
+                                        .into(imagen);
+                                saveProfilePicture(imageBitmap);
+                                imagen.setImageBitmap(imageBitmap);
+                            }
+                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(), "Falló la subida de la imagen", Toast.LENGTH_SHORT).show();
+                        // Error al subir la imagen
+                        Toast.makeText(getActivity(), "Error al subir la imagen", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
