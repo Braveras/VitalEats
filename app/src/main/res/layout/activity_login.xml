@@ -159,6 +159,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_button_gray"
         android:backgroundTintMode="screen"
+        android:drawableStart="@drawable/user"
         android:fontFamily="monospace"
         android:paddingLeft="15dp"
         android:paddingRight="28dp"
@@ -166,7 +167,6 @@
         android:textColor="@color/black"
         android:textSize="17dp"
         android:textStyle="bold"
-        android:drawableStart="@drawable/user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

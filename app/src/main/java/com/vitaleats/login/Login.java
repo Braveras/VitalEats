@@ -201,7 +201,7 @@ public class Login extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(Login.this, MainBn.class));
                         }

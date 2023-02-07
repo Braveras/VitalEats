@@ -6,27 +6,27 @@
         android:id="@+id/inicio"
         android:contentDescription="none"
         android:icon="@drawable/logoinicio"
-        android:title="inicio"
+        android:title="@string/init"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/alimentos"
         android:contentDescription="none"
         android:icon="@drawable/logoalimentos"
-        android:title="alimentos"
+        android:title="@string/food"
         app:showAsAction="always"></item>
 
     <item
         android:id="@+id/recetas"
         android:contentDescription="none"
         android:icon="@drawable/logorecetas"
-        android:title="recetas"
+        android:title="@string/recipes"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/perfil"
         android:contentDescription="none"
         android:icon="@drawable/logoperfil"
-        android:title="perfil"
+        android:title="@string/profile"
         app:showAsAction="always" />
 </menu>

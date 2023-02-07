@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Vital Eats</string>
     <string name="slogan">Healthy meals, minimal waste</string>
@@ -10,7 +11,6 @@
     <string name="acceder">ACCEDER</string>
     <string name="google">ACCEDER CON GOOGLE</string>
     <string name="guest">ACCEDER COMO INVITADO</string>
-    <string name="tambien">O también puedes</string>
     <string name="olvidado">¿HAS OLVIDADO TU CONTRASEÑA?</string>
     <string name="bienvenido">Bienvenido de nuevo</string>
     <string name="hola">¡HOLA!</string>
@@ -39,6 +39,17 @@
     <string name="dieta2">Limita el consumo de alimentos procesados, azúcar y grasas saturadas. Estos alimentos suelen ser altos en calorías y pobres en nutrientes.</string>
     <string name="compra1">Te ayudamos a realizar una compra semanal basada en tu preferencia de alimentos.</string>
     <string name="compra2">Hacemos recetas saludables con los alimentos de tu lista de la compra o aquellos que tengas en casa, aprovechando al máximo todo.</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="init">inicio</string>
+    <string name="init2">INICIO</string>
+    <string name="food">alimentos</string>
+    <string name="food2">ALIMENTOS</string>
+    <string name="recipes">recetas</string>
+    <string name="recipes2"> RECETAS</string>
+    <string name="profile">perfil</string>
+    <string name="profile2">PERFIL</string>
 
     <string name="emptyFields">Debe completar los campos obligatorios</string>
     <string name="invalidEmail">Introduce un correo válido</string>
