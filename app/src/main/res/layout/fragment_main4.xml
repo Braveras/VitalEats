@@ -16,7 +16,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="17dp"
-        android:text="PERFIL"
+        android:text="@string/profile2"
         android:textAlignment="center"
         android:textColor="?attr/colorSecondary"
         android:textSize="22dp"

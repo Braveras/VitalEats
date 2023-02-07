@@ -14,7 +14,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="17dp"
-        android:text="RECETAS"
+        android:text="@string/recipes2"
         android:textAlignment="center"
         android:textColor="?attr/colorSecondary"
         android:textSize="22dp"
