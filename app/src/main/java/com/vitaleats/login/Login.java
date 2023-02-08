@@ -1,15 +1,16 @@
 package com.vitaleats.login;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -18,23 +19,26 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.*;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 import com.vitaleats.R;
 import com.vitaleats.main.MainBn;
 
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
 
-    TextView olvidado;
-    Button button, button2, guestButton;
+    TextView forgottenPassword_btn;
+    Button mailPassworAccess_btn, googleAccess_btn, guestButton;
     EditText editmail, editpass;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
@@ -47,10 +51,9 @@ public class Login extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(com.vitaleats.R.id.toolbar);
         setSupportActionBar(toolbar);
-        olvidado = findViewById(com.vitaleats.R.id.registerTextView);
-        button = findViewById(com.vitaleats.R.id.button);
-        button2 = findViewById(com.vitaleats.R.id.button2);
-        guestButton = findViewById(R.id.guest);
+        forgottenPassword_btn = findViewById(com.vitaleats.R.id.forgottenPassword);
+        mailPassworAccess_btn = findViewById(com.vitaleats.R.id.mailPasswordAccess_button);
+        googleAccess_btn = findViewById(com.vitaleats.R.id.googleAccess_button);
         editmail = findViewById(com.vitaleats.R.id.editmail);
         editpass = findViewById(com.vitaleats.R.id.editpass);
         mAuth = FirebaseAuth.getInstance();
@@ -62,81 +65,58 @@ public class Login extends AppCompatActivity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        mailPassworAccess_btn.setOnClickListener(view -> {
 
-                if (!editmail.getText().toString().isEmpty() && !editpass.getText().toString().isEmpty() && validarEmail(editmail.getText().toString())) {
-                    mAuth.signInWithEmailAndPassword(editmail.getText().toString(), editpass.getText().toString())
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    if (user.isEmailVerified()) {
-                                        // Correo electrónico verificado
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(Login.this, getString(R.string.loginSuccess), Toast.LENGTH_LONG).show();
-                                            limpiar();
-                                            updateUI(user);
-                                        } else {
-                                            try {
-                                                throw task.getException();
-                                            } catch (FirebaseAuthInvalidCredentialsException e) {
-                                                Toast.makeText(Login.this, getString(R.string.wrongPassword), Toast.LENGTH_LONG).show();
-                                            } catch (FirebaseAuthInvalidUserException e) {
-                                                Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
-                                            } catch (Exception e) {
-                                                Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                                            }
-                                            updateUI(null);
-                                        }
-                                    } else {
-                                        Toast.makeText(Login.this, getString(R.string.mailNotVerified), Toast.LENGTH_LONG).show();
+            if (!editmail.getText().toString().isEmpty() && !editpass.getText().toString().isEmpty() && validarEmail(editmail.getText().toString())) {
+                mAuth.signInWithEmailAndPassword(editmail.getText().toString(), editpass.getText().toString())
+                        .addOnCompleteListener(task -> {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user.isEmailVerified()) {
+                                // Correo electrónico verificado
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(Login.this, getString(R.string.loginSuccess), Toast.LENGTH_LONG).show();
+                                    limpiar();
+                                    updateUI(user);
+                                } else {
+                                    try {
+                                        throw task.getException();
+                                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                                        Toast.makeText(Login.this, getString(R.string.wrongPassword), Toast.LENGTH_LONG).show();
+                                    } catch (FirebaseAuthInvalidUserException e) {
+                                        Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
+                                    } catch (Exception e) {
+                                        Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                     }
+                                    updateUI(null);
                                 }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // exception
-                                }
-                            });
+                            } else {
+                                Toast.makeText(Login.this, getString(R.string.mailNotVerified), Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(e -> {
+                            // exception
+                            Toast.makeText(Login.this, "Error al iniciar sesión", Toast.LENGTH_LONG).show();
+                        });
 
-                } else if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty()) {
-                    if (editmail.getText().toString().isEmpty())
-                        editmail.setError(getString(R.string.emptyFields));
-                    if (editpass.getText().toString().isEmpty())
-                        editpass.setError(getString(R.string.emptyFields));
-                } else if (!validarEmail(editmail.getText().toString())) {
-                    editmail.setError(getString(R.string.invalidEmail));
-                } else {
-                    Toast.makeText(Login.this, getString(R.string.loginError), Toast.LENGTH_LONG).show();
-                }
+            } else if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty()) {
+                if (editmail.getText().toString().isEmpty())
+                    editmail.setError(getString(R.string.emptyFields));
+                if (editpass.getText().toString().isEmpty())
+                    editpass.setError(getString(R.string.emptyFields));
+            } else if (!validarEmail(editmail.getText().toString())) {
+                editmail.setError(getString(R.string.invalidEmail));
+            } else {
+                Toast.makeText(Login.this, getString(R.string.loginError), Toast.LENGTH_LONG).show();
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signInWithGoogle();
-            }
-        });
+        googleAccess_btn.setOnClickListener(view -> signInWithGoogle());
 
-        guestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginAnonymous();
-            }
-        });
+        forgottenPassword_btn.setOnClickListener(view -> {
+            Intent i = new Intent(Login.this, ResetPassword.class);
+            startActivity(i);
 
-        olvidado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Login.this, ResetPassword.class);
-                startActivity(i);
-
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         });
 
     }
@@ -157,6 +137,7 @@ public class Login extends AppCompatActivity {
                 firebaseAuthWithGoogle(account);
                 Toast.makeText(Login.this, getString(R.string.googleLoginSuccess), Toast.LENGTH_LONG).show();
             } catch (ApiException e) {
+                Log.i("APIException: ", e.toString());
                 Toast.makeText(Login.this, getString(R.string.googleLoginError), Toast.LENGTH_LONG).show();
                 updateUI(null);
             }
@@ -166,17 +147,40 @@ public class Login extends AppCompatActivity {
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        String uid = user.getUid();
+                        //Check if user information exists or not
+                        StorageReference fileRef = FirebaseStorage.getInstance().getReference().child("documents/users/" + uid + "/" + "userInformation.json");
+                        fileRef.getMetadata().addOnSuccessListener(storageMetadata -> {
+                            //Exists
                             updateUI(user);
-                        } else {
-                            updateUI(null);
-                        }
+                        }).addOnFailureListener(exception -> {
+                            //Not exist
+                            createStorageUser(user);
+                            updateUI(user);
+                        });
+                    } else {
+                        updateUI(null);
                     }
                 });
+    }
+
+    private void createStorageUser(FirebaseUser user) {
+        String uid = user.getUid();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference rootRef = storage.getReference();
+        StorageReference folderRef = rootRef.child("documents/users/" + uid + "/userInformation.json");
+
+        Map<String, String> userInformation = new HashMap<>();
+        userInformation.put("edad", "0");
+        userInformation.put("peso", "0");
+        userInformation.put("altura", "0");
+
+        folderRef.putBytes(new Gson().toJson(userInformation).getBytes(StandardCharsets.UTF_8))
+                .addOnSuccessListener(taskSnapshot -> Log.d(TAG, "User information file written successfully"))
+                .addOnFailureListener(exception -> Log.w(TAG, "Error writing user information file", exception));
     }
 
     private void updateUI(FirebaseUser user) {
@@ -186,32 +190,14 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private void limpiar() {
-        editmail.setText("");
-        editpass.setText("");
-    }
-
     private boolean validarEmail(String email) {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
     }
 
-    private void loginAnonymous() {
-        mAuth.signInAnonymously()
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(Login.this, MainBn.class));
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Login.this, "Error al acceder", Toast.LENGTH_SHORT).show();
-                    }
-                });
+    private void limpiar() {
+        editmail.setText("");
+        editpass.setText("");
     }
 
 }
