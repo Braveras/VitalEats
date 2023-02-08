@@ -1,9 +1,12 @@
 package com.vitaleats.signup;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +19,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 import com.vitaleats.R;
 import com.vitaleats.login.Login;
 import com.vitaleats.signup.FragmentForm1;
 import com.vitaleats.utilities.SharedPrefsUtil;
+
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FragmentForm4 extends Fragment {
 
@@ -94,9 +107,37 @@ public class FragmentForm4 extends Fragment {
                                         startActivity(i);
                                     }
                                 });
+                        createStorageUser(user, SharedPrefsUtil.getString(getContext(), "weight"), SharedPrefsUtil.getString(getContext(), "age"), SharedPrefsUtil.getString(getContext(), "height"));
                     } else {
                         Toast.makeText(getContext(), getString(R.string.newUserFail), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
+    private void createStorageUser(FirebaseUser user, String peso, String edad, String altura) {
+        String uid = user.getUid();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference rootRef = storage.getReference();
+        StorageReference folderRef = rootRef.child("documents/users/" + uid + "/userInformation.json");
+
+        Map<String, String> userInformation = new HashMap<>();
+        userInformation.put("edad", peso);
+        userInformation.put("peso", edad);
+        userInformation.put("altura", altura);
+
+        folderRef.putBytes(new Gson().toJson(userInformation).getBytes(StandardCharsets.UTF_8))
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.d(TAG, "User information file written successfully");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.w(TAG, "Error writing user information file", exception);
+                    }
+                });
+    }
+
 }
