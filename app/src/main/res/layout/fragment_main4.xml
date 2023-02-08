@@ -4,78 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f5f5f5"
     tools:context=".main.FragmentMain4">
 
     <TextView
-        android:id="@+id/datos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="17dp"
+        android:id="@+id/usernameTextView"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="42dp"
         android:text="PERFIL"
         android:textAlignment="center"
         android:textColor="?attr/colorSecondary"
-        android:textSize="22dp"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cardview"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mailTextView"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="10dp"
+        android:text="CORREO"
+        android:textAlignment="center"
+        android:textColor="?attr/colorSecondary"
+        android:textSize="18dp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@id/cardview"
+        app:layout_constraintTop_toBottomOf="@id/usernameTextView" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="22dp"
         app:cardCornerRadius="70dp"
+        android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/datos">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imagen"
+            android:id="@+id/profilePicture"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:cropToPadding="false"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitCenter" />
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/editar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/rounded_button_primary"
-        android:backgroundTintMode="screen"
-        android:fontFamily="monospace"
-        android:text="@string/edit"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardview" />
 
     <Button
-        android:id="@+id/eliminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="100dp"
-        android:background="@drawable/rounded_button_primary"
-        android:backgroundTintMode="screen"
-        android:fontFamily="monospace"
-        android:text="@string/delete"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardview" />
-
-    <Button
-        android:id="@+id/cerrar"
+        android:id="@+id/signout_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
