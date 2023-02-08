@@ -44,8 +44,8 @@
     <string name="confirm">Confirm</string>
     <string name="init">start</string>
     <string name="init2">START</string>
-    <string name="food">food</string>
-    <string name="food2">FOOD</string>
+    <string name="food">grocery list</string>
+    <string name="food2">GROCERY LIST</string>
     <string name="recipes">recipes</string>
     <string name="recipes2">RECIPES</string>
     <string name="profile">profile</string>
@@ -80,4 +80,13 @@
     <string name="delete">Delete</string>
     <string name="uploadImageSuccess">Image uploaded successfully</string>
     <string name="uploadImageError">Error uploading image</string>
+    <string name="addItem">Add item</string>
+    <string name="newItem">Add new food item</string>
+    <string name="deleteItem">Do you want to delete it?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="result">Result</string>
+    <string name="foodScanner">Food scanner</string>
+    <string name="addRecipe">ADD RECIPE</string>
+    <string name="searchRecipe">Search a recipe</string>
 </resources>
