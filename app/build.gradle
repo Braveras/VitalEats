@@ -11,8 +11,8 @@ android {
         applicationId "com.vitaleats"
         minSdk 26
         targetSdk 32
-        versionCode 01
-        versionName "0.1"
+        versionCode 04
+        versionName "0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
