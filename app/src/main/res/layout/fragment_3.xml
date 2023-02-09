@@ -180,7 +180,7 @@
         android:backgroundTintMode="screen"
         android:fontFamily="monospace"
         android:text="@string/aceptar"
-        android:textColor="@color/white"
+        android:textColor="@color/buttonselectorprimary"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />
 

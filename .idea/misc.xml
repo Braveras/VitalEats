@@ -12,6 +12,8 @@
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/drawable-v24/rounded_button_primary.xml" value="0.2395" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/drawable-v24/rounded_button_secondary.xml" value="0.2395" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/drawable-v24/rounded_buttton.xml" value="0.2395" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/drawable/rounded_button_gray.xml" value="0.146" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/drawable/rounded_text_primary.xml" value="0.2385" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_improve.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_login.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/activity_main.xml" value="0.17831813576494426" />
@@ -21,7 +23,7 @@
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_1.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_2.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_3.xml" value="0.25" />
-        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_form_1.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_form_1.xml" value="0.33" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_form_2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_form_3.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/am4Dam2/AndroidStudioProjects/VitalEats/app/src/main/res/layout/fragment_form_4.xml" value="0.36666666666666664" />
