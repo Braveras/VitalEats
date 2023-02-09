@@ -47,7 +47,7 @@
         android:backgroundTintMode="screen"
         android:fontFamily="monospace"
         android:text="@string/crearCuenta"
-        android:textColor="@color/white"
+        android:textColor="@color/buttonselectorprimary"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -58,7 +58,7 @@
         android:layout_marginBottom="15dp"
         android:text="@string/tengoCuenta"
         android:textAlignment="center"
-        android:textColor="@color/buttonselectorprimary"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
