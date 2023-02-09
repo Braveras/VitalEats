@@ -89,4 +89,5 @@
     <string name="foodScanner">Food scanner</string>
     <string name="addRecipe">ADD RECIPE</string>
     <string name="searchRecipe">Search a recipe</string>
+    <string name="enterFood">Enter a food</string>
 </resources>

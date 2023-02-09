@@ -89,4 +89,5 @@
     <string name="foodScanner">Scaneador de alimentos</string>
     <string name="addRecipe">AÑADIR RECETA</string>
     <string name="searchRecipe">Busca una receta</string>
+    <string name="enterFood">Introduzca un alimento</string>
 </resources>
