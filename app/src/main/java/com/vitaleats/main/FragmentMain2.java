@@ -23,56 +23,72 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 import com.vitaleats.R;
+import com.vitaleats.login.Login;
 import com.vitaleats.utilities.FirebaseHandler;
+
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FragmentMain2 extends Fragment {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseHandler firebaseHandler;
-    private Button btn_scan;
     private EditText newItemEditText;
     private Button addButton;
     private ListView foodListView;
     private ArrayList<String> foodList;
+    private List<Integer> foodListCount;
     private ArrayAdapter<String> foodListAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main2, container, false);
 
-        btn_scan = view.findViewById(R.id.btn_scan);
         newItemEditText = view.findViewById(R.id.new_item_edit_text);
         addButton = view.findViewById(R.id.add_button);
         foodListView = view.findViewById(R.id.food_list_view);
 
         firebaseHandler = new FirebaseHandler();
         foodList = new ArrayList<>();
+        foodListCount = new ArrayList<>();
         foodListAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, foodList);
         foodListView.setAdapter(foodListAdapter);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newItem = newItemEditText.getText().toString();
-                foodList.add(newItem);
-                foodListAdapter.notifyDataSetChanged();
-                firebaseHandler.addFood(newItem);
-                newItemEditText.setText("");
-                Map<String, Object> food = new HashMap<>();
-                food.put("name", newItem);
-                db.collection("foodList")
-                        .add(food)
-                        .addOnSuccessListener(documentReference -> {
-                            Log.d("Firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                        })
-                        .addOnFailureListener(e -> {
-                            Log.w("Firebase", "Error adding document", e);
-                        });
+                String newItem = newItemEditText.getText().toString().toLowerCase();
+                if (!newItem.isEmpty()) {
+                    if (foodList.contains(newItem)) {
+                        int index = foodList.indexOf(newItem);
+                        int count = foodListCount.get(index) + 1;
+                        foodListCount.set(index, count);
+                        foodList.set(index, newItem + " x" + count);
+                    } else {
+                        foodList.add(newItem);
+                        foodListCount.add(1);
+                    }
+                    foodListAdapter.notifyDataSetChanged();
+                    firebaseHandler.addFood(newItem);
+                    newItemEditText.setText("");
+                    Map<String, Object> food = new HashMap<>();
+                    food.put("name", newItem);
+                    db.collection("foodList")
+                            .add(food)
+                            .addOnSuccessListener(documentReference -> {
+                                Log.d("Firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.w("Firebase", "Error adding document", e);
+                            });
+                } else {
+                    Toast.makeText(getActivity(), getString(R.string.enterFood), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -88,13 +104,6 @@ public class FragmentMain2 extends Fragment {
                     .setNegativeButton(getResources().getString(R.string.no), (dialog, which) -> dialog.dismiss())
                     .create()
                     .show();
-        });
-
-        btn_scan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scanCode();
-            }
         });
 
         db.collection("foodList")
@@ -137,15 +146,6 @@ public class FragmentMain2 extends Fragment {
             foodListAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, foodList);
             foodListView.setAdapter(foodListAdapter);
         }
-    }
-
-    private void scanCode() {
-        ScanOptions options = new ScanOptions();
-        options.setPrompt(getResources().getString(R.string.foodScanner));
-        options.setBeepEnabled(true);
-        options.setOrientationLocked(true);
-        options.setCaptureActivity(CaptureAct.class);
-        barLauncher.launch(options);
     }
 
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result ->
