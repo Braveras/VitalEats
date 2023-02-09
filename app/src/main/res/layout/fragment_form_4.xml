@@ -136,7 +136,7 @@
         android:fontFamily="sans-serif"
         android:padding="10dp"
         android:text="@string/cancel"
-        android:textColor="@color/white"
+        android:textColor="@color/buttonselectorprimary"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView2" />
@@ -151,7 +151,7 @@
         android:fontFamily="sans-serif"
         android:padding="12dp"
         android:text="@string/confirm"
-        android:textColor="@color/white"
+        android:textColor="@color/buttonselectorprimary"
         android:textSize="19sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/cancel_button"
         app:layout_constraintEnd_toEndOf="parent" />
