@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Vital Eats</string>
     <string name="slogan">Healthy meals, minimal waste</string>
-    <string name="crearCuenta">EMPIEZA AHORA</string>
+    <string name="crearCuenta">Crear cuenta</string>
     <string name="tengoCuenta">YA TENGO UNA CUENTA</string>
     <string name="volver">Volver</string>
     <string name="mail">Email</string>
