@@ -36,6 +36,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo" />
 
+
+
+    <ImageButton
+        android:id="@+id/google_logo_button"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/ic_google"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@id/crearCuenta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
     <Button
         android:id="@+id/crearCuenta"
         android:layout_width="match_parent"
@@ -47,6 +61,7 @@
         android:backgroundTintMode="screen"
         android:fontFamily="monospace"
         android:text="@string/crearCuenta"
+        android:textSize="16dp"
         android:textColor="@color/buttonselectorprimary"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />
