@@ -9,11 +9,6 @@ import com.vitaleats.R;
 
 public class NewAccount extends AppCompatActivity {
 
-    private FormPagerAdapter adapter;
-    FragmentForm1 formFragment1;
-    FragmentForm2 formFragment2;
-    FragmentForm3 formFragment3;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

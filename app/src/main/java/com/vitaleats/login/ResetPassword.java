@@ -35,40 +35,37 @@ public class ResetPassword extends AppCompatActivity {
         editmail = findViewById(R.id.editmail);
         reset = findViewById(R.id.reset);
 
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        reset.setOnClickListener(view -> {
 
-                if (editmail.getText().toString().isEmpty()) {
-                    editmail.setError(getString(R.string.emptyFields));
+            if (editmail.getText().toString().isEmpty()) {
+                editmail.setError(getString(R.string.emptyFields));
 
-                } else if (!validarEmail(editmail.getText().toString())) {
-                    editmail.setError(getString(R.string.invalidEmail));
+            } else if (!validarEmail(editmail.getText().toString())) {
+                editmail.setError(getString(R.string.invalidEmail));
 
-                } else {
-                    FirebaseAuth auth = FirebaseAuth.getInstance();
+            } else {
+                FirebaseAuth auth = FirebaseAuth.getInstance();
 
-                    auth.sendPasswordResetEmail(editmail.getText().toString())
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
+                auth.sendPasswordResetEmail(editmail.getText().toString())
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
 
-                                        Intent i = new Intent(ResetPassword.this, ResetPassword.class);
-                                        startActivity(i);
+                                    Intent i = new Intent(ResetPassword.this, ResetPassword.class);
+                                    startActivity(i);
 
-                                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                                        Toast.makeText(ResetPassword.this, getString(R.string.sentEmail), Toast.LENGTH_LONG).show();
-                                        limpiar();
-                                    } else {
-                                        Toast.makeText(ResetPassword.this, getString(R.string.mailNotFound),
-                                                Toast.LENGTH_LONG).show();
-                                    }
+                                    Toast.makeText(ResetPassword.this, getString(R.string.sentEmail), Toast.LENGTH_LONG).show();
+                                    limpiar();
+                                } else {
+                                    Toast.makeText(ResetPassword.this, getString(R.string.mailNotFound),
+                                            Toast.LENGTH_LONG).show();
                                 }
-                            });
-                }
+                            }
+                        });
             }
         });
     }

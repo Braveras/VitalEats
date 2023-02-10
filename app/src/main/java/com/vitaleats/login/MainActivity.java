@@ -5,16 +5,12 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +35,6 @@ import com.vitaleats.signup.NewAccount;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -91,16 +86,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tengoCuenta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        tengoCuenta.setOnClickListener(view -> {
 
-                Intent i = new Intent(MainActivity.this, Login.class);
-                startActivity(i);
+            Intent i = new Intent(MainActivity.this, Login.class);
+            startActivity(i);
 
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         });
     }
 

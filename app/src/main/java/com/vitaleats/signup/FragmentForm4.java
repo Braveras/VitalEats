@@ -2,9 +2,7 @@ package com.vitaleats.signup;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,11 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -32,7 +27,6 @@ import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.vitaleats.R;
 import com.vitaleats.login.Login;
-import com.vitaleats.signup.FragmentForm1;
 import com.vitaleats.utilities.SharedPrefsUtil;
 
 import java.nio.charset.StandardCharsets;
@@ -72,19 +66,9 @@ public class FragmentForm4 extends Fragment {
         }
 
 
-        mCancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.container, new FragmentForm1()).commit();
-            }
-        });
+        mCancelButton.setOnClickListener(v -> getFragmentManager().beginTransaction().replace(R.id.container, new FragmentForm1()).commit());
 
-        mAcceptButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createUser(SharedPrefsUtil.getString(getContext(), "email"), SharedPrefsUtil.getString(getContext(), "password"));
-            }
-        });
+        mAcceptButton.setOnClickListener(view1 -> createUser(SharedPrefsUtil.getString(getContext(), "email"), SharedPrefsUtil.getString(getContext(), "password")));
 
         return view;
     }
@@ -126,18 +110,8 @@ public class FragmentForm4 extends Fragment {
         userInformation.put("altura", altura);
 
         folderRef.putBytes(new Gson().toJson(userInformation).getBytes(StandardCharsets.UTF_8))
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Log.d(TAG, "User information file written successfully");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Log.w(TAG, "Error writing user information file", exception);
-                    }
-                });
+                .addOnSuccessListener(taskSnapshot -> Log.d(TAG, "User information file written successfully"))
+                .addOnFailureListener(exception -> Log.w(TAG, "Error writing user information file", exception));
     }
 
 }

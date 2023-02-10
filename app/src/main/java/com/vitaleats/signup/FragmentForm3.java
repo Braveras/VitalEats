@@ -30,26 +30,23 @@ public class FragmentForm3 extends Fragment {
         mConfirmPasswordEditText = view.findViewById(R.id.editRepeatPassword);
 
         Button submitButton = view.findViewById(R.id.btn_submit);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mPasswordEditText.getText().toString().isEmpty() || mConfirmPasswordEditText.getText().toString().isEmpty()) {
-                    if (mPasswordEditText.getText().toString().isEmpty())
-                        mPasswordEditText.setError("*");
-                    if (mConfirmPasswordEditText.getText().toString().isEmpty())
-                        mConfirmPasswordEditText.setError("*");
-                    Toast.makeText(getContext(), getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
-                } else if (!mPasswordEditText.getText().toString().equals(mConfirmPasswordEditText.getText().toString())) {
-                    mConfirmPasswordEditText.setError(getString(R.string.passwordsDoNotMatch));
-                } else if (!isPasswordValid(mPasswordEditText.getText().toString())) {
-                    mConfirmPasswordEditText.setError(getString(R.string.passwordSecurity));
-                } else {
-                    SharedPrefsUtil.saveString(getContext(), "password", mPasswordEditText.getText().toString());
+        submitButton.setOnClickListener(view1 -> {
+            if (mPasswordEditText.getText().toString().isEmpty() || mConfirmPasswordEditText.getText().toString().isEmpty()) {
+                if (mPasswordEditText.getText().toString().isEmpty())
+                    mPasswordEditText.setError("*");
+                if (mConfirmPasswordEditText.getText().toString().isEmpty())
+                    mConfirmPasswordEditText.setError("*");
+                Toast.makeText(getContext(), getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
+            } else if (!mPasswordEditText.getText().toString().equals(mConfirmPasswordEditText.getText().toString())) {
+                mConfirmPasswordEditText.setError(getString(R.string.passwordsDoNotMatch));
+            } else if (!isPasswordValid(mPasswordEditText.getText().toString())) {
+                mConfirmPasswordEditText.setError(getString(R.string.passwordSecurity));
+            } else {
+                SharedPrefsUtil.saveString(getContext(), "password", mPasswordEditText.getText().toString());
 
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.container, new FragmentForm4());
-                    transaction.commit();
-                }
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, new FragmentForm4());
+                transaction.commit();
             }
         });
 

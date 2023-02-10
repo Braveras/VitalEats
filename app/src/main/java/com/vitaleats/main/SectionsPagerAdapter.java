@@ -4,11 +4,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.vitaleats.main.FragmentMain1;
-import com.vitaleats.main.FragmentMain2;
-import com.vitaleats.main.FragmentMain3;
-import com.vitaleats.main.MainBn;
-
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private int currentPosition = 0;
 

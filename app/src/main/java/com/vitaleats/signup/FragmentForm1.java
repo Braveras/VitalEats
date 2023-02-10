@@ -1,7 +1,5 @@
 package com.vitaleats.signup;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -35,25 +33,22 @@ public class FragmentForm1 extends Fragment {
         mEmailEditText = view.findViewById(R.id.editmail);
 
         Button nextButton = view.findViewById(R.id.btn_next_1);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (TextUtils.isEmpty(mUsernameEditText.getText()) || TextUtils.isEmpty(mEmailEditText.getText())) {
-                    if (TextUtils.isEmpty(mUsernameEditText.getText()))
-                        mUsernameEditText.setError("*");
-                    if (TextUtils.isEmpty(mEmailEditText.getText()))
-                        mEmailEditText.setError("*");
-                    Toast.makeText(getContext(), getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
-                } else if (!validarEmail(mEmailEditText.getText().toString())) {
-                    mEmailEditText.setError(getString(R.string.invalidEmail));
-                } else {
-                    SharedPrefsUtil.saveString(getContext(), "username", mUsernameEditText.getText().toString());
-                    SharedPrefsUtil.saveString(getContext(), "email", mEmailEditText.getText().toString());
+        nextButton.setOnClickListener(view1 -> {
+            if (TextUtils.isEmpty(mUsernameEditText.getText()) || TextUtils.isEmpty(mEmailEditText.getText())) {
+                if (TextUtils.isEmpty(mUsernameEditText.getText()))
+                    mUsernameEditText.setError("*");
+                if (TextUtils.isEmpty(mEmailEditText.getText()))
+                    mEmailEditText.setError("*");
+                Toast.makeText(getContext(), getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
+            } else if (!validarEmail(mEmailEditText.getText().toString())) {
+                mEmailEditText.setError(getString(R.string.invalidEmail));
+            } else {
+                SharedPrefsUtil.saveString(getContext(), "username", mUsernameEditText.getText().toString());
+                SharedPrefsUtil.saveString(getContext(), "email", mEmailEditText.getText().toString());
 
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.container, new FragmentForm2());
-                    transaction.commit();
-                }
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, new FragmentForm2());
+                transaction.commit();
             }
         });
 

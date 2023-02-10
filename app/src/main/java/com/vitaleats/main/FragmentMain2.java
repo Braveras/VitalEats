@@ -23,10 +23,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 import com.vitaleats.R;
-import com.vitaleats.login.Login;
 import com.vitaleats.utilities.FirebaseHandler;
-
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,36 +56,33 @@ public class FragmentMain2 extends Fragment {
         foodListAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, foodList);
         foodListView.setAdapter(foodListAdapter);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newItem = newItemEditText.getText().toString().toLowerCase();
-                if (!newItem.isEmpty()) {
-                    if (foodList.contains(newItem)) {
-                        int index = foodList.indexOf(newItem);
-                        int count = foodListCount.get(index) + 1;
-                        foodListCount.set(index, count);
-                        foodList.set(index, newItem + " x" + count);
-                    } else {
-                        foodList.add(newItem);
-                        foodListCount.add(1);
-                    }
-                    foodListAdapter.notifyDataSetChanged();
-                    firebaseHandler.addFood(newItem);
-                    newItemEditText.setText("");
-                    Map<String, Object> food = new HashMap<>();
-                    food.put("name", newItem);
-                    db.collection("foodList")
-                            .add(food)
-                            .addOnSuccessListener(documentReference -> {
-                                Log.d("Firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                            })
-                            .addOnFailureListener(e -> {
-                                Log.w("Firebase", "Error adding document", e);
-                            });
+        addButton.setOnClickListener(view12 -> {
+            String newItem = newItemEditText.getText().toString().toLowerCase();
+            if (!newItem.isEmpty()) {
+                if (foodList.contains(newItem)) {
+                    int index = foodList.indexOf(newItem);
+                    int count = foodListCount.get(index) + 1;
+                    foodListCount.set(index, count);
+                    foodList.set(index, newItem + " x" + count);
                 } else {
-                    Toast.makeText(getActivity(), getString(R.string.enterFood), Toast.LENGTH_LONG).show();
+                    foodList.add(newItem);
+                    foodListCount.add(1);
                 }
+                foodListAdapter.notifyDataSetChanged();
+                firebaseHandler.addFood(newItem);
+                newItemEditText.setText("");
+                Map<String, Object> food = new HashMap<>();
+                food.put("name", newItem);
+                db.collection("foodList")
+                        .add(food)
+                        .addOnSuccessListener(documentReference -> {
+                            Log.d("Firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.w("Firebase", "Error adding document", e);
+                        });
+            } else {
+                Toast.makeText(getActivity(), getString(R.string.enterFood), Toast.LENGTH_LONG).show();
             }
         });
 
