@@ -75,8 +75,7 @@
             android:hint="@string/pass"
             android:inputType="textPassword"
             android:textColor="?attr/colorPrimaryVariant"
-            android:textSize="20dp"
-            app:passwordToggleEnabled="true" />
+            android:textSize="20dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
