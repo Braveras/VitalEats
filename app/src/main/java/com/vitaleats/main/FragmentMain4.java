@@ -68,6 +68,12 @@ public class FragmentMain4 extends Fragment {
         user = firebaseAuth.getCurrentUser();
         currentUserId = user.getUid();
 
+        if (user.getProviderId().equals("google.com")) {
+            System.out.println("Profile picture is from Google");
+        } else {
+            System.out.println("Profile picture is set in the app");
+        }
+
         userTextView.setText(user.getDisplayName());
         mailTextView.setText(user.getEmail());
 
