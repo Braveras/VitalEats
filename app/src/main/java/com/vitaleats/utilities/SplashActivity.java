@@ -179,31 +179,27 @@ public class SplashActivity extends AppCompatActivity {
     private void openApp(boolean b) {
 
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        handler.postDelayed(() -> {
 
-            @Override
-            public void run() {
+            Intent intent;
 
-                Intent intent;
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-
-                if (firebaseUser != null) {
-                    Intent mainIntent = new Intent(SplashActivity.this, MainBn.class);
-                    startActivity(mainIntent);
-                    finish();
+            if (firebaseUser != null) {
+                Intent mainIntent = new Intent(SplashActivity.this, MainBn.class);
+                startActivity(mainIntent);
+                finish();
+            } else {
+                if (b) {
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
                 } else {
-                    if (b) {
-                        intent = new Intent(SplashActivity.this, MainActivity.class);
-                    } else {
-                        intent = new Intent(SplashActivity.this, Fragment1.class);
-                    }
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-                    startActivity(intent);
+                    intent = new Intent(SplashActivity.this, Fragment1.class);
                 }
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                startActivity(intent);
             }
         }, 6500);
 

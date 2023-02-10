@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -26,19 +25,16 @@ public class Fragment3 extends AppCompatActivity {
         aceptar = findViewById(R.id.aceptar);
         checkBox = findViewById(R.id.checkBox);
 
-        aceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        aceptar.setOnClickListener(view -> {
 
-                if (checkBox.isChecked()) {
-                    SharedPrefsUtil.saveBoolean(getApplicationContext(), "ToS", true);
-                    Intent i = new Intent(Fragment3.this, MainActivity.class);
-                    startActivity(i);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                } else {
-                    Toast.makeText(Fragment3.this, getString(R.string.acceptToS), Toast.LENGTH_LONG).show();
-                }
+            if (checkBox.isChecked()) {
+                SharedPrefsUtil.saveBoolean(getApplicationContext(), "ToS", true);
+                Intent i = new Intent(Fragment3.this, MainActivity.class);
+                startActivity(i);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            } else {
+                Toast.makeText(Fragment3.this, getString(R.string.acceptToS), Toast.LENGTH_LONG).show();
             }
         });
     }

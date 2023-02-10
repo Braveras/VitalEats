@@ -21,26 +21,20 @@ public class Fragment2 extends AppCompatActivity {
         siguiente = findViewById(R.id.siguiente);
         atras = findViewById(R.id.atras);
 
-        siguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Fragment2.this, Fragment3.class);
-                startActivity(i);
+        siguiente.setOnClickListener(view -> {
+            Intent i = new Intent(Fragment2.this, Fragment3.class);
+            startActivity(i);
 
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         });
 
-        atras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Fragment2.this, Fragment1.class);
-                startActivity(i);
+        atras.setOnClickListener(view -> {
+            Intent i = new Intent(Fragment2.this, Fragment1.class);
+            startActivity(i);
 
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         });
     }
 

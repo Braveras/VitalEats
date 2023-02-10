@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.vitaleats.R;
@@ -20,15 +19,12 @@ public class Fragment1 extends AppCompatActivity {
 
         siguiente = findViewById(R.id.siguiente);
 
-        siguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Fragment1.this, Fragment2.class);
-                startActivity(i);
+        siguiente.setOnClickListener(view -> {
+            Intent i = new Intent(Fragment1.this, Fragment2.class);
+            startActivity(i);
 
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         });
     }
 

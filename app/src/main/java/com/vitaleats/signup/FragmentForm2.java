@@ -1,13 +1,10 @@
 package com.vitaleats.signup;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,17 +30,14 @@ public class FragmentForm2 extends Fragment {
         mAgeEditText = view.findViewById(R.id.editEdad);
 
         Button nextButton = view.findViewById(R.id.btn_next_2);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPrefsUtil.saveString(getContext(), "height", mHeightEditText.getText().toString());
-                SharedPrefsUtil.saveString(getContext(), "weight", mWeightEditText.getText().toString());
-                SharedPrefsUtil.saveString(getContext(), "age", mAgeEditText.getText().toString());
+        nextButton.setOnClickListener(view1 -> {
+            SharedPrefsUtil.saveString(getContext(), "height", mHeightEditText.getText().toString());
+            SharedPrefsUtil.saveString(getContext(), "weight", mWeightEditText.getText().toString());
+            SharedPrefsUtil.saveString(getContext(), "age", mAgeEditText.getText().toString());
 
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container, new FragmentForm3());
-                transaction.commit();
-            }
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.container, new FragmentForm3());
+            transaction.commit();
         });
 
         return view;
