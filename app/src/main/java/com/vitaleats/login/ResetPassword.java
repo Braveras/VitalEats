@@ -1,7 +1,10 @@
 package com.vitaleats.login;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -14,15 +17,19 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.vitaleats.R;
 
 import java.util.regex.Pattern;
 
 public class ResetPassword extends AppCompatActivity {
 
-    EditText editmail;
-    Button reset;
+    private EditText editmail;
+    private Button reset;
+    private TextInputLayout lMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,26 +39,23 @@ public class ResetPassword extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        editmail = findViewById(R.id.editmail);
+        editmail = findViewById(R.id.resetEditMail);
         reset = findViewById(R.id.reset);
+        lMail = findViewById(R.id.lResetMail);
 
         reset.setOnClickListener(view -> {
 
             if (editmail.getText().toString().isEmpty()) {
-                editmail.setError(getString(R.string.emptyFields));
-
+                lMail.setError(getString(R.string.emptyFields2));
             } else if (!validarEmail(editmail.getText().toString())) {
-                editmail.setError(getString(R.string.invalidEmail));
-
+                lMail.setError(getString(R.string.invalidEmail));
             } else {
                 FirebaseAuth auth = FirebaseAuth.getInstance();
-
                 auth.sendPasswordResetEmail(editmail.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-
                                     Intent i = new Intent(ResetPassword.this, ResetPassword.class);
                                     startActivity(i);
 
@@ -61,8 +65,14 @@ public class ResetPassword extends AppCompatActivity {
                                     Toast.makeText(ResetPassword.this, getString(R.string.sentEmail), Toast.LENGTH_LONG).show();
                                     limpiar();
                                 } else {
-                                    Toast.makeText(ResetPassword.this, getString(R.string.mailNotFound),
-                                            Toast.LENGTH_LONG).show();
+                                    try {
+                                        throw task.getException();
+                                    } catch (FirebaseAuthInvalidUserException e) {
+                                        Toast.makeText(ResetPassword.this, getString(R.string.mailNotFound), Toast.LENGTH_LONG).show();
+                                    } catch (Exception e) {
+                                        Log.e(TAG, e.toString());
+                                        Toast.makeText(ResetPassword.this, "Error!", Toast.LENGTH_LONG).show();
+                                    }
                                 }
                             }
                         });
