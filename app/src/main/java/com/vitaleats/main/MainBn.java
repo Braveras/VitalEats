@@ -26,25 +26,22 @@ public class MainBn extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.inicio:
-                        viewPager.setCurrentItem(0);
-                        break;
-                    case R.id.alimentos:
-                        viewPager.setCurrentItem(1);
-                        break;
-                    case R.id.recetas:
-                        viewPager.setCurrentItem(2);
-                        break;
-                    case R.id.perfil:
-                        viewPager.setCurrentItem(3);
-                        break;
-                }
-                return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.inicio:
+                    viewPager.setCurrentItem(0);
+                    break;
+                case R.id.alimentos:
+                    viewPager.setCurrentItem(1);
+                    break;
+                case R.id.recetas:
+                    viewPager.setCurrentItem(2);
+                    break;
+                case R.id.perfil:
+                    viewPager.setCurrentItem(3);
+                    break;
             }
+            return true;
         });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
