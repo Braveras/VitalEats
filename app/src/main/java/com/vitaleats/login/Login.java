@@ -40,8 +40,8 @@ public class Login extends AppCompatActivity {
         setSupportActionBar(toolbar);
         forgottenPassword_btn = findViewById(com.vitaleats.R.id.forgottenPassword);
         mailPassworAccess_btn = findViewById(com.vitaleats.R.id.mailPasswordAccess_button);
-        lMail = findViewById(R.id.tilmail);
-        lPasswd = findViewById(R.id.tilpassword);
+        lMail = findViewById(R.id.til_login_mail);
+        lPasswd = findViewById(R.id.til_login_password);
         editmail = findViewById(com.vitaleats.R.id.editmail);
         editpass = findViewById(com.vitaleats.R.id.editpass);
         mAuth = FirebaseAuth.getInstance();
@@ -50,9 +50,9 @@ public class Login extends AppCompatActivity {
 
             if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty()) {
                 if (editmail.getText().toString().isEmpty())
-                    lMail.setError(getString(R.string.emptyFields2));
+                    lMail.setError(getString(R.string.emptyFields));
                 if (editpass.getText().toString().isEmpty())
-                    lPasswd.setError(getString(R.string.emptyFields2));
+                    lPasswd.setError(getString(R.string.emptyFields));
             } else if (!validarEmail(editmail.getText().toString())) {
                 lMail.setError(getString(R.string.invalidEmail));
             } else {
