@@ -16,14 +16,14 @@
         app:passwordToggleTint="?attr/colorPrimaryVariant"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/pass"
             android:inputType="textPassword"
             android:textColor="?attr/colorPrimary"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,7 +45,7 @@
             android:hint="@string/pass2"
             android:inputType="textPassword"
             android:textColor="?attr/colorPrimary"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
