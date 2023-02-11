@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilusername"
+        android:id="@+id/til_register_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -27,13 +27,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilmail"
+        android:id="@+id/til_register_mail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tilusername">
+        app:layout_constraintTop_toBottomOf="@id/til_register_username">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editmail"
