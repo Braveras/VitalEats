@@ -2,10 +2,12 @@
 <resources>
     <string name="app_name">Vital Eats</string>
     <string name="slogan">Healthy meals, minimal waste</string>
+    <string name="access_with">Access with</string>
     <string name="crearCuenta">START NOW</string>
     <string name="tengoCuenta">I ALREADY HAVE AN ACCOUNT</string>
     <string name="volver">Back</string>
     <string name="mail">Email</string>
+    <string name="mail_confirm">Email:</string>
     <string name="pass">Password</string>
     <string name="pass2">Repeat password</string>
     <string name="acceder">LOG IN</string>
@@ -51,7 +53,9 @@
     <string name="profile">profile</string>
     <string name="profile2">PROFILE</string>
 
+    <string name="register_textview">Sign up</string>
     <string name="emptyFields">You must complete the required fields</string>
+    <string name="emptyFields2">This field is required</string>
     <string name="invalidEmail">Enter a valid email</string>
     <string name="loginError">Login error</string>
     <string name="loginSuccess">Login successful</string>
@@ -64,14 +68,22 @@
     <string name="passwordsDoNotMatch">Passwords do not match</string>
     <string name="newUserSuccess">User created successfully, verification email sent</string>
     <string name="newUserFail">Error creating user</string>
-    <string name="acceptToS">You must accept our terms and conditions</string>
+    <string name="acceptToS">You must accept our terms of service</string>
     <string name="passwordSecurity">Password must have at least 7 characters, 1 uppercase letter, and 2 numbers</string>
+    <string name="error_password_header">Password does not meet the requirements:</string>
+    <string name="error_password_length">6 characters long</string>
+    <string name="error_password_uppercase">1 uppercase character</string>
+    <string name="error_password_digit">1 digit</string>
+    <string name="error_password_special">1 special character</string>
     <string name="optional">(Optional)</string>
-    <string name="age">Age</string>
     <string name="confirm_data">Confirm your data</string>
     <string name="name">Name:</string>
-    <string name="height_cm">Height (cm)</string>
-    <string name="weight">Weight (kg)</string>
+    <string name="age_hint">Age</string>
+    <string name="height_hint">Height (cm)</string>
+    <string name="weight_hint">Weight (kg)</string>
+    <string name="age_confirm">Age:</string>
+    <string name="height_confirm">Height:</string>
+    <string name="weight_confirm">Weight:</string>
     <string name="next">Next</string>
     <string name="mailNotVerified">Email not verified</string>
     <string name="closedSession">Session closed</string>
