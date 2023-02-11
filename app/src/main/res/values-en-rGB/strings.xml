@@ -54,8 +54,7 @@
     <string name="profile2">PROFILE</string>
 
     <string name="register_textview">Sign up</string>
-    <string name="emptyFields">You must complete the required fields</string>
-    <string name="emptyFields2">This field is required</string>
+    <string name="emptyFields">This field is required</string>
     <string name="invalidEmail">Enter a valid email</string>
     <string name="loginError">Login error</string>
     <string name="loginSuccess">Login successful</string>

@@ -34,13 +34,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilmail"
+        android:id="@+id/til_login_mail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/tilpassword"
+        app:layout_constraintEnd_toEndOf="@+id/til_login_password"
         app:layout_constraintTop_toBottomOf="@id/bienvenido"
         >
 
@@ -57,7 +57,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilpassword"
+        android:id="@+id/til_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -65,7 +65,7 @@
         android:layout_marginRight="20dp"
         app:layout_constraintEnd_toEndOf="@+id/mailPasswordAccess_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilmail"
+        app:layout_constraintTop_toBottomOf="@+id/til_login_mail"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="?attr/colorPrimaryVariant">
 
@@ -101,7 +101,7 @@
         app:layout_constraintBottom_toTopOf="@+id/forgottenPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilpassword" />
+        app:layout_constraintTop_toBottomOf="@+id/til_login_password" />
 
     <TextView
         android:id="@+id/forgottenPassword"

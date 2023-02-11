@@ -36,9 +36,9 @@ public class FragmentForm3 extends Fragment {
             lConfirmPasswd.setError(null);
             if (mPasswordEditText.getText().toString().isEmpty() || mConfirmPasswordEditText.getText().toString().isEmpty()) {
                 if (mPasswordEditText.getText().toString().isEmpty())
-                    lPasswd.setError(getString(R.string.emptyFields2));
+                    lPasswd.setError(getString(R.string.emptyFields));
                 if (mConfirmPasswordEditText.getText().toString().isEmpty())
-                    lConfirmPasswd.setError(getString(R.string.emptyFields2));
+                    lConfirmPasswd.setError(getString(R.string.emptyFields));
             } else if (!mPasswordEditText.getText().toString().equals(mConfirmPasswordEditText.getText().toString())) {
                 lPasswd.setError(" ");
                 lConfirmPasswd.setError(getString(R.string.passwordsDoNotMatch));

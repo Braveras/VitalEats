@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,7 +18,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.vitaleats.R;
 
@@ -46,7 +44,7 @@ public class ResetPassword extends AppCompatActivity {
         reset.setOnClickListener(view -> {
 
             if (editmail.getText().toString().isEmpty()) {
-                lMail.setError(getString(R.string.emptyFields2));
+                lMail.setError(getString(R.string.emptyFields));
             } else if (!validarEmail(editmail.getText().toString())) {
                 lMail.setError(getString(R.string.invalidEmail));
             } else {
