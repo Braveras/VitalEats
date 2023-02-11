@@ -58,7 +58,7 @@ public class FragmentForm3 extends Fragment {
     }
 
     private boolean isPasswordValid(String password) {
-        return password.length() >= 6 && password.matches(".*[A-Z].*[0-9].*[!@#$%^&*+=?-_].*");
+        return password.length() >= 6 && password.matches(".*[A-Z].*[0-9].*[!@#$%^&*+=_\\-\\[\\]{}|;:'\",.<>/?].*");
     }
 
     private String getPasswordError(String password) {
