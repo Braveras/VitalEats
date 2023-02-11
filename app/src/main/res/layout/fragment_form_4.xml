@@ -8,11 +8,11 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/confirm_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="54dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="54dp"
         android:text="@string/confirm_data"
         android:textColor="?attr/colorSecondary"
@@ -23,108 +23,114 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
         android:text="@string/name"
         android:textColor="?attr/colorSecondary"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/username_text_view"
+        app:layout_constraintTop_toBottomOf="@id/confirm_data"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/username_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginStart="6dp"
         android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/name_tv"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_data" />
 
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/mail_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mail"
+        android:layout_marginStart="30dp"
+        android:text="@string/mail_confirm"
         android:textColor="?attr/colorSecondary"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/email_text_view"
-        app:layout_constraintStart_toStartOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/email_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="21dp"
         android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/username_text_view" />
 
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/height_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/height_cm"
+        android:text="@string/height_confirm"
+        android:layout_marginStart="30dp"
         android:textColor="?attr/colorSecondary"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/height_text_view"
-        app:layout_constraintStart_toStartOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/height_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="21dp"
         android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/email_text_view" />
 
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/weight_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/weight"
+        android:layout_marginStart="30dp"
+        android:text="@string/weight_confirm"
         android:textColor="?attr/colorSecondary"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/weight_text_view"
-        app:layout_constraintStart_toStartOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/weight_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
+        android:layout_marginTop="21dp"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintStart_toEndOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/height_text_view" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/age_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/age"
+        android:text="@string/age_confirm"
+        android:layout_marginStart="30dp"
         android:textColor="?attr/colorSecondary"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/age_text_view"
-        app:layout_constraintStart_toStartOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/age_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="21dp"
         android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/weight_text_view" />
 
     <Button
         android:id="@+id/cancel_button"
@@ -139,7 +145,7 @@
         android:textColor="@color/buttonselectorprimary"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="@+id/name_tv" />
 
     <Button
         android:id="@+id/accept_button"
@@ -155,6 +161,13 @@
         android:textSize="19sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/cancel_button"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2705" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,10 @@
 package com.vitaleats.login;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,10 +25,11 @@ import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
 
-    TextView forgottenPassword_btn;
-    Button mailPassworAccess_btn;
-    EditText editmail, editpass;
-    FirebaseAuth mAuth;
+    private TextView forgottenPassword_btn;
+    private Button mailPassworAccess_btn;
+    private TextInputLayout lMail, lPasswd;
+    private EditText editmail, editpass;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,51 +40,47 @@ public class Login extends AppCompatActivity {
         setSupportActionBar(toolbar);
         forgottenPassword_btn = findViewById(com.vitaleats.R.id.forgottenPassword);
         mailPassworAccess_btn = findViewById(com.vitaleats.R.id.mailPasswordAccess_button);
+        lMail = findViewById(R.id.tilmail);
+        lPasswd = findViewById(R.id.tilpassword);
         editmail = findViewById(com.vitaleats.R.id.editmail);
         editpass = findViewById(com.vitaleats.R.id.editpass);
         mAuth = FirebaseAuth.getInstance();
 
         mailPassworAccess_btn.setOnClickListener(view -> {
 
-            if (!editmail.getText().toString().isEmpty() && !editpass.getText().toString().isEmpty() && validarEmail(editmail.getText().toString())) {
+            if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty()) {
+                if (editmail.getText().toString().isEmpty())
+                    lMail.setError(getString(R.string.emptyFields2));
+                if (editpass.getText().toString().isEmpty())
+                    lPasswd.setError(getString(R.string.emptyFields2));
+            } else if (!validarEmail(editmail.getText().toString())) {
+                lMail.setError(getString(R.string.invalidEmail));
+            } else {
                 mAuth.signInWithEmailAndPassword(editmail.getText().toString(), editpass.getText().toString())
                         .addOnCompleteListener(task -> {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user.isEmailVerified()) {
-                                // Correo electrónico verificado
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(Login.this, getString(R.string.loginSuccess), Toast.LENGTH_LONG).show();
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user.isEmailVerified()) {
+                                    Toast.makeText(Login.this, getString(R.string.loginSuccess), Toast.LENGTH_SHORT).show();
                                     limpiar();
                                     updateUI(user);
                                 } else {
-                                    try {
-                                        throw task.getException();
-                                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                                        Toast.makeText(Login.this, getString(R.string.wrongPassword), Toast.LENGTH_LONG).show();
-                                    } catch (FirebaseAuthInvalidUserException e) {
-                                        Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_LONG).show();
-                                    } catch (Exception e) {
-                                        Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
-                                    updateUI(null);
+                                    Toast.makeText(Login.this, getString(R.string.mailNotVerified), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
-                                Toast.makeText(Login.this, getString(R.string.mailNotVerified), Toast.LENGTH_LONG).show();
+                                try {
+                                    throw task.getException();
+                                } catch (FirebaseAuthInvalidCredentialsException e) {
+                                    Toast.makeText(Login.this, getString(R.string.wrongPassword), Toast.LENGTH_SHORT).show();
+                                } catch (FirebaseAuthInvalidUserException e) {
+                                    Toast.makeText(Login.this, getString(R.string.userNotFound), Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    Log.e(TAG, e.toString());
+                                    Toast.makeText(Login.this, getString(R.string.loginError), Toast.LENGTH_SHORT).show();
+                                }
+                                updateUI(null);
                             }
-                        }).addOnFailureListener(e -> {
-                            // exception
-                            Toast.makeText(Login.this, "Error al iniciar sesión", Toast.LENGTH_LONG).show();
                         });
-
-            } else if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty()) {
-                if (editmail.getText().toString().isEmpty())
-                    editmail.setError(getString(R.string.emptyFields));
-                if (editpass.getText().toString().isEmpty())
-                    editpass.setError(getString(R.string.emptyFields));
-            } else if (!validarEmail(editmail.getText().toString())) {
-                editmail.setError(getString(R.string.invalidEmail));
-            } else {
-                Toast.makeText(Login.this, getString(R.string.loginError), Toast.LENGTH_LONG).show();
             }
         });
 

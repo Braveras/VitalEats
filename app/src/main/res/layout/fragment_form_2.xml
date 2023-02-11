@@ -27,11 +27,11 @@
             android:id="@+id/editEdad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/edad"
-            android:hint="@string/age"
+            android:drawableEnd="@drawable/edad"
+            android:hint="@string/age_hint"
             android:inputType="number"
             android:textColor="?attr/colorPrimary"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,11 +48,11 @@
             android:id="@+id/editAltura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/altura"
-            android:hint="@string/height_cm"
+            android:drawableEnd="@drawable/altura"
+            android:hint="@string/height_hint"
             android:inputType="number"
             android:textColor="?attr/colorPrimary"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,11 +69,11 @@
             android:id="@+id/editPeso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/peso"
-            android:hint="@string/weight"
+            android:drawableEnd="@drawable/peso"
+            android:hint="@string/weight_hint"
             android:inputType="number"
             android:textColor="?attr/colorPrimary"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

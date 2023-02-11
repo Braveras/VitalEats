@@ -37,7 +37,7 @@
         android:layout_marginBottom="17dp"
         android:text="@string/dieta"
         android:textColor="?attr/colorPrimaryVariant"
-        android:textSize="19dp"
+        android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/usernameTextView" />
 
@@ -53,7 +53,7 @@
         android:layout_marginBottom="17dp"
         android:text="@string/dieta2"
         android:textColor="?attr/colorPrimaryVariant"
-        android:textSize="19dp"
+        android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/dieta" />
 
@@ -61,12 +61,12 @@
         android:id="@+id/siguiente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:text="@string/siguiente"
         android:textAlignment="center"
         android:textColor="?attr/colorSurface"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
