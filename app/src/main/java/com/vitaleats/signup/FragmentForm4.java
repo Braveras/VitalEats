@@ -16,14 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.vitaleats.R;
 import com.vitaleats.login.Login;
@@ -54,8 +51,8 @@ public class FragmentForm4 extends Fragment {
 
         mUsernameTextView.setText(SharedPrefsUtil.getString(getContext(), "username"));
         mEmailTextView.setText(SharedPrefsUtil.getString(getContext(), "email"));
-        mHeightTextView.setText(SharedPrefsUtil.getString(getContext(), "height"));
-        mWeightTextView.setText(SharedPrefsUtil.getString(getContext(), "weight"));
+        mHeightTextView.setText(SharedPrefsUtil.getString(getContext(), "height") + " cm");
+        mWeightTextView.setText(SharedPrefsUtil.getString(getContext(), "weight") + " kg");
         mAgeTextView.setText(SharedPrefsUtil.getString(getContext(), "age"));
 
         TextView[] textViews = {mHeightTextView, mWeightTextView, mAgeTextView};
