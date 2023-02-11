@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,13 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.vitaleats.R;
 import com.vitaleats.utilities.SharedPrefsUtil;
 
 public class FragmentForm3 extends Fragment {
-    private TextInputEditText mPasswordEditText;
-    private TextInputEditText mConfirmPasswordEditText;
-
+    private TextInputEditText mPasswordEditText, mConfirmPasswordEditText;
+    private TextInputLayout lPasswd, lConfirmPasswd;
 
     @Nullable
     @Override
@@ -28,22 +27,27 @@ public class FragmentForm3 extends Fragment {
 
         mPasswordEditText = view.findViewById(R.id.editPassword);
         mConfirmPasswordEditText = view.findViewById(R.id.editRepeatPassword);
+        lPasswd = view.findViewById(R.id.newPassword);
+        lConfirmPasswd = view.findViewById(R.id.newRepeatPassword);
 
         Button submitButton = view.findViewById(R.id.btn_submit);
         submitButton.setOnClickListener(view1 -> {
+            lPasswd.setError(null);
+            lConfirmPasswd.setError(null);
             if (mPasswordEditText.getText().toString().isEmpty() || mConfirmPasswordEditText.getText().toString().isEmpty()) {
                 if (mPasswordEditText.getText().toString().isEmpty())
-                    mPasswordEditText.setError("*");
+                    lPasswd.setError(getString(R.string.emptyFields2));
                 if (mConfirmPasswordEditText.getText().toString().isEmpty())
-                    mConfirmPasswordEditText.setError("*");
-                Toast.makeText(getContext(), getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
+                    lConfirmPasswd.setError(getString(R.string.emptyFields2));
             } else if (!mPasswordEditText.getText().toString().equals(mConfirmPasswordEditText.getText().toString())) {
-                mConfirmPasswordEditText.setError(getString(R.string.passwordsDoNotMatch));
+                lPasswd.setError(" ");
+                lConfirmPasswd.setError(getString(R.string.passwordsDoNotMatch));
             } else if (!isPasswordValid(mPasswordEditText.getText().toString())) {
-                mConfirmPasswordEditText.setError(getString(R.string.passwordSecurity));
+                String error = getPasswordError(mPasswordEditText.getText().toString());
+                lPasswd.setError(" ");
+                lConfirmPasswd.setError(error);
             } else {
-                SharedPrefsUtil.saveString(getContext(), "password", mPasswordEditText.getText().toString());
-
+                SharedPrefsUtil.saveString(requireContext(), "password", mPasswordEditText.getText().toString());
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.container, new FragmentForm4());
                 transaction.commit();
@@ -54,27 +58,42 @@ public class FragmentForm3 extends Fragment {
     }
 
     private boolean isPasswordValid(String password) {
-        // Comprobar la longitud de la contraseña
-        if (password.length() < 7) {
-            return false;
-        }
+        return password.length() >= 6 && password.matches(".*[A-Z].*[0-9].*[!@#$%^&*+=?-_].*");
+    }
 
-        // Comprobar si contiene al menos 1 mayúscula y 2 números
-        int upperCase = 0, digits = 0;
+    private String getPasswordError(String password) {
+        String SPECIAL_CHARS = "!@#$%^&*+=_\\-[]{}|;:'\",.<>/?";
+        String to_append = "";
+        StringBuilder errorString = new StringBuilder();
+        if (password.length() < 6) {
+            to_append += getString(R.string.error_password_length) + "\n";
+        }
+        int digits = 0, uppercase = 0, special = 0;
         for (int i = 0; i < password.length(); i++) {
             char c = password.charAt(i);
-            if (Character.isUpperCase(c)) {
-                upperCase++;
-            } else if (Character.isDigit(c)) {
+            if (Character.isDigit(c)) {
                 digits++;
+            } else if (Character.isUpperCase(c)) {
+                uppercase++;
+            } else if (SPECIAL_CHARS.indexOf(c) >= 0) {
+                special++;
             }
         }
-        if (upperCase < 1 || digits < 2) {
-            return false;
+        if (digits < 1) {
+            to_append += getString(R.string.error_password_digit) + "\n";
         }
-
-        // La contraseña cumple los requisitos de seguridad
-        return true;
+        if (uppercase < 1) {
+            to_append += getString(R.string.error_password_uppercase) + "\n";
+        }
+        if (special < 1) {
+            to_append += getString(R.string.error_password_special);
+        }
+        if (to_append.length() > 0) {
+            errorString.append(getString(R.string.error_password_header) + "\n");
+            errorString.append(to_append.trim());
+            return errorString.toString();
+        }
+        return null;
     }
 
 }
