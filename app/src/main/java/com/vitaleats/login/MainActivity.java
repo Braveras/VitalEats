@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView logo, fondo;
     ImageButton googleAccess_btn;
-    TextView slogan, tengoCuenta;
+    TextView slogan;
+    ImageButton tengoCuenta;
     Button crearCuenta;
     GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         logo = findViewById(R.id.logo);
         fondo = findViewById(R.id.fondo);
         slogan = findViewById(R.id.slogan);
-        tengoCuenta = findViewById(R.id.tengoCuenta);
+        tengoCuenta = findViewById(R.id.mail_logo_button);
         crearCuenta = findViewById(R.id.crearCuenta);
         googleAccess_btn = findViewById(R.id.google_logo_button);
         mAuth = FirebaseAuth.getInstance();

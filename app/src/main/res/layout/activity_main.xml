@@ -36,19 +36,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo" />
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="76dp"
+        android:text="@string/access_with"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/crearCuenta" />
 
     <ImageButton
         android:id="@+id/google_logo_button"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:background="@drawable/ic_google"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="23dp"
+        android:layout_marginEnd="65dp"
         app:layout_constraintBottom_toTopOf="@id/crearCuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
+    <ImageButton
+        android:id="@+id/mail_logo_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_mail"
+        android:layout_marginBottom="19dp"
+        android:layout_marginStart="65dp"
+        app:layout_constraintBottom_toTopOf="@id/crearCuenta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/crearCuenta"
@@ -61,22 +81,9 @@
         android:backgroundTintMode="screen"
         android:fontFamily="monospace"
         android:text="@string/crearCuenta"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/buttonselectorprimary"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />
-
-    <TextView
-        android:id="@+id/tengoCuenta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="@string/tengoCuenta"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
