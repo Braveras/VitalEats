@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.vitaleats.R;
@@ -19,6 +21,7 @@ import com.vitaleats.utilities.SharedPrefsUtil;
 public class FragmentForm3 extends Fragment {
     private TextInputEditText mPasswordEditText, mConfirmPasswordEditText;
     private TextInputLayout lPasswd, lConfirmPasswd;
+    private ImageButton inforBtn;
 
     @Nullable
     @Override
@@ -29,6 +32,7 @@ public class FragmentForm3 extends Fragment {
         mConfirmPasswordEditText = view.findViewById(R.id.editRepeatPassword);
         lPasswd = view.findViewById(R.id.newPassword);
         lConfirmPasswd = view.findViewById(R.id.newRepeatPassword);
+        inforBtn = view.findViewById(R.id.password_infobutton);
 
         Button submitButton = view.findViewById(R.id.btn_submit);
         submitButton.setOnClickListener(view1 -> {
@@ -52,6 +56,13 @@ public class FragmentForm3 extends Fragment {
                 transaction.replace(R.id.container, new FragmentForm4());
                 transaction.commit();
             }
+        });
+
+        inforBtn.setOnClickListener(view12 -> {
+            View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
+            BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
+            dialog.setContentView(bottomSheetView);
+            dialog.show();
         });
 
         return view;

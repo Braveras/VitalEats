@@ -49,6 +49,16 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageButton
+        android:id="@+id/password_infobutton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newRepeatPassword"
+        android:background="@drawable/ic_information" />
+
     <Button
         android:id="@+id/btn_submit"
         android:layout_width="wrap_content"

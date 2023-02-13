@@ -7,8 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="fadeBlack">#212121</color>
+    <color name="moreFadeBlack">#303030</color>
     <color name="white">#FFFFFF</color>
     <color name="fadeWhite">#f5f5f5</color>
+    <color name="moreFadeWhite">#e0e0e0</color>
 
     <color name="grey">#323232</color>
     <color name="green">#468C4D</color>

@@ -17,6 +17,7 @@
 
         <!--COÑO YA-->
         <item name="backgroundColor">@color/fadeBlack</item>
+        <item name="popupMenuBackground">@color/moreFadeBlack</item>
     </style>
 
     <style name="Toolbar">
