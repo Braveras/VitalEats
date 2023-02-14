@@ -30,13 +30,6 @@
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
 
-    <style name="Hint" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/green2</item>
-        <item name="colorPrimaryDark">@color/green2</item>
-        <item name="colorAccent">@color/green2</item>
-        <item name="android:textColorHint">@color/green2</item>
-    </style>
-
     <style name="BottomNavigation">
         <item name="itemIconTint">?attr/colorSurface</item>
         <item name="android:background">@color/white</item>
