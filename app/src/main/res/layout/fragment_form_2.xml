@@ -85,7 +85,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_button_primary"
         android:backgroundTintMode="screen"
-        android:fontFamily="sans-serif"
+        android:fontFamily="monospace"
         android:padding="12dp"
         android:text="@string/next"
         android:textColor="@color/buttonselectorprimary"

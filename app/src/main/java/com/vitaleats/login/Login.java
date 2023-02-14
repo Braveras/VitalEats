@@ -47,14 +47,15 @@ public class Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         mailPassworAccess_btn.setOnClickListener(view -> {
-
-            if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty()) {
+            lMail.setError(null);
+            lPasswd.setError(null);
+            if (editmail.getText().toString().isEmpty() || editpass.getText().toString().isEmpty() || !validarEmail(editmail.getText().toString())) {
                 if (editmail.getText().toString().isEmpty())
                     lMail.setError(getString(R.string.emptyFields));
+                else if (!validarEmail(editmail.getText().toString()))
+                    lMail.setError(getString(R.string.invalidEmail));
                 if (editpass.getText().toString().isEmpty())
                     lPasswd.setError(getString(R.string.emptyFields));
-            } else if (!validarEmail(editmail.getText().toString())) {
-                lMail.setError(getString(R.string.invalidEmail));
             } else {
                 mAuth.signInWithEmailAndPassword(editmail.getText().toString(), editpass.getText().toString())
                         .addOnCompleteListener(task -> {

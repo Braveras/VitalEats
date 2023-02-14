@@ -20,12 +20,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -34,20 +37,26 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.vitaleats.R;
 import com.vitaleats.login.MainActivity;
+import com.vitaleats.utilities.StorageUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FragmentMain4 extends Fragment {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private Button signout_btn;
     private ImageView profilePicture;
+
+    private ImageButton editStatus;
     private StorageReference mStorageRef;
     private FirebaseAuth firebaseAuth;
     private String currentUserId;
     private FirebaseUser user;
-    private TextView userTextView, mailTextView;
+    private TextView userTextView, mailTextView, userStatus;
+    Map<String, String> userInfo;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -55,24 +64,49 @@ public class FragmentMain4 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main4, container, false);
         signout_btn = view.findViewById(R.id.signout_btn);
         profilePicture = view.findViewById(R.id.profilePicture);
-        userTextView = view.findViewById(R.id.usernameTextView);
+        userTextView = view.findViewById(R.id.username_profile);
         mailTextView = view.findViewById(R.id.mailTextView);
+        userStatus = view.findViewById(R.id.status);
+        editStatus = view.findViewById(R.id.edit_status);
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         currentUserId = user.getUid();
+        StorageUtil.OnReadUserInformationListener listener = userInformation -> {
+            userInfo = userInformation;
+            userStatus.setText(userInfo.get("status"));
+        };
 
-        if (user.getProviderId().equals("google.com")) {
-            System.out.println("Profile picture is from Google");
-        } else {
-            System.out.println("Profile picture is set in the app");
-        }
+        StorageUtil.readStorageUser(user, listener);
 
         userTextView.setText(user.getDisplayName());
         mailTextView.setText(user.getEmail());
 
+
         Glide.with(this).load(user.getPhotoUrl()).into(profilePicture);
+
+        editStatus.setOnClickListener(view12 -> {
+            View edit_status = getLayoutInflater().inflate(R.layout.edit_status, null);
+            BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
+            dialog.setContentView(edit_status);
+            dialog.show();
+
+            Button saveStatusButton = edit_status.findViewById(R.id.save_status_button);
+            saveStatusButton.setOnClickListener(view13 -> {
+                EditText inputStatus = edit_status.findViewById(R.id.status_edittext);
+                String status = inputStatus.getText().toString();
+
+                // Perform any necessary actions with the entered status, such as saving it to a database or updating a profile
+                // ...
+                Map<String, String> updatedUserInformation = new HashMap<>();
+                updatedUserInformation.put("status", status);
+                StorageUtil.updateStorageUser(user, updatedUserInformation);
+                userStatus.setText(status);
+                // Dismiss the bottom sheet after the status has been saved
+                dialog.dismiss();
+            });
+        });
 
         signout_btn.setOnClickListener(v -> {
             // Sign-out from firebase

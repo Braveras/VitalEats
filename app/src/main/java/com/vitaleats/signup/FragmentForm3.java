@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.vitaleats.R;
@@ -19,6 +21,7 @@ import com.vitaleats.utilities.SharedPrefsUtil;
 public class FragmentForm3 extends Fragment {
     private TextInputEditText mPasswordEditText, mConfirmPasswordEditText;
     private TextInputLayout lPasswd, lConfirmPasswd;
+    private ImageButton inforBtn;
 
     @Nullable
     @Override
@@ -29,6 +32,7 @@ public class FragmentForm3 extends Fragment {
         mConfirmPasswordEditText = view.findViewById(R.id.editRepeatPassword);
         lPasswd = view.findViewById(R.id.newPassword);
         lConfirmPasswd = view.findViewById(R.id.newRepeatPassword);
+        inforBtn = view.findViewById(R.id.password_infobutton);
 
         Button submitButton = view.findViewById(R.id.btn_submit);
         submitButton.setOnClickListener(view1 -> {
@@ -54,43 +58,47 @@ public class FragmentForm3 extends Fragment {
             }
         });
 
+        inforBtn.setOnClickListener(view12 -> {
+            View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
+            BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
+            dialog.setContentView(bottomSheetView);
+            dialog.show();
+        });
+
         return view;
     }
 
     private boolean isPasswordValid(String password) {
-        return password.length() >= 6 && password.matches(".*[A-Z].*[0-9].*[!@#$%^&*+=?-_].*");
+        return password.length() >= 6 && password.matches(".*[A-Z].*[0-9].*[!@#$%^&*+=_\\-\\[\\]{}|;:'\",.<>/?].*");
     }
 
     private String getPasswordError(String password) {
-        String SPECIAL_CHARS = "!@#$%^&*+=_\\-[]{}|;:'\",.<>/?";
-        String to_append = "";
         StringBuilder errorString = new StringBuilder();
         if (password.length() < 6) {
-            to_append += getString(R.string.error_password_length) + "\n";
+            errorString.append(getString(R.string.error_password_length) + "\n");
         }
-        int digits = 0, uppercase = 0, special = 0;
+        boolean hasDigit = false, hasUppercase = false, hasSpecial = false;
         for (int i = 0; i < password.length(); i++) {
             char c = password.charAt(i);
             if (Character.isDigit(c)) {
-                digits++;
+                hasDigit = true;
             } else if (Character.isUpperCase(c)) {
-                uppercase++;
-            } else if (SPECIAL_CHARS.indexOf(c) >= 0) {
-                special++;
+                hasUppercase = true;
+            } else if ("!@#$%^&*+=_-[]{}|;:'\",.<>/?".indexOf(c) >= 0) {
+                hasSpecial = true;
             }
         }
-        if (digits < 1) {
-            to_append += getString(R.string.error_password_digit) + "\n";
+        if (!hasDigit) {
+            errorString.append(getString(R.string.error_password_digit) + "\n");
         }
-        if (uppercase < 1) {
-            to_append += getString(R.string.error_password_uppercase) + "\n";
+        if (!hasUppercase) {
+            errorString.append(getString(R.string.error_password_uppercase) + "\n");
         }
-        if (special < 1) {
-            to_append += getString(R.string.error_password_special);
+        if (!hasSpecial) {
+            errorString.append(getString(R.string.error_password_special));
         }
-        if (to_append.length() > 0) {
-            errorString.append(getString(R.string.error_password_header) + "\n");
-            errorString.append(to_append.trim());
+        if (errorString.length() > 0) {
+            errorString.insert(0, getString(R.string.error_password_header) + "\n");
             return errorString.toString();
         }
         return null;

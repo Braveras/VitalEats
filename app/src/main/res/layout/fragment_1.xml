@@ -8,7 +8,7 @@
     tools:context=".termsofservice.Fragment1">
 
     <TextView
-        android:id="@+id/usernameTextView"
+        android:id="@+id/tos_title_f1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -39,7 +39,7 @@
         android:textColor="?attr/colorPrimaryVariant"
         android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/usernameTextView" />
+        app:layout_constraintTop_toTopOf="@id/tos_title_f1" />
 
     <TextView
         android:id="@+id/dieta2"

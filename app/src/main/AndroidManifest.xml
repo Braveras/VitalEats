@@ -24,6 +24,10 @@
         android:theme="@style/Theme.VitalEats"
         tools:targetApi="31">
         <activity
+            android:name=".main.newRecipe"
+            android:exported="false"
+            android:theme="@style/Theme.VitalEats" />
+        <activity
             android:name=".main.CaptureAct"
             android:exported="false"
             android:screenOrientation="portrait"

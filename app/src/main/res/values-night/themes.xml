@@ -17,6 +17,7 @@
 
         <!--COÑO YA-->
         <item name="backgroundColor">@color/fadeBlack</item>
+        <item name="popupMenuBackground">@color/moreFadeBlack</item>
     </style>
 
     <style name="Toolbar">
@@ -30,10 +31,4 @@
         <!--<item name="navigationIcon">?attr/homeAsUpIndicator</item>-->
     </style>
 
-    <style name="Hint" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/green2d</item>
-        <item name="colorPrimaryDark">@color/green2d</item>
-        <item name="colorAccent">@color/green2d</item>
-        <item name="android:textColorHint">@color/green2d</item>
-    </style>
 </resources>

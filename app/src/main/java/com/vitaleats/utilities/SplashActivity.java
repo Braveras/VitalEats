@@ -24,6 +24,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -39,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
 
     ImageView foodTray_lid, foodTray_base, app_name, fondo;
     boolean ToS;
+    LottieAnimationView animationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,11 @@ public class SplashActivity extends AppCompatActivity {
         foodTray_base = findViewById(R.id.foodtray_base);
         app_name = findViewById(R.id.app_name_splash);
         fondo = findViewById(R.id.fondo);
+        animationView = findViewById(R.id.walking_avocado);
+
+        Animation avocado_animation = AnimationUtils.loadAnimation(this, R.anim.walking_avocado);
+        animationView.startAnimation(avocado_animation);
+
 
         Glide.with(this)
                 .load(R.drawable.frutas)
