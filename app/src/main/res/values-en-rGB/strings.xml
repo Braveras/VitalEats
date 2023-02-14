@@ -102,4 +102,44 @@
     <string name="searchRecipe">Search a recipe</string>
     <string name="enterFood">Enter a food</string>
     <string name="defaultStatus">Say something...</string>
+
+    <!-- Recipe Title -->
+    <string name="recipe_title">Título</string>
+    <string name="recipe_title_hint">Introduzca el título de la receta</string>
+
+    <!-- Recipe Photo -->
+    <string name="recipe_photo">Foto</string>
+    <string name="select_photo">Seleccionar Foto</string>
+
+    <!-- Ingredients -->
+    <string name="ingredients">Ingredientes</string>
+    <string name="ingredient_hint">Introduzca un ingrediente</string>
+    <string name="add_ingredient">Añadir</string>
+
+    <!-- Recipe Elaboration -->
+    <string name="elaboration">Elaboración</string>
+    <string name="elaboration_hint">Introduzca la elaboración de la receta</string>
+
+    <!-- Time and Number of People -->
+    <string name="time">Tiempo</string>
+    <string name="time_value">30 min</string>
+    <string name="num_people">Para</string>
+    <string name="num_people_value">4 personas</string>
+
+    <!-- Recipe Type -->
+    <string name="recipe_type">Tipo</string>
+    <string-array name="recipe_types">
+        <item>Comida Vegetariana</item>
+        <item>Comida Rápida</item>
+        <item>Postres</item>
+        <item>Platos Principales</item>
+        <item>Comida Saludable</item>
+        <item>Comida para Diabéticos</item>
+    </string-array>
+
+    <!-- Recipe Tags -->
+    <string name="recipe_tags">Etiquetas</string>
+    <string name="recipe_tags_hint">Alta en Proteínas, Baja en Grasas, Sin Gluten, Sin Lactosa</string>
+
+    <string name="create_recipe">Crear receta</string>
 </resources>
