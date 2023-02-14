@@ -89,7 +89,7 @@ public class FragmentForm4 extends Fragment {
                                         startActivity(i);
                                     }
                                 });
-                        StorageUtil.createStorageUser(user, SharedPrefsUtil.getString(getContext(), "weight"), SharedPrefsUtil.getString(getContext(), "age"), SharedPrefsUtil.getString(getContext(), "height"));
+                        StorageUtil.createStorageUser(user, SharedPrefsUtil.getString(getContext(), "weight"), SharedPrefsUtil.getString(getContext(), "age"), SharedPrefsUtil.getString(getContext(), "height"), getString(R.string.defaultStatus));
                     } else {
                         Toast.makeText(getContext(), getString(R.string.newUserFail), Toast.LENGTH_SHORT).show();
                     }

@@ -101,4 +101,5 @@
     <string name="addRecipe">ADD RECIPE</string>
     <string name="searchRecipe">Search a recipe</string>
     <string name="enterFood">Enter a food</string>
+    <string name="defaultStatus">Say something...</string>
 </resources>

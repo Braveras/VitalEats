@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                             updateUI(user);
                         }).addOnFailureListener(exception -> {
                             //Not exist
-                            StorageUtil.createStorageUser(user, "0", "0", "0");
+                            StorageUtil.createStorageUser(user, "0", "0", "0", getString(R.string.defaultStatus));
                             updateUI(user);
                         });
                     } else {

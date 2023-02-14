@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/popupMenuBackground" />
+            <corners
+                android:bottomLeftRadius="60dp"
+                android:bottomRightRadius="60dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="?attr/popupMenuBackground"
+                android:endColor="?attr/colorOnSurface"
+                android:angle="90"/>
+            <corners
+                android:bottomLeftRadius="60dp"
+                android:bottomRightRadius="60dp"/>
+        </shape>
+    </item>
+</layer-list>
