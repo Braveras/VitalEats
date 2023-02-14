@@ -13,7 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="colorSurface">@color/black</item>
-        <item name="colorOnSurface">@color/fadeWhite</item>
+        <item name="colorOnSurface">@color/white</item>
 
         <!--COÑO YA-->
         <item name="backgroundColor">@color/fadeWhite</item>
