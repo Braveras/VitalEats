@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 import com.vitaleats.R;
 import com.vitaleats.login.Login;
 import com.vitaleats.utilities.SharedPrefsUtil;
+import com.vitaleats.utilities.StorageUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -88,27 +89,11 @@ public class FragmentForm4 extends Fragment {
                                         startActivity(i);
                                     }
                                 });
-                        createStorageUser(user, SharedPrefsUtil.getString(getContext(), "weight"), SharedPrefsUtil.getString(getContext(), "age"), SharedPrefsUtil.getString(getContext(), "height"));
+                        StorageUtil.createStorageUser(user, SharedPrefsUtil.getString(getContext(), "weight"), SharedPrefsUtil.getString(getContext(), "age"), SharedPrefsUtil.getString(getContext(), "height"));
                     } else {
                         Toast.makeText(getContext(), getString(R.string.newUserFail), Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-
-    private void createStorageUser(FirebaseUser user, String peso, String edad, String altura) {
-        String uid = user.getUid();
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference rootRef = storage.getReference();
-        StorageReference folderRef = rootRef.child("documents/users/" + uid + "/userInformation.json");
-
-        Map<String, String> userInformation = new HashMap<>();
-        userInformation.put("edad", peso);
-        userInformation.put("peso", edad);
-        userInformation.put("altura", altura);
-
-        folderRef.putBytes(new Gson().toJson(userInformation).getBytes(StandardCharsets.UTF_8))
-                .addOnSuccessListener(taskSnapshot -> Log.d(TAG, "User information file written successfully"))
-                .addOnFailureListener(exception -> Log.w(TAG, "Error writing user information file", exception));
     }
 
 }

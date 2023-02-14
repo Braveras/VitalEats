@@ -32,6 +32,7 @@ import com.google.gson.Gson;
 import com.vitaleats.R;
 import com.vitaleats.main.MainBn;
 import com.vitaleats.signup.NewAccount;
+import com.vitaleats.utilities.StorageUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -134,29 +135,13 @@ public class MainActivity extends AppCompatActivity {
                             updateUI(user);
                         }).addOnFailureListener(exception -> {
                             //Not exist
-                            createStorageUser(user);
+                            StorageUtil.createStorageUser(user, "0", "0", "0");
                             updateUI(user);
                         });
                     } else {
                         updateUI(null);
                     }
                 });
-    }
-
-    private void createStorageUser(FirebaseUser user) {
-        String uid = user.getUid();
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference rootRef = storage.getReference();
-        StorageReference folderRef = rootRef.child("documents/users/" + uid + "/userInformation.json");
-
-        Map<String, String> userInformation = new HashMap<>();
-        userInformation.put("edad", "0");
-        userInformation.put("peso", "0");
-        userInformation.put("altura", "0");
-
-        folderRef.putBytes(new Gson().toJson(userInformation).getBytes(StandardCharsets.UTF_8))
-                .addOnSuccessListener(taskSnapshot -> Log.d(TAG, "User information file written successfully"))
-                .addOnFailureListener(exception -> Log.w(TAG, "Error writing user information file", exception));
     }
 
     private void updateUI(FirebaseUser user) {
