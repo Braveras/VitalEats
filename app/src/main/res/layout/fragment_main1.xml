@@ -35,12 +35,86 @@
         android:background="#000000"
         app:layout_constraintTop_toBottomOf="@id/feed_title"/>
 
+    <LinearLayout
+        android:id="@+id/panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/separador"
+        android:layout_margin="20dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
+        android:background="@drawable/panel"
+        >
+
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nombre:"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"/>
+
+        <TextView
+            android:id="@+id/calorias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="calorias:"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"
+            />
+
+        <TextView
+            android:id="@+id/fecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fecha de caducidad:"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/panel2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/panel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/panel2"
+        >
+
+        <TextView
+            android:id="@+id/nombre1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nombre:"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"/>
+
+        <TextView
+            android:id="@+id/calorias1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="calorias:"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"
+            />
+
+        <TextView
+            android:id="@+id/fecha1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fecha de caducidad:"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipes_recycler_view"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/separador"
+        app:layout_constraintTop_toBottomOf="@id/panel2"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
