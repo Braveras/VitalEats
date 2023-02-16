@@ -108,12 +108,12 @@
     <string name="recipe_title_hint">Introduzca el título de la receta</string>
 
     <!-- Recipe Photo -->
-    <string name="recipe_photo">Foto</string>
+    <string name="recipe_photo">Images</string>
     <string name="select_photo">Seleccionar Foto</string>
 
     <!-- Ingredients -->
-    <string name="ingredients">Ingredientes</string>
-    <string name="ingredient_hint">Introduzca un ingrediente</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="ingredient_hint">Write the list of ingredients...</string>
     <string name="add_ingredient">Añadir</string>
 
     <!-- Recipe Elaboration -->
@@ -121,25 +121,31 @@
     <string name="elaboration_hint">Introduzca la elaboración de la receta</string>
 
     <!-- Time and Number of People -->
-    <string name="time">Tiempo</string>
-    <string name="time_value">30 min</string>
-    <string name="num_people">Para</string>
-    <string name="num_people_value">4 personas</string>
+    <string name="time">Time</string>
+    <string name="time_value">min</string>
+    <string name="num_people">Servings</string>
+    <string name="num_person_value">person</string>
+    <string name="num_people_value">people</string>
 
     <!-- Recipe Type -->
-    <string name="recipe_type">Tipo</string>
+    <string name="recipe_type">Type</string>
     <string-array name="recipe_types">
-        <item>Comida Vegetariana</item>
-        <item>Comida Rápida</item>
-        <item>Postres</item>
+        <item>-</item>
+        <item>Vegan food</item>
+        <item>Fast food</item>
+        <item>Dessert</item>
         <item>Platos Principales</item>
-        <item>Comida Saludable</item>
+        <item>Healthy food</item>
         <item>Comida para Diabéticos</item>
     </string-array>
 
     <!-- Recipe Tags -->
-    <string name="recipe_tags">Etiquetas</string>
-    <string name="recipe_tags_hint">Alta en Proteínas, Baja en Grasas, Sin Gluten, Sin Lactosa</string>
+    <string name="recipe_tags">Tags</string>
+    <string name="high_protein">High protein</string>
+    <string name="low_fat">Low fat</string>
+    <string name="gluten_free">Gluten free</string>
+    <string name="lactose_free">Lactose free</string>
 
-    <string name="create_recipe">Crear receta</string>
+    <string name="create_recipe">Create recipe</string>
+    <string name="create_recipe_error_emptyfields">Fill in all the fields</string>
 </resources>
