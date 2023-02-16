@@ -39,6 +39,10 @@ public class StorageUtil {
                 .addOnFailureListener(exception -> Log.w(TAG, "Error writing user information file", exception));
     }
 
+    public static void createStorageRecipe() {
+
+    }
+
     public static void readStorageUser(FirebaseUser user, OnReadUserInformationListener listener) {
         String uid = user.getUid();
         FirebaseStorage storage = FirebaseStorage.getInstance();
