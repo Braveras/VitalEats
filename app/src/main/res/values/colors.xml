@@ -27,4 +27,32 @@
     <color name="oranged">#FF7B00</color>
     <color name="purple2d">#9E599C</color>
 
+    <color name="chip_background_high_protein_selected">#C8E6C9</color>
+    <color name="chip_background_high_protein_unselected">#FFFFFF</color>
+    <color name="chip_stroke_high_protein_selected">#558B2F</color>
+    <color name="chip_stroke_high_protein_unselected">#757575</color>
+    <color name="chip_text_high_protein_selected">#558B2F</color>
+    <color name="chip_text_high_protein_unselected">#757575</color>
+
+    <color name="chip_background_low_fat_selected">#81D4FA</color>
+    <color name="chip_background_low_fat_unselected">#FFFFFF</color>
+    <color name="chip_stroke_low_fat_selected">#0277BD</color>
+    <color name="chip_stroke_low_fat_unselected">#757575</color>
+    <color name="chip_text_low_fat_selected">#0277BD</color>
+    <color name="chip_text_low_fat_unselected">#757575</color>
+
+    <color name="chip_background_gluten_free_selected">#FFE0B2</color>
+    <color name="chip_background_gluten_free_unselected">#FFFFFF</color>
+    <color name="chip_stroke_gluten_free_selected">#EF6C00</color>
+    <color name="chip_stroke_gluten_free_unselected">#757575</color>
+    <color name="chip_text_gluten_free_selected">#EF6C00</color>
+    <color name="chip_text_gluten_free_unselected">#757575</color>
+
+    <color name="chip_background_lactose_free_selected">#FCE4EC</color>
+    <color name="chip_background_lactose_free_unselected">#FFFFFF</color>
+    <color name="chip_stroke_lactose_free_selected">#E91E63</color>
+    <color name="chip_stroke_lactose_free_unselected">#757575</color>
+    <color name="chip_text_lactose_free_selected">#E91E63</color>
+    <color name="chip_text_lactose_free_unselected">#757575</color>
+
 </resources>
