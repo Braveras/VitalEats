@@ -18,163 +18,133 @@
             android:layout_height="wrap_content">
 
             <!-- Title -->
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/recipe_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimaryVariant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/et_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/recipe_title_hint"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+                <EditText
+                    android:id="@+id/et_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/recipe_title_hint"
+                    android:inputType="text"
+                    android:textColor="?attr/colorSurface" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Photo -->
-            <TextView
-                android:id="@+id/tv_photo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/recipe_photo"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimaryVariant"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_title" />
-
             <LinearLayout
                 android:id="@+id/ll_imagenes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 android:textColor="@color/buttonselectorprimary"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_photo">
+                app:layout_constraintTop_toBottomOf="@+id/til_title">
 
                 <ImageButton
                     android:id="@+id/recipe_imageButton1"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_add_image"
                     android:background="@null"
-                    android:scaleType="centerInside"
                     android:padding="8dp"
-                    android:layout_margin="8dp" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_add_image" />
 
                 <ImageButton
                     android:id="@+id/recipe_imageButton2"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_add_image"
                     android:background="@null"
-                    android:scaleType="centerInside"
                     android:padding="8dp"
-                    android:layout_margin="8dp" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_add_image" />
 
                 <ImageButton
                     android:id="@+id/recipe_imageButton3"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_add_image"
                     android:background="@null"
-                    android:scaleType="centerInside"
                     android:padding="8dp"
-                    android:layout_margin="8dp" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_add_image" />
 
             </LinearLayout>
 
             <!-- Ingredients -->
-            <TextView
-                android:id="@+id/tv_ingredients"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/ingredients"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimaryVariant"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll_imagenes" />
 
-            <EditText
-                android:id="@+id/et_ingredients"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_ingredients"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="42dp"
                 android:layout_marginEnd="16dp"
-                android:hint="@string/ingredient_hint"
-                android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_ingredients" />
+                app:layout_constraintTop_toBottomOf="@+id/ll_imagenes">
+
+                <EditText
+                    android:id="@+id/et_ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ingredient_hint"
+                    android:inputType="textMultiLine"
+                    android:textColor="?attr/colorSurface" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Elaboration -->
-            <TextView
-                android:id="@+id/tv_elaboration"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_elaboration"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="42dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/elaboration"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimaryVariant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_ingredients" />
+                app:layout_constraintTop_toBottomOf="@+id/til_ingredients">
 
             <EditText
                 android:id="@+id/et_elaboration"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="100dp"
                 android:hint="@string/elaboration_hint"
                 android:inputType="textMultiLine"
-                android:maxLines="10"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_elaboration" />
+                android:maxLines="100"
+                android:textColor="?attr/colorSurface"
+                 />
 
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Time -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/time_layout_clickable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="45dp"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintBottom_toTopOf="@id/tv_time_value"
-                app:layout_constraintEnd_toStartOf="@id/btn_increase_time">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
                     android:id="@+id/time_amount"
@@ -198,51 +168,34 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/time"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimaryVariant"
-                app:layout_constraintEnd_toStartOf="@+id/tv_time_value"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_elaboration" />
-
-
             <ImageButton
                 android:id="@+id/btn_decrease_time"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="-15dp"
-                android:layout_marginTop="6dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/ic_recipe_substract"
-                app:layout_constraintStart_toEndOf="@+id/tv_time"
+                app:layout_constraintEnd_toStartOf="@+id/tv_time_value"
                 app:layout_constraintTop_toTopOf="@id/tv_time_value" />
 
             <TextView
                 android:id="@+id/tv_time_value"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="68dp"
                 android:text="@string/time_value"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="?attr/colorSurface"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_time"
-                app:layout_constraintTop_toBottomOf="@+id/et_elaboration" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_elaboration" />
 
             <ImageButton
                 android:id="@+id/btn_increase_time"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="28dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="30dp"
                 android:background="@drawable/ic_recipe_add"
-                app:layout_constraintEnd_toEndOf="@id/tv_time_value"
+                app:layout_constraintStart_toEndOf="@id/tv_time_value"
                 app:layout_constraintTop_toTopOf="@id/tv_time_value" />
 
             <!-- Number of People -->
@@ -250,11 +203,11 @@
                 android:id="@+id/servings_layout_clickable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="45dp"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintBottom_toTopOf="@id/tv_num_people_value"
-                app:layout_constraintEnd_toStartOf="@id/btn_increase_servings">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <ImageView
                     android:id="@+id/newrecipe_person"
@@ -290,102 +243,58 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tv_num_people"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/num_people"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimaryVariant"
-                app:layout_constraintEnd_toStartOf="@+id/tv_num_people_value"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
-
             <ImageButton
                 android:id="@+id/btn_decrease_servings"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="-15dp"
-                android:layout_marginTop="6dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/ic_recipe_substract"
-                app:layout_constraintStart_toEndOf="@+id/tv_num_people"
+                app:layout_constraintEnd_toStartOf="@+id/tv_num_people_value"
                 app:layout_constraintTop_toTopOf="@id/tv_num_people_value" />
 
             <TextView
                 android:id="@+id/tv_num_people_value"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:text="@string/num_person_value"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="?attr/colorSurface"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_num_people"
-                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time_value" />
 
             <ImageButton
                 android:id="@+id/btn_increase_servings"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="28dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="30dp"
                 android:background="@drawable/ic_recipe_add"
-                app:layout_constraintEnd_toEndOf="@id/tv_num_people_value"
+                app:layout_constraintStart_toEndOf="@id/tv_num_people_value"
                 app:layout_constraintTop_toTopOf="@id/tv_num_people_value" />
 
             <!-- Recipe Type -->
-            <TextView
-                android:id="@+id/tv_recipe_type"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/recipe_type"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimaryVariant"
-                app:layout_constraintEnd_toStartOf="@+id/sp_recipe_type"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_num_people" />
-
             <Spinner
                 android:id="@+id/sp_recipe_type"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="42dp"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_num_people" />
-
-            <!-- Recipe Tags -->
-            <TextView
-                android:id="@+id/tv_recipe_tags"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/recipe_tags"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimaryVariant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sp_recipe_type" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_num_people_value" />
 
-
+            <!-- Recipe Tags -->
             <LinearLayout
                 android:id="@+id/ll_tags"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="48dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_recipe_tags">
+                app:layout_constraintTop_toBottomOf="@+id/sp_recipe_type">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group"
@@ -412,8 +321,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/high_protein"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
-                            android:textColor="@color/orange" />
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Chip" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_low_fat"
