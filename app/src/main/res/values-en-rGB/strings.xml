@@ -156,4 +156,7 @@
 
     <string name="update_status">Here you can update your status…</string>
     <string name="status_save">Save</string>
+
+    <string name="keywords_searchbar">Enter up to 3 keywords…</string>
+
 </resources>

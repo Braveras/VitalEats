@@ -157,7 +157,7 @@
     <string name="update_status">Aqui puedes actualizar tu estado…</string>
     <string name="status_save">Guardar</string>
 
-
+    <string name="keywords_searchbar">Introduce hasta 3 palabras clave…</string>
 
 
 </resources>
