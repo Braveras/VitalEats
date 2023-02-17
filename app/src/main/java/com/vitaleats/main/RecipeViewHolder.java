@@ -17,7 +17,10 @@ import com.vitaleats.utilities.Recipe;
 
 import java.text.SimpleDateFormat;
 
-public class RecipeViewHolder extends RecyclerView.ViewHolder {
+public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+
+    private OnRecipeClickListener mListener;
+    private OnRecipeLongClickListener mLongListener;
 
     private Context mContext;
     public TextView titleTextView;
@@ -30,9 +33,11 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
     public Chip chip1, chip2, chip3, chip4;
     public TextView createdAtTextView, recipeCreatortv;
 
-    public RecipeViewHolder(@NonNull View itemView) {
+    public RecipeViewHolder(@NonNull View itemView, OnRecipeClickListener listener, OnRecipeLongClickListener longListener) {
         super(itemView);
         mContext = itemView.getContext();
+        mListener = listener;
+        mLongListener = longListener;
 
         titleTextView = itemView.findViewById(R.id.recipe_title);
         imageView = itemView.findViewById(R.id.recipe_image);
@@ -48,6 +53,8 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         createdAtTextView = itemView.findViewById(R.id.recipe_created_at);
         recipeCreatortv = itemView.findViewById(R.id.recipe_creator);
 
+        itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
     public void bind(Recipe recipe) {
@@ -64,7 +71,6 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         servingsTextView.setText(recipe.getTvRecipeServings() + servingsStr);
         typeTextView.setText(recipe.getSelectedRecipeType());
         ratingBar.setRating(recipe.getRating());
-        System.out.println(recipe.getImages().get(0));
         Glide.with(imageView.getContext())
                 .load(recipe.getImages().get(0))
                 .into(imageView);
@@ -97,5 +103,16 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         String createdAtString = sdf.format(recipe.getCreatedAt());
         createdAtTextView.setText(createdAtString);
         recipeCreatortv.setText(recipe.getCreatorUsername());
+    }
+
+    @Override
+    public void onClick(View v) {
+        mListener.onRecipeClick(getAdapterPosition());
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        mLongListener.onRecipeLongClick(getAdapterPosition());
+        return true;
     }
 }

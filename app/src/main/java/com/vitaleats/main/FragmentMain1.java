@@ -20,7 +20,7 @@ import com.google.firebase.firestore.Query;
 import com.vitaleats.R;
 import com.vitaleats.utilities.Recipe;
 
-public class FragmentMain1 extends Fragment {
+public class FragmentMain1 extends Fragment implements OnRecipeClickListener, OnRecipeLongClickListener {
 
     private ImageButton newRecipe_btn;
     private RecyclerView feed_recetas;
@@ -60,7 +60,7 @@ public class FragmentMain1 extends Fragment {
             public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 // Create a new view holder for the recipe items
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_item, parent, false);
-                return new RecipeViewHolder(view);
+                return new RecipeViewHolder(view, FragmentMain1.this, FragmentMain1.this);
             }
         };
 
@@ -68,5 +68,22 @@ public class FragmentMain1 extends Fragment {
         adapter.startListening();
 
         return view;
+    }
+
+    @Override
+    public void onRecipeClick(int position) {
+        // Obtener el adaptador del RecyclerView
+        FirestoreRecyclerAdapter<Recipe, RecipeViewHolder> adapter = (FirestoreRecyclerAdapter<Recipe, RecipeViewHolder>) feed_recetas.getAdapter();
+
+        // Obtener el objeto Recipe correspondiente a la posición del elemento clicado
+        Recipe recipe = adapter.getItem(position);
+        System.out.println(recipe.getRecipeTitle());
+
+        // Hacer algo con el objeto recipe, por ejemplo abrir una actividad de detalle de la receta
+    }
+
+    @Override
+    public void onRecipeLongClick(int position) {
+        System.out.println("hehe");
     }
 }
