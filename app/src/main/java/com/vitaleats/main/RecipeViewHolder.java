@@ -63,6 +63,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         servingsTextView.setText(recipe.getTvRecipeServings() + servingsStr);
         typeTextView.setText(recipe.getSelectedRecipeType());
         ratingBar.setRating(recipe.getRating());
+        System.out.println(recipe.getImages().get(0));
         Glide.with(imageView.getContext())
                 .load(recipe.getImages().get(0))
                 .into(imageView);
@@ -80,6 +81,9 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
                 } else if (i == 2) {
                     chip3.setText(tag);
                     chip3.setVisibility(View.VISIBLE);
+                } else if (i == 3) {
+                    chip4.setText(tag);
+                    chip4.setVisibility(View.VISIBLE);
                 }
             }
         } else {
