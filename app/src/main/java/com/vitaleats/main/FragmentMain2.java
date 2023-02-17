@@ -1,34 +1,30 @@
 package com.vitaleats.main;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.journeyapps.barcodescanner.ScanContract;
-import com.journeyapps.barcodescanner.ScanOptions;
 import com.vitaleats.R;
 import com.vitaleats.utilities.FirebaseHandler;
+import com.vitaleats.utilities.Food;
+import com.vitaleats.utilities.FoodAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class FragmentMain2 extends Fragment {
@@ -38,9 +34,8 @@ public class FragmentMain2 extends Fragment {
     private EditText newItemEditText;
     private Button addButton;
     private ListView foodListView;
-    private ArrayList<String> foodList;
-    private List<Integer> foodListCount;
-    private ArrayAdapter<String> foodListAdapter;
+    private ArrayList<Food> mFoodList;
+    private FoodAdapter mFoodAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,25 +46,17 @@ public class FragmentMain2 extends Fragment {
         foodListView = view.findViewById(R.id.food_list_view);
 
         firebaseHandler = new FirebaseHandler();
-        foodList = new ArrayList<>();
-        foodListCount = new ArrayList<>();
-        foodListAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, foodList);
-        foodListView.setAdapter(foodListAdapter);
+
+        mFoodList = new ArrayList<>();
+        mFoodAdapter = new FoodAdapter(getContext(), R.layout.list_item_layout, mFoodList);
+        foodListView.setAdapter(mFoodAdapter);
 
         addButton.setOnClickListener(view12 -> {
-            String newItem = newItemEditText.getText().toString().toLowerCase();
+            String newItem = newItemEditText.getText().toString().toLowerCase().trim();
             if (!newItem.isEmpty()) {
-                if (foodList.contains(newItem)) {
-                    int index = foodList.indexOf(newItem);
-                    int count = foodListCount.get(index) + 1;
-                    foodListCount.set(index, count);
-                    foodList.set(index, newItem + " x" + count);
-                } else {
-                    foodList.add(newItem);
-                    foodListCount.add(1);
-                }
-                foodListAdapter.notifyDataSetChanged();
                 firebaseHandler.addFood(newItem);
+                mFoodList.add(new Food(newItem));
+                mFoodAdapter.notifyDataSetChanged();
                 newItemEditText.setText("");
                 Map<String, Object> food = new HashMap<>();
                 food.put("name", newItem);
@@ -90,10 +77,30 @@ public class FragmentMain2 extends Fragment {
             new AlertDialog.Builder(getContext())
                     .setTitle(getResources().getString(R.string.deleteItem))
                     .setPositiveButton(getResources().getString(R.string.yes), (dialog, which) -> {
-                        String foodToRemove = foodList.get(position);
-                        foodList.remove(position);
-                        foodListAdapter.notifyDataSetChanged();
+                        String foodToRemove = mFoodList.get(position).getName();
+                        mFoodList.remove(position);
+                        mFoodAdapter.notifyDataSetChanged();
                         firebaseHandler.removeFood(foodToRemove);
+                        db.collection("foodList")
+                                .whereEqualTo("name", foodToRemove)
+                                .get()
+                                .addOnSuccessListener(querySnapshot -> {
+                                    for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                                        String documentId = document.getId();
+                                        db.collection("foodList")
+                                                .document(documentId)
+                                                .delete()
+                                                .addOnSuccessListener(aVoid -> {
+                                                    Log.d("Firebase", "DocumentSnapshot successfully deleted!");
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    Log.w("Firebase", "Error deleting document", e);
+                                                });
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.w("Firebase", "Error querying documents", e);
+                                });
                     })
                     .setNegativeButton(getResources().getString(R.string.no), (dialog, which) -> dialog.dismiss())
                     .create()
@@ -101,16 +108,17 @@ public class FragmentMain2 extends Fragment {
         });
 
         db.collection("foodList")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            foodList.add(document.getString("name"));
-                        }
-                        foodListAdapter.notifyDataSetChanged();
-                    } else {
-                        Log.w("Firebase", "Error getting documents.", task.getException());
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) {
+                        Log.w("Firebase", "Listen failed.", error);
+                        return;
                     }
+                    mFoodList.clear();
+                    for (QueryDocumentSnapshot doc : value) {
+                        String foodName = doc.getString("name");
+                        mFoodList.add(new Food(foodName));
+                    }
+                    mFoodAdapter.notifyDataSetChanged();
                 });
 
         return view;
@@ -122,8 +130,8 @@ public class FragmentMain2 extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < foodList.size(); i++) {
-            sb.append(foodList.get(i)).append(",");
+        for (int i = 0; i < mFoodList.size(); i++) {
+            sb.append(mFoodList.get(i)).append(",");
         }
         editor.putString(getResources().getString(R.string.food), sb.toString());
         editor.apply();
@@ -136,24 +144,16 @@ public class FragmentMain2 extends Fragment {
         String foodListString = sharedPreferences.getString(getResources().getString(R.string.food), "");
         if (!foodListString.equals("")) {
             String[] items = foodListString.split(",");
-            foodList = new ArrayList<>(Arrays.asList(items));
-            foodListAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, foodList);
-            foodListView.setAdapter(foodListAdapter);
+            mFoodList = new ArrayList<>();
+            for (String item : items) {
+                mFoodList.add(new Food(item));
+            }
+            if (mFoodAdapter == null) { // Comprobar si el adaptador es nulo
+                mFoodAdapter = new FoodAdapter(getContext(), mFoodList);
+                foodListView.setAdapter(mFoodAdapter);
+            } else {
+                mFoodAdapter.notifyDataSetChanged(); // Notificar al adaptador de los cambios en los datos
+            }
         }
     }
-
-    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result ->
-    {
-        if (result.getContents() != null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(getResources().getString(R.string.result));
-            builder.setMessage(result.getContents());
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            }).show();
-        }
-    });
 }
