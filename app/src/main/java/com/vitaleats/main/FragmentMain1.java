@@ -68,7 +68,5 @@ public class FragmentMain1 extends Fragment {
         adapter.startListening();
 
         return view;
-
-
     }
 }

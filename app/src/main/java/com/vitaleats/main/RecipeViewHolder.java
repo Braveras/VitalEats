@@ -28,7 +28,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
     public TextView servingsTextView;
     public RatingBar ratingBar;
     public Chip chip1, chip2, chip3, chip4;
-    public TextView createdAtTextView;
+    public TextView createdAtTextView, recipeCreatortv;
 
     public RecipeViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -46,6 +46,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         servingsTextView = itemView.findViewById(R.id.recipe_servings);
         ratingBar = itemView.findViewById(R.id.recipe_rating);
         createdAtTextView = itemView.findViewById(R.id.recipe_created_at);
+        recipeCreatortv = itemView.findViewById(R.id.recipe_creator);
 
     }
 
@@ -67,6 +68,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         Glide.with(imageView.getContext())
                 .load(recipe.getImages().get(0))
                 .into(imageView);
+
         // Verificar si la lista de etiquetas está vacía
         if (recipe.getTags() != null && recipe.getTags().size() > 0) {
             for (int i = 0; i < recipe.getTags().size(); i++) {
@@ -94,5 +96,6 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
         String createdAtString = sdf.format(recipe.getCreatedAt());
         createdAtTextView.setText(createdAtString);
+        recipeCreatortv.setText(recipe.getCreatorUsername());
     }
 }

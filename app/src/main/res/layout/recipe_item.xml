@@ -40,14 +40,33 @@
 
             <!-- Título de la receta -->
 
-            <TextView
-                android:id="@+id/recipe_title"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Título de la receta"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/recipe_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Título de la receta"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/recipe_creator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="Creador" />
+
+            </LinearLayout>
 
             <!-- Tipo de la receta -->
             <TextView
@@ -60,86 +79,78 @@
 
             <!-- Etiquetas de la receta -->
 
-        </LinearLayout>
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            android:scrollbarThumbHorizontal="@null">
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/recipe_tags"
-                style="@style/Widget.MaterialComponents.ChipGroup"
+            <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:singleLine="true"
-                android:textAppearance="@style/Widget.MaterialComponents.ChipGroup"
-                app:chipSpacing="8dp"
-                app:chipSpacingHorizontal="8dp"
-                app:singleLine="true">
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:scrollbarThumbHorizontal="@null">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_1"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/recipe_tags"
+                    style="@style/Widget.MaterialComponents.ChipGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
-                    android:textColor="@color/chip_text_high_protein_selected"
-                    android:visibility="gone"
-                    app:chipBackgroundColor="@color/chip_background_high_protein_selected"
-                    app:chipStrokeColor="@color/chip_stroke_high_protein_selected" />
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:textAppearance="@style/Widget.MaterialComponents.ChipGroup"
+                    app:chipSpacing="8dp"
+                    app:chipSpacingHorizontal="8dp"
+                    app:singleLine="true">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_2"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
-                    android:textColor="@color/chip_text_low_fat_selected"
-                    android:visibility="gone"
-                    app:chipBackgroundColor="@color/chip_background_low_fat_selected"
-                    app:chipStrokeColor="@color/chip_stroke_low_fat_selected" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_1"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
+                        android:textColor="@color/chip_text_high_protein_selected"
+                        android:visibility="gone"
+                        app:chipBackgroundColor="@color/chip_background_high_protein_selected"
+                        app:chipStrokeColor="@color/chip_stroke_high_protein_selected" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_3"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
-                    android:textColor="@color/chip_text_lactose_free_selected"
-                    android:visibility="gone"
-                    app:chipBackgroundColor="@color/chip_background_lactose_free_selected"
-                    app:chipStrokeColor="@color/chip_stroke_lactose_free_selected" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_2"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
+                        android:textColor="@color/chip_text_low_fat_selected"
+                        android:visibility="gone"
+                        app:chipBackgroundColor="@color/chip_background_low_fat_selected"
+                        app:chipStrokeColor="@color/chip_stroke_low_fat_selected" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_4"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
-                    android:textColor="@color/chip_text_gluten_free_selected"
-                    android:visibility="gone"
-                    app:chipBackgroundColor="@color/chip_background_gluten_free_selected"
-                    app:chipStrokeColor="@color/chip_stroke_gluten_free_selected" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_3"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
+                        android:textColor="@color/chip_text_lactose_free_selected"
+                        android:visibility="gone"
+                        app:chipBackgroundColor="@color/chip_background_lactose_free_selected"
+                        app:chipStrokeColor="@color/chip_stroke_lactose_free_selected" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_4"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
+                        android:textColor="@color/chip_text_gluten_free_selected"
+                        android:visibility="gone"
+                        app:chipBackgroundColor="@color/chip_background_gluten_free_selected"
+                        app:chipStrokeColor="@color/chip_stroke_gluten_free_selected" />
 
 
-            </com.google.android.material.chip.ChipGroup>
+                </com.google.android.material.chip.ChipGroup>
 
-        </HorizontalScrollView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
+            </HorizontalScrollView>
 
             <!-- Tiempo y comensales de la receta -->
             <LinearLayout
@@ -159,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tiempo de preparación"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorSurface"
                     android:textSize="14sp" />
 
                 <View
@@ -178,7 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Número de comensales"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorSurface"
                     android:textSize="14sp" />
 
             </LinearLayout>
