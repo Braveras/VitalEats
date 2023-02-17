@@ -113,7 +113,7 @@
 
     <!-- Ingredients -->
     <string name="ingredients">Ingredients</string>
-    <string name="ingredient_hint">Write the list of ingredients...</string>
+    <string name="ingredient_hint">Write the list of ingredients…</string>
     <string name="add_ingredient">Añadir</string>
 
     <!-- Recipe Elaboration -->

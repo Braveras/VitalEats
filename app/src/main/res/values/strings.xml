@@ -105,7 +105,7 @@
 
     <!-- Recipe Title -->
     <string name="recipe_title">Título</string>
-    <string name="recipe_title_hint">Introduzca el título de la receta</string>
+    <string name="recipe_title_hint">Introduzca el nombre de la receta…</string>
 
     <!-- Recipe Photo -->
     <string name="recipe_photo">Imágenes</string>
@@ -113,12 +113,12 @@
 
     <!-- Ingredients -->
     <string name="ingredients">Ingredientes</string>
-    <string name="ingredient_hint">Introduzca los ingredientes...</string>
+    <string name="ingredient_hint">Introduzca los ingredientes…</string>
     <string name="add_ingredient">Añadir</string>
 
     <!-- Recipe Elaboration -->
     <string name="elaboration">Elaboración</string>
-    <string name="elaboration_hint">Introduzca la elaboración de la receta...</string>
+    <string name="elaboration_hint">Introduzca la elaboración de la receta…</string>
 
     <!-- Time and Number of People -->
     <string name="time">Tiempo</string>
