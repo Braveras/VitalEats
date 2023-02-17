@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Requisitos de contraseña"
+            android:text="@string/password_requirements"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -32,25 +32,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="- Al menos 6 caracteres" />
+            android:text="@string/password_length" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="- Al menos 1 mayúscula" />
+            android:text="@string/password_uppercase" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="- Al menos 1 número" />
+            android:text="@string/password_number" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="- Al menos 1 carácter especial" />
+            android:text="@string/password_special_char" />
 
     </LinearLayout>
 
