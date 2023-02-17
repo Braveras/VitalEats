@@ -13,7 +13,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
@@ -21,11 +20,13 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.vitaleats.R;
-import com.vitaleats.login.MainActivity;
+import com.vitaleats.utilities.Recipe;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -33,32 +34,30 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class newRecipe extends AppCompatActivity {
+public class newRecipeActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageButton selectedImageButton;
 
     private String selectedRecipeType, recipeTitle, recipeIngredients, recipeElaboration;
-    private ArrayList<CheckBox> checkBoxesActivados = new ArrayList<>();
 
     ImageButton increase_time, increase_servings, decrease_time, decrease_servings, recipe_imageButton1, recipe_imageButton2, recipe_imageButton3;
     EditText etRecipeTitle;
-    ImageView ivRecipeImage;
     EditText etRecipeIngredients;
     EditText etRecipeDirections;
     TextView tvRecipeTime;
@@ -219,8 +218,7 @@ public class newRecipe extends AppCompatActivity {
         servings_modifier.setOnClickListener(v -> {
             isRange = !isRange;
             if (isRange) {
-                if (servings == 9)
-                    servings = 8;
+                if (servings == 9) servings = 8;
                 tvRecipeServings.setText(servings + " - " + (servings + 1) + " " + getResources().getString(R.string.num_people_value));
             } else {
                 if (servings == 1) {
@@ -284,8 +282,7 @@ public class newRecipe extends AppCompatActivity {
          */
 
         // Set up Spinner adapter
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.recipe_types, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.recipe_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spRecipeType.setAdapter(adapter);
 
@@ -304,6 +301,7 @@ public class newRecipe extends AppCompatActivity {
 
         // Set up button click listener
         btnCreateRecipe.setOnClickListener(view -> {
+            btnCreateRecipe.setEnabled(false);
             recipeTitle = String.valueOf(etRecipeTitle.getText());
             recipeIngredients = String.valueOf(etRecipeIngredients.getText());
             recipeElaboration = String.valueOf(etRecipeDirections.getText());
@@ -316,7 +314,8 @@ public class newRecipe extends AppCompatActivity {
                     }
                 }
             } else {
-                Toast.makeText(newRecipe.this, getString(R.string.create_recipe_error_emptyfields), Toast.LENGTH_LONG).show();
+                Toast.makeText(newRecipeActivity.this, getString(R.string.create_recipe_error_emptyfields), Toast.LENGTH_LONG).show();
+                btnCreateRecipe.setEnabled(true);
             }
         });
     }
@@ -355,8 +354,6 @@ public class newRecipe extends AppCompatActivity {
     }
 
     private void createRecipe() {
-        TextView tvRecipeTime;
-        TextView tvRecipeServings;
         //selectedRecipeType
 
         recipeTitle = etRecipeTitle.getText().toString().trim();
@@ -370,8 +367,9 @@ public class newRecipe extends AppCompatActivity {
         final String[] image3 = new String[1];
 
         List<String> selectedTags = new ArrayList<>();
-        for (int i = 0; i < chipGroup.getChildCount(); i++) {
-            View child = chipGroup.getChildAt(i);
+        GridLayout gridLayout = (GridLayout) chipGroup.getChildAt(0);
+        for (int i = 0; i < gridLayout.getChildCount(); i++) {
+            View child = gridLayout.getChildAt(i);
             if (child instanceof Chip) {
                 Chip chip = (Chip) child;
                 if (chip.isChecked()) {
@@ -380,8 +378,6 @@ public class newRecipe extends AppCompatActivity {
             }
         }
 
-        //hacer metodo que le pase las 3 imagenes y las suba a la vez para poder poner el resto del codigo dentro
-        //de su complete listener
         List<byte[]> imageBytesList = new ArrayList<>();
         if (!isDefaultImage(recipe_imageButton1)) {
             Drawable drawable = recipe_imageButton1.getDrawable();
@@ -409,48 +405,37 @@ public class newRecipe extends AppCompatActivity {
             imageBytes[i] = imageBytesList.get(i);
         }
 
+        String recipeServingsStr;
+        if (isRange) {
+            recipeServingsStr = servings + " - " + (servings+1);
+        } else {
+            recipeServingsStr = Integer.toString(servings);
+        }
+
         Task<String> uploadTask = uploadImages(imageBytes);
         uploadTask.addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                String[] imageUrls = task.getResult().split(",");
-                if (imageUrls.length >= 1) {
-                    image1[0] = imageUrls[0];
-                }
-                if (imageUrls.length >= 2) {
-                    image2[0] = imageUrls[1];
-                }
-                if (imageUrls.length >= 3) {
-                    image3[0] = imageUrls[2];
-                }
-                //hay que coger el textview del recipetime y servings
-                System.out.println("Imagenes:" + image1[0] + "|" + image2[0] + "|" + image3[0] + "\n");
-                System.out.println("recipeTitle " + recipeTitle);
-                System.out.println("recipeIngredients " + recipeIngredients);
-                System.out.println("recipeElaboration " + recipeElaboration);
-                System.out.println("recipetime " + recipeTime);
-                System.out.println("recipeservings " + servings);
-                System.out.println("selectedRecipeType " + selectedRecipeType);
-                System.out.print("tags: ");
-                for (String tag : selectedTags) {
-                    System.out.println(tag);
-                }
-                // Display success message to user
-                Toast.makeText(this, "New recipe created!", Toast.LENGTH_SHORT).show();
+                List<String> imageUrlList = Arrays.asList(task.getResult().split(","));
 
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                String currentUserId = user.getUid();
+
+                // Creamos una instancia de la clase Recipe
+                Recipe recipe = new Recipe(recipeTitle, recipeIngredients, recipeElaboration, tvRecipeServings.getText().toString(), recipeServingsStr, selectedRecipeType, selectedTags, imageUrlList, currentUserId, user.getDisplayName(), 0, new Date(), true);
+
+                // Subimos la receta a Firebase Firestore
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CollectionReference recipesRef = db.collection("recipes");
+                recipesRef.add(recipe).addOnSuccessListener(documentReference -> Toast.makeText(this, "New recipe created!", Toast.LENGTH_SHORT).show())//documentReference.getId() para obtener el ID del objeto subido
+                        .addOnFailureListener(e -> Toast.makeText(this, "Error creating recipe!", Toast.LENGTH_SHORT).show());
                 // Finish activity
                 finish();
             } else {
-                Toast.makeText(this, "Error al subir imágenes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error al crear receta (error de imagenes)", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Failed to upload images: ", task.getException());
             }
         });
-
-        // Create new recipe object with input values
-        //Recipe newRecipe = new Recipe(title, image, ingredients, directions, time, servings, type, tags);
-
-        // TODO: Add code to save new recipe to database or elsewhere
-
-
     }
 
     private Task<String> uploadImages(byte[][] imageBytes) {
