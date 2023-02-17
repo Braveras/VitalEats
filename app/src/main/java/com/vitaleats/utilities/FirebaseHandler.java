@@ -1,10 +1,19 @@
 package com.vitaleats.utilities;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FirebaseHandler {
 
@@ -18,19 +27,19 @@ public class FirebaseHandler {
         databaseReference.child("foods").push().setValue(foodName);
     }
 
-    public void removeFood(String foodName) {
-        databaseReference.child("foods").orderByValue().equalTo(foodName)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+    public void removeFood(String foodItemId) {
+        databaseReference.child("foods").child(foodItemId)
+                .removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            snapshot.getRef().removeValue();
-                        }
+                    public void onSuccess(Void aVoid) {
+                        Log.d("FirebaseHandler", "Food item deleted from Firebase");
                     }
-
+                })
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        // Handle error
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("FirebaseHandler", "Error deleting food item from Firebase", e);
                     }
                 });
     }
