@@ -34,20 +34,32 @@
             android:orientation="horizontal"
             android:padding="16dp">
 
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_people_newrecipe" />
+
             <TextView
                 android:id="@+id/tvRecipeServings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:text="servings"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="25dp"
+                android:background="@drawable/ic_clock_add" />
+
             <TextView
                 android:id="@+id/tvRecipeTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="5dp"
                 android:text="time"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -158,16 +170,32 @@
             android:layout_height="1dp"
             android:background="@color/grey" />
 
-        <RatingBar
-            android:id="@+id/recipe_rating"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-15dp"
-            android:numStars="5"
-            android:rating="0"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            android:stepSize="0.1" />
+            android:orientation="horizontal">
+
+            <RatingBar
+                android:id="@+id/recipe_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-15dp"
+                android:numStars="5"
+                android:rating="0"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:stepSize="0.1" />
+
+            <TextView
+                android:id="@+id/tvVoteCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="18dp"
+                android:layout_marginStart="-30dp"
+                android:textColor="@color/grey"
+                android:text="(number)"/>
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -178,21 +206,16 @@
             android:id="@+id/tvRecipeCreatorUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingStart="16dp"
             android:text="created by: pepepepe"
             android:textSize="18sp"
             android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey" />
 
         <TextView
             android:id="@+id/tvRecipeCreatedAt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingStart="18dp"
             android:text="created at: balbalab"
             android:textSize="18sp"
             android:textStyle="bold" />

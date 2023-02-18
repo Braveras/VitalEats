@@ -159,4 +159,6 @@
 
     <string name="keywords_searchbar">Enter up to 3 keywords…</string>
 
+    <string name="created_by">Created by:</string>
+
 </resources>
