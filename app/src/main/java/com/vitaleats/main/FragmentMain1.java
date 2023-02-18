@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.vitaleats.R;
@@ -51,6 +52,9 @@ public class FragmentMain1 extends Fragment implements OnRecipeClickListener, On
         FirestoreRecyclerAdapter<Recipe, RecipeViewHolder> adapter = new FirestoreRecyclerAdapter<Recipe, RecipeViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull RecipeViewHolder holder, int position, @NonNull Recipe model) {
+                String recipeId = this.getSnapshots().getSnapshot(position).getId();
+                DocumentReference recipeRef = firestore.collection("recipes").document(recipeId);
+                model.setRef(recipeRef);
                 // Bind the recipe data to the view holder
                 holder.bind(model);
             }
@@ -77,9 +81,10 @@ public class FragmentMain1 extends Fragment implements OnRecipeClickListener, On
 
         // Obtener el objeto Recipe correspondiente a la posición del elemento clicado
         Recipe recipe = adapter.getItem(position);
-        System.out.println(recipe.getRecipeTitle());
 
-        // Hacer algo con el objeto recipe, por ejemplo abrir una actividad de detalle de la receta
+        Intent intent = new Intent(getActivity(), DetailedRecipeActivity.class);
+        intent.putExtra("recipe", recipe);
+        startActivity(intent);
     }
 
     @Override
