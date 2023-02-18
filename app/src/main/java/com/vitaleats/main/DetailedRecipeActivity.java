@@ -174,7 +174,6 @@ public class DetailedRecipeActivity extends AppCompatActivity {
             return view == object;
         }
 
-
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
