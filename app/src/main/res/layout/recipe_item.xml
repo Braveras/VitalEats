@@ -1,76 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
     android:layout_margin="8dp"
+    android:clickable="true"
     app:cardCornerRadius="8dp"
     app:cardElevation="2dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <!-- Imagen de la receta -->
-        <ImageView
-            android:id="@+id/recipe_image"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="-16dp"
-            android:layout_marginStart="-16dp"
-            android:layout_marginEnd="-16dp"
-            android:src="@drawable/logo" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <!-- Título de la receta -->
-
-        <TextView
-            android:id="@+id/recipe_title"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Título de la receta"
-            android:textColor="?attr/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content">
 
-        <!-- Tipo de la receta -->
-        <TextView
-            android:id="@+id/recipe_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tipo de receta"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            <!-- Imagen de la receta -->
+            <ImageView
+                android:id="@+id/recipe_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="-16dp"
+                android:layout_marginTop="-16dp"
+                android:layout_marginEnd="-16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo" />
 
-        <!-- Etiquetas de la receta -->
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Título de la receta -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/recipe_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Título de la receta"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/recipe_creator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="Creador" />
+
+            </LinearLayout>
+
+            <!-- Tipo de la receta -->
+            <TextView
+                android:id="@+id/recipe_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo de receta"
+                android:textColor="?attr/colorSurface"
+                android:textSize="14sp" />
+
+            <!-- Etiquetas de la receta -->
+
 
             <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:scrollbarThumbHorizontal="@null">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/recipe_tags"
                     style="@style/Widget.MaterialComponents.ChipGroup"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:singleLine="true"
@@ -86,10 +106,10 @@
                         android:layout_height="wrap_content"
                         android:clickable="false"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
-                        app:chipBackgroundColor="@color/chip_background_high_protein_selected"
-                        app:chipStrokeColor="@color/chip_stroke_high_protein_selected"
                         android:textColor="@color/chip_text_high_protein_selected"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:chipBackgroundColor="@color/chip_background_high_protein_selected"
+                        app:chipStrokeColor="@color/chip_stroke_high_protein_selected" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_2"
@@ -98,10 +118,10 @@
                         android:layout_height="wrap_content"
                         android:clickable="false"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
-                        app:chipBackgroundColor="@color/chip_background_low_fat_selected"
-                        app:chipStrokeColor="@color/chip_stroke_low_fat_selected"
                         android:textColor="@color/chip_text_low_fat_selected"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:chipBackgroundColor="@color/chip_background_low_fat_selected"
+                        app:chipStrokeColor="@color/chip_stroke_low_fat_selected" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_3"
@@ -110,10 +130,10 @@
                         android:layout_height="wrap_content"
                         android:clickable="false"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
-                        app:chipBackgroundColor="@color/chip_background_lactose_free_selected"
-                        app:chipStrokeColor="@color/chip_stroke_lactose_free_selected"
                         android:textColor="@color/chip_text_lactose_free_selected"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:chipBackgroundColor="@color/chip_background_lactose_free_selected"
+                        app:chipStrokeColor="@color/chip_stroke_lactose_free_selected" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_4"
@@ -122,94 +142,90 @@
                         android:layout_height="wrap_content"
                         android:clickable="false"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
-                        app:chipBackgroundColor="@color/chip_background_gluten_free_selected"
-                        app:chipStrokeColor="@color/chip_stroke_gluten_free_selected"
                         android:textColor="@color/chip_text_gluten_free_selected"
                         android:visibility="gone"
-                         />
+                        app:chipBackgroundColor="@color/chip_background_gluten_free_selected"
+                        app:chipStrokeColor="@color/chip_stroke_gluten_free_selected" />
 
 
                 </com.google.android.material.chip.ChipGroup>
 
             </HorizontalScrollView>
 
-            <!-- Agrega más etiquetas según sea necesario -->
-
-        </LinearLayout>
-
-        <!-- Tiempo y comensales de la receta -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_clock_add" />
-
-            <TextView
-                android:id="@+id/recipe_time"
-                android:layout_width="wrap_content"
+            <!-- Tiempo y comensales de la receta -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tiempo de preparación"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_clock_add" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/ic_people_newrecipe" />
+                <TextView
+                    android:id="@+id/recipe_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tiempo de preparación"
+                    android:textColor="?attr/colorSurface"
+                    android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/recipe_servings"
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_people_newrecipe" />
+
+                <TextView
+                    android:id="@+id/recipe_servings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Número de comensales"
+                    android:textColor="?attr/colorSurface"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- Rating de la receta -->
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Número de comensales"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:layout_height="41dp"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <RatingBar
+                    android:id="@+id/recipe_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-50dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="0"
+                    android:scaleX="0.5"
+                    android:scaleY="0.5"
+                    android:stepSize="0.1" />
 
-        <!-- Rating de la receta -->
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
-            android:orientation="horizontal">
-
-            <RatingBar
-                android:id="@+id/recipe_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="-50dp"
-                android:isIndicator="true"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                android:numStars="5"
-                android:rating="0"
-                android:stepSize="0.1" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/recipe_created_at"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="-26dp"
+                android:layout_marginStart="260dp"
                 android:textColor="?attr/colorPrimary"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="italic" />
 
         </LinearLayout>
-
-    </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

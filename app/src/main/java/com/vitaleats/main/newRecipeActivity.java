@@ -422,7 +422,7 @@ public class newRecipeActivity extends AppCompatActivity {
                 String currentUserId = user.getUid();
 
                 // Creamos una instancia de la clase Recipe
-                Recipe recipe = new Recipe(recipeTitle, recipeIngredients, recipeElaboration, tvRecipeServings.getText().toString(), recipeServingsStr, selectedRecipeType, selectedTags, imageUrlList, currentUserId, user.getDisplayName(), 0, new Date(), true);
+                Recipe recipe = new Recipe(recipeTitle, recipeIngredients, recipeElaboration, recipeServingsStr, tvRecipeTime.getText().toString(), selectedRecipeType, selectedTags, imageUrlList, currentUserId, user.getDisplayName(), 0.0f, 0, new Date(), true);
 
                 // Subimos la receta a Firebase Firestore
                 FirebaseFirestore db = FirebaseFirestore.getInstance();

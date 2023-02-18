@@ -55,4 +55,9 @@
     <color name="chip_text_lactose_free_selected">#E91E63</color>
     <color name="chip_text_lactose_free_unselected">#757575</color>
 
+    <color name="chipBackground">#E0E0E0</color>
+    <color name="chipText">#000000</color>
+    <color name="chipCloseIconTint">#8A8A8A</color>
+    <color name="chipStroke">#EF6C00</color>
+
 </resources>

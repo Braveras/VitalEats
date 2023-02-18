@@ -17,7 +17,10 @@ import com.vitaleats.utilities.Recipe;
 
 import java.text.SimpleDateFormat;
 
-public class RecipeViewHolder extends RecyclerView.ViewHolder {
+public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+
+    private OnRecipeClickListener mListener;
+    private OnRecipeLongClickListener mLongListener;
 
     private Context mContext;
     public TextView titleTextView;
@@ -28,11 +31,13 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
     public TextView servingsTextView;
     public RatingBar ratingBar;
     public Chip chip1, chip2, chip3, chip4;
-    public TextView createdAtTextView;
+    public TextView createdAtTextView, recipeCreatortv;
 
-    public RecipeViewHolder(@NonNull View itemView) {
+    public RecipeViewHolder(@NonNull View itemView, OnRecipeClickListener listener, OnRecipeLongClickListener longListener) {
         super(itemView);
         mContext = itemView.getContext();
+        mListener = listener;
+        mLongListener = longListener;
 
         titleTextView = itemView.findViewById(R.id.recipe_title);
         imageView = itemView.findViewById(R.id.recipe_image);
@@ -46,7 +51,10 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         servingsTextView = itemView.findViewById(R.id.recipe_servings);
         ratingBar = itemView.findViewById(R.id.recipe_rating);
         createdAtTextView = itemView.findViewById(R.id.recipe_created_at);
+        recipeCreatortv = itemView.findViewById(R.id.recipe_creator);
 
+        itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
     public void bind(Recipe recipe) {
@@ -60,12 +68,13 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
                 ? mContext.getString(R.string.num_people_value)
                 : mContext.getString(R.string.num_person_value);
 
-        servingsTextView.setText(recipe.getTvRecipeServings() + servingsStr);
+        servingsTextView.setText(recipe.getTvRecipeServings() + " " + servingsStr);
         typeTextView.setText(recipe.getSelectedRecipeType());
         ratingBar.setRating(recipe.getRating());
         Glide.with(imageView.getContext())
                 .load(recipe.getImages().get(0))
                 .into(imageView);
+
         // Verificar si la lista de etiquetas está vacía
         if (recipe.getTags() != null && recipe.getTags().size() > 0) {
             for (int i = 0; i < recipe.getTags().size(); i++) {
@@ -80,6 +89,9 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
                 } else if (i == 2) {
                     chip3.setText(tag);
                     chip3.setVisibility(View.VISIBLE);
+                } else if (i == 3) {
+                    chip4.setText(tag);
+                    chip4.setVisibility(View.VISIBLE);
                 }
             }
         } else {
@@ -90,5 +102,17 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
         String createdAtString = sdf.format(recipe.getCreatedAt());
         createdAtTextView.setText(createdAtString);
+        recipeCreatortv.setText(recipe.getCreatorUsername());
+    }
+
+    @Override
+    public void onClick(View v) {
+        mListener.onRecipeClick(getAdapterPosition());
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        mLongListener.onRecipeLongClick(getAdapterPosition());
+        return true;
     }
 }
