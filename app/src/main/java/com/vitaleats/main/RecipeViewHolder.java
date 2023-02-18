@@ -68,7 +68,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
                 ? mContext.getString(R.string.num_people_value)
                 : mContext.getString(R.string.num_person_value);
 
-        servingsTextView.setText(recipe.getTvRecipeServings() + servingsStr);
+        servingsTextView.setText(recipe.getTvRecipeServings() + " " + servingsStr);
         typeTextView.setText(recipe.getSelectedRecipeType());
         ratingBar.setRating(recipe.getRating());
         Glide.with(imageView.getContext())
