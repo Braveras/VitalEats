@@ -1,16 +1,20 @@
 package com.vitaleats.utilities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Recipe {
+public class Recipe implements Parcelable {
 
     private String recipeTitle;
     private String recipeIngredients;
@@ -23,12 +27,14 @@ public class Recipe {
     private String creatorUid;
     private String creatorUsername;
     private float rating;
+    private int voteCounter;
     private Date createdAt;
     private Boolean isPublished;
+    private DocumentReference Ref;
 
     public Recipe(String recipeTitle, String recipeIngredients, String recipeElaboration, String tvRecipeServings,
                   String tvRecipeTime, String selectedRecipeType, List<String> tags, List<String> images, String creatorUid,
-                  String creatorUsername, float rating, Date createdAt, Boolean isPublished) {
+                  String creatorUsername, float rating, int voteCounter, Date createdAt, Boolean isPublished) {
 
         this.recipeTitle = recipeTitle;
         this.recipeIngredients = recipeIngredients;
@@ -43,10 +49,72 @@ public class Recipe {
         this.rating = rating;
         this.createdAt = createdAt;
         this.isPublished = isPublished;
+        this.voteCounter = voteCounter;
     }
 
     public Recipe() {
 
+    }
+
+    protected Recipe(Parcel in) {
+        recipeTitle = in.readString();
+        recipeIngredients = in.readString();
+        recipeElaboration = in.readString();
+        tvRecipeServings = in.readString();
+        tvRecipeTime = in.readString();
+        selectedRecipeType = in.readString();
+        tags = in.createStringArrayList();
+        images = in.createStringArrayList();
+        creatorUid = in.readString();
+        creatorUsername = in.readString();
+        rating = in.readFloat();
+        voteCounter = in.readInt();
+        createdAt = new Date(in.readLong());
+        isPublished = in.readByte() != 0;
+        String refPath = in.readString();
+        if (refPath != null) {
+            Ref = FirebaseFirestore.getInstance().document(refPath);
+        }
+    }
+
+    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
+        @Override
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(recipeTitle);
+        dest.writeString(recipeIngredients);
+        dest.writeString(recipeElaboration);
+        dest.writeString(tvRecipeServings);
+        dest.writeString(tvRecipeTime);
+        dest.writeString(selectedRecipeType);
+        dest.writeStringList(tags);
+        dest.writeStringList(images);
+        dest.writeString(creatorUid);
+        dest.writeString(creatorUsername);
+        dest.writeFloat(rating);
+        dest.writeInt(voteCounter);
+        dest.writeLong(createdAt.getTime());
+        dest.writeByte((byte) (isPublished ? 1 : 0));
+        if (Ref != null) {
+            dest.writeString(Ref.getPath());
+        } else {
+            dest.writeString(null);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public String getRecipeTitle() {
@@ -101,33 +169,16 @@ public class Recipe {
         return isPublished;
     }
 
-    // Método para guardar el objeto Recipe en una base de datos Firestore
-    public void saveToFirestore() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        // Crea un mapa con los datos del objeto Recipe
-        Map<String, Object> recipeData = new HashMap<>();
-        recipeData.put("Title", recipeTitle);
-        recipeData.put("Ingredients", recipeIngredients);
-        recipeData.put("Elaboration", recipeElaboration);
-        recipeData.put("Servings", tvRecipeServings);
-        recipeData.put("Time", tvRecipeTime);
-        recipeData.put("Type", selectedRecipeType);
-        recipeData.put("Tags", Arrays.asList(tags));
-        recipeData.put("Images", Arrays.asList(images));
-        recipeData.put("CreatorUid", creatorUid);
-        recipeData.put("CreatorUsername", creatorUsername);
-        recipeData.put("Rating", rating);
-        recipeData.put("CreatedAt", createdAt);
-        recipeData.put("IsPublished", isPublished);
-
-        // Añade el mapa a la base de datos Firestore
-        db.collection("recipes").add(recipeData)
-                .addOnSuccessListener(documentReference -> {
-                    Log.d("Recipe", "Recipe added with ID: " + documentReference.getId());
-                })
-                .addOnFailureListener(e -> {
-                    Log.w("Recipe", "Error adding recipe", e);
-                });
+    public void setRef(DocumentReference documentReference) {
+        this.Ref = documentReference;
     }
+
+    public DocumentReference getRef() {
+        return Ref;
+    }
+
+    public int getVoteCounter() {
+        return voteCounter;
+    }
+
 }

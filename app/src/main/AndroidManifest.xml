@@ -24,6 +24,9 @@
         android:theme="@style/Theme.VitalEats"
         tools:targetApi="31">
         <activity
+            android:name=".main.DetailedRecipeActivity"
+            android:exported="false" />
+        <activity
             android:name=".main.newRecipeActivity"
             android:exported="false"
             android:theme="@style/Theme.VitalEats" />
