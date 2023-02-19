@@ -23,9 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
 
-
     </FrameLayout>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="100dp"
@@ -97,7 +95,15 @@
         app:layout_constraintStart_toEndOf="@id/status"
         app:layout_constraintTop_toBottomOf="@id/mailTextView"
         android:background="@drawable/ic_edit" />
-
+    <ImageButton
+        android:id="@+id/ic_info"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@id/status"
+        app:layout_constraintTop_toBottomOf="@id/edit_status"
+        android:background="@drawable/ic_informacion"
+        />
     <Button
         android:id="@+id/signout_btn"
         android:layout_width="match_parent"
