@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        tools:context=".Info">
+        tools:context=".main.Info">
 
         <TextView
             android:id="@+id/tos_title_f1"
@@ -281,37 +281,10 @@
             android:textColor="?attr/colorSecondary"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tos_title_f3" />
+            app:layout_constraintTop_toTopOf="@id/tos_title_f3"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="350dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="17dp"
-            android:checked="true"
-            android:text="@string/acepto"
-            android:textColor="?attr/colorSurface"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="@id/tos_title_f3" />
 
-        <TextView
-            android:id="@+id/volver"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/volver"
-            android:textAlignment="center"
-            android:textColor="?attr/colorSurface"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/checkBox"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

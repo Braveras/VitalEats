@@ -35,7 +35,6 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.vitaleats.Info;
 import com.vitaleats.R;
 import com.vitaleats.login.MainActivity;
 import com.vitaleats.utilities.StorageUtil;
