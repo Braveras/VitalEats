@@ -50,7 +50,7 @@ public class FragmentMain4 extends Fragment {
     private Button signout_btn;
     private ImageView profilePicture;
 
-    private ImageButton editStatus;
+    private ImageButton editStatus, ic_info;
     private StorageReference mStorageRef;
     private FirebaseAuth firebaseAuth;
     private String currentUserId;
@@ -68,6 +68,7 @@ public class FragmentMain4 extends Fragment {
         mailTextView = view.findViewById(R.id.mailTextView);
         userStatus = view.findViewById(R.id.status);
         editStatus = view.findViewById(R.id.edit_status);
+        ic_info = view.findViewById(R.id.ic_info);
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -145,6 +146,15 @@ public class FragmentMain4 extends Fragment {
                 }
             });
             popup.show();
+        });
+
+        ic_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent Bmeters = new Intent( getActivity() , Info.class);
+                startActivity(Bmeters);
+            }
         });
 
         return view;
