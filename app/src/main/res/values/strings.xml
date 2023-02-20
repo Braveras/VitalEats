@@ -74,6 +74,11 @@
     <string name="error_password_uppercase">1 mayúscula</string>
     <string name="error_password_digit">1 número</string>
     <string name="error_password_special">1 caracter especial</string>
+    <string name="password_requirements">Requisitos de contraseña</string>
+    <string name="password_length">- Al menos 6 caracteres</string>
+    <string name="password_uppercase">- Al menos 1 mayúscula</string>
+    <string name="password_number">- Al menos 1 número</string>
+    <string name="password_special_char">- Al menos 1 carácter especial</string>
     <string name="optional">(Opcional)</string>
     <string name="confirm_data">Confirma tus datos</string>
     <string name="name">Nombre:</string>
@@ -101,11 +106,11 @@
     <string name="addRecipe">AÑADIR RECETA</string>
     <string name="searchRecipe">Busca una receta</string>
     <string name="enterFood">Introduzca un alimento</string>
-    <string name="defaultStatus">Escribe algo...</string>
+    <string name="defaultStatus">Escribe algo…</string>
 
     <!-- Recipe Title -->
     <string name="recipe_title">Título</string>
-    <string name="recipe_title_hint">Introduzca el título de la receta</string>
+    <string name="recipe_title_hint">Introduzca el nombre de la receta…</string>
 
     <!-- Recipe Photo -->
     <string name="recipe_photo">Imágenes</string>
@@ -113,12 +118,12 @@
 
     <!-- Ingredients -->
     <string name="ingredients">Ingredientes</string>
-    <string name="ingredient_hint">Introduzca los ingredientes...</string>
+    <string name="ingredient_hint">Introduzca los ingredientes…</string>
     <string name="add_ingredient">Añadir</string>
 
     <!-- Recipe Elaboration -->
     <string name="elaboration">Elaboración</string>
-    <string name="elaboration_hint">Introduzca la elaboración de la receta...</string>
+    <string name="elaboration_hint">Introduzca la elaboración de la receta…</string>
 
     <!-- Time and Number of People -->
     <string name="time">Tiempo</string>
@@ -148,4 +153,13 @@
 
     <string name="create_recipe">Crear receta</string>
     <string name="create_recipe_error_emptyfields">Rellena todos los campos</string>
+
+    <string name="update_status">Aqui puedes actualizar tu estado…</string>
+    <string name="status_save">Guardar</string>
+
+    <string name="keywords_searchbar">Introduce hasta 3 palabras clave…</string>
+
+    <string name="created_by">Creada por:</string>
+
+
 </resources>

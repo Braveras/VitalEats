@@ -31,4 +31,6 @@
         <!--<item name="navigationIcon">?attr/homeAsUpIndicator</item>-->
     </style>
 
+    <style name="TextAppearance.MaterialComponents.Chip" parent="TextAppearance.AppCompat" />
+
 </resources>

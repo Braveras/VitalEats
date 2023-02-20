@@ -4,20 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter your status"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newRepeatPassword"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content">
 
         <EditText
@@ -26,9 +20,9 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:inputType="textMultiLine"
-            android:hint="Enter your status here"
+            android:hint="@string/update_status"
             android:textSize="16sp"
-            android:textColor="?attr/colorPrimary"/>
+            android:textColor="?attr/colorSurface" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,6 +36,6 @@
         android:fontFamily="monospace"
         android:textColor="@color/buttonselectorprimary"
         android:textStyle="bold"
-        android:text="Save" />
+        android:text="@string/status_save" />
 
 </LinearLayout>

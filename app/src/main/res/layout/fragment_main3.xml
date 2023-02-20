@@ -1,67 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
-    tools:context=".termsofservice.Fragment3">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/datos"
-        android:layout_width="match_parent"
+    <!-- Barra de búsqueda -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textoBusquedaTextInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="17dp"
-        android:text="@string/recipes2"
-        android:textAlignment="center"
-        android:textColor="?attr/colorSecondary"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toStartOf="@+id/buscarButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textoBusquedaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/keywords_searchbar"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/buscarButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_lupa"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datos"
-        app:queryHint="@string/searchRecipe" />
+        app:layout_constraintTop_toTopOf="@+id/textoBusquedaTextInputLayout" />
 
-    <Button
-        android:id="@+id/add_recipe_button"
-        android:layout_width="match_parent"
+    <!-- Chips para las palabras clave -->
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="80dp"
-        android:background="@drawable/rounded_button_primary"
-        android:backgroundTintMode="screen"
-        android:fontFamily="monospace"
-        android:text="@string/addRecipe"
-        android:textColor="@color/buttonselectorprimary"
-        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:chipBackgroundColor="@color/chipBackground"
+        app:chipCornerRadius="16dp"
+        app:chipEndPadding="4dp"
+        app:chipIcon="@null"
+        app:chipIconVisible="false"
+        app:chipStartPadding="4dp"
+        app:chipStrokeColor="@color/chipStroke"
+        app:chipStrokeWidth="1dp"
+        app:closeIcon="@drawable/ic_close"
+        app:closeIconSize="@dimen/chip_close_button_size"
+        app:closeIconTint="@color/chipCloseIconTint"
+        app:closeIconVisible="true"
+        app:layout_constraintEnd_toStartOf="@+id/chip2"
+        app:layout_constraintStart_toStartOf="@+id/textoBusquedaTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textoBusquedaTextInputLayout" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:chipBackgroundColor="@color/chipBackground"
+        app:chipCornerRadius="16dp"
+        app:chipEndPadding="4dp"
+        app:chipIcon="@null"
+        app:chipIconVisible="false"
+        app:chipStartPadding="4dp"
+        app:chipStrokeColor="@color/chipStroke"
+        app:chipStrokeWidth="1dp"
+        app:closeIcon="@drawable/ic_close"
+        app:closeIconSize="@dimen/chip_close_button_size"
+        app:closeIconTint="@color/chipCloseIconTint"
+        app:closeIconVisible="true"
+        app:layout_constraintEnd_toStartOf="@+id/chip3"
+        app:layout_constraintStart_toEndOf="@+id/chip1"
+        app:layout_constraintTop_toBottomOf="@+id/textoBusquedaTextInputLayout" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Chip"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:chipBackgroundColor="@color/chipBackground"
+        app:chipCornerRadius="16dp"
+        app:chipEndPadding="4dp"
+        app:chipIcon="@null"
+        app:chipIconVisible="false"
+        app:chipStartPadding="4dp"
+        app:chipStrokeColor="@color/chipStroke"
+        app:chipStrokeWidth="1dp"
+        app:closeIcon="@drawable/ic_close"
+        app:closeIconSize="@dimen/chip_close_button_size"
+        app:closeIconTint="@color/chipCloseIconTint"
+        app:closeIconVisible="true"
+        app:layout_constraintEnd_toEndOf="@+id/textoBusquedaTextInputLayout"
+        app:layout_constraintStart_toEndOf="@+id/chip2"
+        app:layout_constraintTop_toBottomOf="@+id/textoBusquedaTextInputLayout" />
+
+
+    <!-- RecyclerView para mostrar los resultados -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/resultadosRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:scrollbars="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_view" />
+        app:layout_constraintTop_toBottomOf="@+id/chip1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

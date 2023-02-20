@@ -36,4 +36,6 @@
         <item name="itemTextColor">?attr/colorSurface</item>
     </style>
 
+    <style name="TextAppearance.MaterialComponents.Chip" parent="TextAppearance.AppCompat" />
+
 </resources>
