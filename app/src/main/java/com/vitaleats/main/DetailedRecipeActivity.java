@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -43,6 +44,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
     private TextView recipeTitle, recipeIngredients, recipeElaboration, tvRecipeServings, tvRecipeTime, tvRecipeCreatorUsername, tvRecipeCreatedAt, tvVoteCounter;
     private RatingBar ratingBar;
     private ViewPager mViewPager;
+    private ChipGroup chipGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
