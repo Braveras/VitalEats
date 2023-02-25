@@ -133,7 +133,7 @@ public class FragmentMain2 extends Fragment {
         for (int i = 0; i < mFoodList.size(); i++) {
             sb.append(mFoodList.get(i)).append(",");
         }
-        editor.putString(getResources().getString(R.string.food), sb.toString());
+        editor.putString(getResources().getString(R.string.bottom_menu_grocery), sb.toString());
         editor.apply();
     }
 
@@ -141,7 +141,7 @@ public class FragmentMain2 extends Fragment {
     public void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        String foodListString = sharedPreferences.getString(getResources().getString(R.string.food), "");
+        String foodListString = sharedPreferences.getString(getResources().getString(R.string.bottom_menu_grocery), "");
         if (!foodListString.equals("")) {
             String[] items = foodListString.split(",");
             mFoodList = new ArrayList<>();
