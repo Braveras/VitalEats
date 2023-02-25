@@ -44,14 +44,6 @@
     <string name="username">Username</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
-    <string name="init">start</string>
-    <string name="init2">START</string>
-    <string name="food">grocery list</string>
-    <string name="food2">GROCERY LIST</string>
-    <string name="recipes">recipes</string>
-    <string name="recipes2">RECIPES</string>
-    <string name="profile">profile</string>
-    <string name="profile2">PROFILE</string>
 
     <string name="register_textview">Sign up</string>
     <string name="emptyFields">This field is required</string>
@@ -160,5 +152,11 @@
     <string name="keywords_searchbar">Enter up to 3 keywords…</string>
 
     <string name="created_by">Created by:</string>
+
+    <!-- Bottom menu strings -->
+    <string name="bottom_menu_home">Home</string>
+    <string name="bottom_menu_grocery">Grocery list</string>
+    <string name="bottom_menu_searchbar">Recipes</string>
+    <string name="bottom_menu_profile">Profile</string>
 
 </resources>

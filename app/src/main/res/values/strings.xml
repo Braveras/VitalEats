@@ -44,14 +44,7 @@
     <string name="username">Nombre de usuario</string>
     <string name="cancel">Cancelar</string>
     <string name="confirm">Confirmar</string>
-    <string name="init">inicio</string>
-    <string name="init2">INICIO</string>
-    <string name="food">lista compra</string>
-    <string name="food2">LISTA DE LA COMPRA</string>
-    <string name="recipes">recetas</string>
-    <string name="recipes2"> RECETAS</string>
-    <string name="profile">perfil</string>
-    <string name="profile2">PERFIL</string>
+
 
     <string name="register_textview">Registro</string>
     <string name="emptyFields">Este campo es obligatorio</string>
@@ -161,5 +154,10 @@
 
     <string name="created_by">Creada por:</string>
 
+    <!-- Bottom menu strings -->
+    <string name="bottom_menu_home">Inicio</string>
+    <string name="bottom_menu_grocery">Lista compra</string>
+    <string name="bottom_menu_searchbar">Recetas</string>
+    <string name="bottom_menu_profile">Perfil</string>
 
 </resources>
