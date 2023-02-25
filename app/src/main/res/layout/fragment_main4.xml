@@ -1,116 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".main.FragmentMain4"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
-
-<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
     tools:context=".main.FragmentMain4">
 
-
-    <FrameLayout
-        android:id="@+id/profile_gradient"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:background="@drawable/profile_header_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-    </FrameLayout>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardview"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="22dp"
-        app:cardCornerRadius="70dp"
-        android:clickable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/profilePicture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:cropToPadding="false"
-            android:scaleType="fitCenter" />
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/username_profile"
-        android:layout_width="0dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="35dp"
-        android:text="PERFIL"
-        android:textAlignment="center"
-        android:textColor="?attr/colorSecondary"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/cardview"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/mailTextView"
-        android:layout_width="0dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="10dp"
-        android:text="CORREO"
-        android:textAlignment="center"
-        android:textColor="?attr/colorSecondary"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toEndOf="@id/cardview"
-        app:layout_constraintTop_toBottomOf="@id/username_profile" />
-
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="230dp"
-        android:layout_height="70dp"
-        android:ellipsize="end"
-        android:layout_marginStart="10dp"
-        android:maxLines="3"
-        android:textColor="?attr/colorPrimary"
-        android:textStyle="italic"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/mailTextView"
-        app:layout_constraintStart_toEndOf="@id/cardview" />
-
-
-    <ImageButton
-        android:id="@+id/edit_status"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintStart_toEndOf="@id/status"
-        app:layout_constraintTop_toBottomOf="@id/mailTextView"
-        android:background="@drawable/ic_edit" />
-
-    <Button
-        android:id="@+id/signout_btn"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/rounded_button_primary"
-        android:backgroundTintMode="screen"
-        android:fontFamily="monospace"
-        android:text="@string/cerrar"
-        android:textColor="@color/buttonselectorprimary"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/profile_gradient" />
+        android:background="?attr/backgroundColor"
+        tools:context=".main.FragmentMain4">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:id="@+id/profile_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@drawable/profile_header_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="25dp"
+            android:clickable="false"
+            app:cardCornerRadius="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/profilePicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:scaleType="fitCenter" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/username_profile"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="35dp"
+            android:text="PERFIL"
+            android:textAlignment="center"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/cardview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mailTextView"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="10dp"
+            android:text="CORREO"
+            android:textAlignment="center"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@id/cardview"
+            app:layout_constraintTop_toBottomOf="@id/username_profile" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="230dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@id/cardview"
+            app:layout_constraintTop_toBottomOf="@id/mailTextView" />
+
+        <ImageButton
+            android:id="@+id/edit_status"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_edit"
+            app:layout_constraintStart_toEndOf="@id/status"
+            app:layout_constraintTop_toBottomOf="@id/mailTextView" />
+
+        <ImageButton
+            android:id="@+id/ic_info"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_informacion"
+            app:layout_constraintStart_toEndOf="@id/status"
+            app:layout_constraintTop_toBottomOf="@id/edit_status" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_gradient" />
+
+        <EditText
+            android:id="@+id/editTextAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/age_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewAge" />
+
+        <EditText
+            android:id="@+id/editTextWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/weight_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewWeight" />
+
+        <EditText
+            android:id="@+id/editTextHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/height_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewHeight" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/name"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_gradient" />
+
+        <TextView
+            android:id="@+id/textViewAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/age_confirm"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextName" />
+
+        <TextView
+            android:id="@+id/textViewWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/weight_confirm"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextAge" />
+
+        <TextView
+            android:id="@+id/textViewHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/height_confirm"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextWeight" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="320dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/rounded_button_primary"
+            android:backgroundTintMode="screen"
+            android:fontFamily="monospace"
+            android:text="@string/save"
+            android:textColor="@color/buttonselectorprimary"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/profile_gradient" />
+
+        <Button
+            android:id="@+id/signout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="525dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/rounded_button_primary"
+            android:backgroundTintMode="screen"
+            android:fontFamily="monospace"
+            android:text="@string/cerrar"
+            android:textColor="@color/buttonselectorprimary"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/profile_gradient" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

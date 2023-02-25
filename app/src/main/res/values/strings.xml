@@ -81,6 +81,7 @@
     <string name="age_confirm">Edad:</string>
     <string name="height_confirm">Altura:</string>
     <string name="weight_confirm">Peso:</string>
+    <string name="save">GUARDAR DATOS</string>
     <string name="next">Siguiente</string>
     <string name="mailNotVerified">El email no ha sido verificado</string>
     <string name="closedSession">Sesión cerrada</string>
@@ -100,6 +101,12 @@
     <string name="searchRecipe">Busca una receta</string>
     <string name="enterFood">Introduzca un alimento</string>
     <string name="defaultStatus">Escribe algo…</string>
+    <string name="userData">Datos del usuario guardados</string>
+    <string name="userName">Introduce un nombre válido</string>
+    <string name="userAge">Introduce una edad válida</string>
+    <string name="userWeight">Introduce un peso válido</string>
+    <string name="userHeight">Introduce una altura válida</string>
+    <string name="fields">Rellena los campos obligatorios</string>
 
     <!-- Recipe Title -->
     <string name="recipe_title">Título</string>

@@ -80,6 +80,7 @@
     <string name="age_confirm">Age:</string>
     <string name="height_confirm">Height:</string>
     <string name="weight_confirm">Weight:</string>
+    <string name="save">SAVE DATA</string>
     <string name="next">Next</string>
     <string name="mailNotVerified">Email not verified</string>
     <string name="closedSession">Session closed</string>
@@ -99,6 +100,12 @@
     <string name="searchRecipe">Search a recipe</string>
     <string name="enterFood">Enter a food</string>
     <string name="defaultStatus">Say something...</string>
+    <string name="userData">User data saved</string>
+    <string name="userName">Enter a valid name</string>
+    <string name="userAge">Enter a valid age</string>
+    <string name="userWeight">Enter a valid weight</string>
+    <string name="userHeight">Enter a valid height</string>
+    <string name="fields">Fill in all required fields</string>
 
     <!-- Recipe Title -->
     <string name="recipe_title">Título</string>
