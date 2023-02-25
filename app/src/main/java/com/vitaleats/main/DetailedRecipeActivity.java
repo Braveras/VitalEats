@@ -68,6 +68,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
         tvVoteCounter = findViewById(R.id.tvVoteCounter);
         mViewPager = findViewById(R.id.recipe_viewPager);
         servings_icon = findViewById(R.id.iv_servings_big_view);
+        chipGroup = findViewById(R.id.chipGroup);
         chip_1 = findViewById(R.id.chip_1);
         chip_2 = findViewById(R.id.chip_2);
         chip_3 = findViewById(R.id.chip_3);
@@ -114,8 +115,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
                 }
             }
         } else {
-            // Si la lista de etiquetas está vacía, ocultar el ChipGroup
-            this.chipGroup.setVisibility(View.GONE);
+            chipGroup.setVisibility(View.GONE);
         }
         ratingBar.setRating(mRecipe.getRating());
         tvRecipeCreatorUsername.setText(getString(R.string.created_by) + " " + mRecipe.getCreatorUsername());

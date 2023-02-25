@@ -160,4 +160,8 @@
     <string name="bottom_menu_searchbar">Recetas</string>
     <string name="bottom_menu_profile">Perfil</string>
 
+    <string name="private_recipe_toggle">Receta privada</string>
+
+    <string name="create_recipe_progress">Creando receta...</string>
+
 </resources>

@@ -159,4 +159,8 @@
     <string name="bottom_menu_searchbar">Recipes</string>
     <string name="bottom_menu_profile">Profile</string>
 
+    <string name="private_recipe_toggle">Private recipe</string>
+
+    <string name="create_recipe_progress">Creating recipe...</string>
+
 </resources>

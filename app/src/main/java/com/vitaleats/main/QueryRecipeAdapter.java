@@ -71,7 +71,7 @@ public class QueryRecipeAdapter extends RecyclerView.Adapter<QueryRecipeAdapter.
         public TextView servingsTextView;
         public RatingBar ratingBar;
         public Chip chip1, chip2, chip3, chip4;
-        public TextView createdAtTextView, recipeCreatortv;
+        public TextView recipeCreatortv;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
@@ -87,7 +87,6 @@ public class QueryRecipeAdapter extends RecyclerView.Adapter<QueryRecipeAdapter.
             timeTextView = itemView.findViewById(R.id.recipe_time);
             servingsTextView = itemView.findViewById(R.id.recipe_servings);
             ratingBar = itemView.findViewById(R.id.recipe_rating);
-            createdAtTextView = itemView.findViewById(R.id.recipe_created_at);
             recipeCreatortv = itemView.findViewById(R.id.recipe_creator);
         }
 
@@ -102,7 +101,7 @@ public class QueryRecipeAdapter extends RecyclerView.Adapter<QueryRecipeAdapter.
                     ? mContext.getString(R.string.num_people_value)
                     : mContext.getString(R.string.num_person_value);
 
-            servingsTextView.setText(recipe.getTvRecipeServings() + " " + servingsStr);
+            servingsTextView.setText(" " + recipe.getTvRecipeServings() + " " + servingsStr);
             typeTextView.setText(recipe.getSelectedRecipeType());
             ratingBar.setRating(recipe.getRating());
             Glide.with(imageView.getContext())
@@ -133,9 +132,6 @@ public class QueryRecipeAdapter extends RecyclerView.Adapter<QueryRecipeAdapter.
                 this.chipGroup.setVisibility(View.GONE);
             }
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
-            String createdAtString = sdf.format(recipe.getCreatedAt());
-            createdAtTextView.setText(createdAtString);
             recipeCreatortv.setText(recipe.getCreatorUsername());
         }
     }

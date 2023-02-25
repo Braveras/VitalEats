@@ -40,33 +40,15 @@
 
             <!-- Título de la receta -->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
                 <TextView
                     android:id="@+id/recipe_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Título de la receta"
                     android:textColor="?attr/colorPrimary"
-                    android:textSize="18sp"
+                    android:fontFamily="serif-monospace"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/recipe_creator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:text="Creador" />
-
-            </LinearLayout>
 
             <!-- Tipo de la receta -->
             <TextView
@@ -219,12 +201,12 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/recipe_created_at"
+                    android:id="@+id/recipe_creator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:textSize="12sp"
-                    android:textStyle="italic" />
+                    android:text="Creador" />
 
             </LinearLayout>
 
