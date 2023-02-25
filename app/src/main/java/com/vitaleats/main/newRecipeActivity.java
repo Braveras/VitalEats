@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -38,6 +41,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +62,7 @@ public class newRecipeActivity extends AppCompatActivity {
     private String selectedRecipeType, recipeTitle, recipeIngredients, recipeElaboration;
 
     ImageButton increase_time, increase_servings, decrease_time, decrease_servings, recipe_imageButton1, recipe_imageButton2, recipe_imageButton3;
+    ImageView  person, group;
     EditText etRecipeTitle;
     EditText etRecipeIngredients;
     EditText etRecipeDirections;
@@ -94,6 +99,9 @@ public class newRecipeActivity extends AppCompatActivity {
         chipGroup = findViewById(R.id.chip_group);
         Button btnCreateRecipe = findViewById(R.id.btn_create_recipe);
         switch_public_private = findViewById(R.id.switch_public_private);
+
+        person = findViewById(R.id.newrecipe_person);
+        group = findViewById(R.id.newrecipe_group);
 
         recipe_imageButton1.setOnClickListener(view -> {
             selectedImageButton = recipe_imageButton1;
@@ -221,9 +229,13 @@ public class newRecipeActivity extends AppCompatActivity {
         servings_modifier.setOnClickListener(v -> {
             isRange = !isRange;
             if (isRange) {
+                group.setColorFilter(Color.parseColor("#FF9401"), PorterDuff.Mode.SRC_IN);
+                person.setColorFilter(Color.parseColor("#E06B01"), PorterDuff.Mode.SRC_IN);
                 if (servings == 9) servings = 8;
                 tvRecipeServings.setText(servings + " - " + (servings + 1) + " " + getResources().getString(R.string.num_people_value));
             } else {
+                person.setColorFilter(Color.parseColor("#FF9401"), PorterDuff.Mode.SRC_IN);
+                group.setColorFilter(Color.parseColor("#E06B01"), PorterDuff.Mode.SRC_IN);
                 if (servings == 1) {
                     tvRecipeServings.setText(servings + " " + getResources().getString(R.string.num_person_value));
                 } else {
@@ -268,22 +280,6 @@ public class newRecipeActivity extends AppCompatActivity {
             }
         });
 
-        /* //Suponiendo que hay un boton para guardar el estado, sacar una lista de los seleccionados
-        Button saveButton = findViewById(R.id.save_button);
-        saveButton.setOnClickListener(v -> {
-            List<String> selectedTags = new ArrayList<>();
-            int numChips = chipGroup.getChildCount();
-            for (int i = 0; i < numChips; i++) {
-                Chip chip = (Chip) chipGroup.getChildAt(i);
-                if (chip.isChecked()) {
-                    selectedTags.add(chip.getText().toString());
-                }
-            }
-            // Hacer algo con las tags seleccionadas
-        });
-
-         */
-
         // Set up Spinner adapter
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.recipe_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -312,7 +308,18 @@ public class newRecipeActivity extends AppCompatActivity {
                 if (!recipeTitle.isEmpty() || !recipeIngredients.isEmpty() || !recipeElaboration.isEmpty()) {
                     if (recipeTime != 0) {
                         if (!Objects.equals(selectedRecipeType, "-")) {
-                            createRecipe();
+                            ProgressDialog progressDialog = new ProgressDialog(newRecipeActivity.this);
+                            progressDialog.setMessage(getString(R.string.create_recipe_progress));
+                            progressDialog.setCancelable(false);
+                            progressDialog.show();
+
+                            new Thread(() -> {
+                                createRecipe();
+                                runOnUiThread(() -> {
+                                    progressDialog.dismiss();
+                                    btnCreateRecipe.setEnabled(true);
+                                });
+                            }).start();
                         }
                     }
                 }
