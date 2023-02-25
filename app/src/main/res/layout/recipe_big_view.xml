@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:text="title"
+            android:textColor="?attr/colorSurface"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -37,9 +38,9 @@
             android:padding="16dp">
 
             <ImageView
+                android:id="@+id/iv_servings_big_view"
                 android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="@drawable/ic_people_newrecipe" />
+                android:layout_height="32dp" />
 
             <TextView
                 android:id="@+id/tvRecipeServings"
@@ -47,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="servings"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorSurface"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -55,7 +56,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="25dp"
-                android:background="@drawable/ic_clock_add" />
+                android:layout_marginTop="3dp"
+                android:background="@drawable/ic_clock" />
 
             <TextView
                 android:id="@+id/tvRecipeTime"
@@ -63,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="time"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorSurface"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -81,6 +83,7 @@
             android:padding="16dp"
             android:text="ingredients listlist list more more moremo emroem oemroemr oemr oefoijoiejf pwoqif jpio wefjpwoi"
             android:textSize="18sp"
+            android:textColor="?attr/colorSurface"
             android:textStyle="bold" />
 
         <View
@@ -95,6 +98,7 @@
             android:padding="16dp"
             android:text="elaboration biiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiig elaboration iehfi  uhewuiewhf iuhewf iuhw iuhwe ifuhwe iufhiw euhi eufhue h"
             android:textSize="18sp"
+            android:textColor="?attr/colorSurface"
             android:textStyle="bold" />
 
         <View
@@ -211,6 +215,7 @@
             android:paddingStart="16dp"
             android:text="created by: pepepepe"
             android:textSize="18sp"
+            android:textColor="?attr/colorSurface"
             android:textStyle="bold" />
 
         <TextView
@@ -219,6 +224,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="18dp"
             android:text="created at: balbalab"
+            android:textColor="?attr/colorSurface"
             android:textSize="18sp"
             android:textStyle="bold" />
 
