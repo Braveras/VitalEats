@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -69,6 +70,7 @@ public class newRecipeActivity extends AppCompatActivity {
     private int servings = 1;
     ChipGroup chipGroup;
     Chip chipHighProtein, chipLowFat, chipGlutenFree, chipLactoseFree;
+    SwitchMaterial switch_public_private;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class newRecipeActivity extends AppCompatActivity {
         Spinner spRecipeType = findViewById(R.id.sp_recipe_type);
         chipGroup = findViewById(R.id.chip_group);
         Button btnCreateRecipe = findViewById(R.id.btn_create_recipe);
+        switch_public_private = findViewById(R.id.switch_public_private);
 
         recipe_imageButton1.setOnClickListener(view -> {
             selectedImageButton = recipe_imageButton1;
@@ -422,7 +425,7 @@ public class newRecipeActivity extends AppCompatActivity {
                 String currentUserId = user.getUid();
 
                 // Creamos una instancia de la clase Recipe
-                Recipe recipe = new Recipe(recipeTitle, recipeIngredients, recipeElaboration, recipeServingsStr, tvRecipeTime.getText().toString(), selectedRecipeType, selectedTags, imageUrlList, currentUserId, user.getDisplayName(), 0.0f, 0, new Date(), true);
+                Recipe recipe = new Recipe(recipeTitle, recipeIngredients, recipeElaboration, recipeServingsStr, tvRecipeTime.getText().toString(), selectedRecipeType, selectedTags, imageUrlList, currentUserId, user.getDisplayName(), 0.0f, 0, new Date(), !switch_public_private.isChecked());
 
                 // Subimos la receta a Firebase Firestore
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
