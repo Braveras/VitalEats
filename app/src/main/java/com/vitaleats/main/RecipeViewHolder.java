@@ -24,7 +24,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
 
     private Context mContext;
     public TextView titleTextView;
-    public ImageView imageView;
+    public ImageView imageView, iv_servings;
     public TextView typeTextView;
     public ChipGroup chipGroup;
     public TextView timeTextView;
@@ -52,6 +52,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
         ratingBar = itemView.findViewById(R.id.recipe_rating);
         createdAtTextView = itemView.findViewById(R.id.recipe_created_at);
         recipeCreatortv = itemView.findViewById(R.id.recipe_creator);
+        iv_servings = itemView.findViewById(R.id.iv_servings);
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
@@ -68,6 +69,11 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
                 ? mContext.getString(R.string.num_people_value)
                 : mContext.getString(R.string.num_person_value);
 
+        int imageResId = (lastChar > '1')
+                ? R.drawable.ic_people_newrecipe
+                : R.drawable.ic_person_newrecipe;
+
+        iv_servings.setImageResource(imageResId);
         servingsTextView.setText(recipe.getTvRecipeServings() + " " + servingsStr);
         typeTextView.setText(recipe.getSelectedRecipeType());
         ratingBar.setRating(recipe.getRating());

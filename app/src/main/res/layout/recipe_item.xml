@@ -163,7 +163,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_clock_add" />
+                    android:src="@drawable/ic_clock" />
 
                 <TextView
                     android:id="@+id/recipe_time"
@@ -179,9 +179,9 @@
                     android:layout_weight="1" />
 
                 <ImageView
+                    android:id="@+id/iv_servings"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:layout_marginStart="8dp"
                     android:src="@drawable/ic_people_newrecipe" />
 
                 <TextView
@@ -205,7 +205,7 @@
                     android:id="@+id/recipe_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="-50dp"
+                    android:layout_marginStart="-60dp"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="0"
@@ -213,17 +213,22 @@
                     android:scaleY="0.5"
                     android:stepSize="0.1" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/recipe_created_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/recipe_created_at"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-26dp"
-                android:layout_marginStart="260dp"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+
 
         </LinearLayout>
 
