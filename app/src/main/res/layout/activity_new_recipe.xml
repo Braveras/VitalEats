@@ -211,9 +211,8 @@
 
                 <ImageView
                     android:id="@+id/newrecipe_person"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginBottom="6dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:src="@drawable/ic_person_newrecipe"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -353,12 +352,27 @@
 
             </LinearLayout>
 
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_public_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/private_recipe_toggle"
+                android:textColor="?attr/colorSurface"
+                android:textSize="16sp"
+                app:trackTint="@color/switch_track_color"
+                app:thumbTint="@color/switch_thumb_color"
+                app:useCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/ll_tags"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
             <View
                 android:id="@+id/separador"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#00000000"
-                app:layout_constraintTop_toBottomOf="@id/ll_tags" />
+                app:layout_constraintTop_toBottomOf="@id/switch_public_private" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

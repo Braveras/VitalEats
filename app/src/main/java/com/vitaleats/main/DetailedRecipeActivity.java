@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -43,6 +45,9 @@ public class DetailedRecipeActivity extends AppCompatActivity {
     private TextView recipeTitle, recipeIngredients, recipeElaboration, tvRecipeServings, tvRecipeTime, tvRecipeCreatorUsername, tvRecipeCreatedAt, tvVoteCounter;
     private RatingBar ratingBar;
     private ViewPager mViewPager;
+    private ChipGroup chipGroup;
+    private Chip chip_1, chip_2, chip_3, chip_4;
+    private ImageView servings_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,12 @@ public class DetailedRecipeActivity extends AppCompatActivity {
         tvRecipeCreatedAt = findViewById(R.id.tvRecipeCreatedAt);
         tvVoteCounter = findViewById(R.id.tvVoteCounter);
         mViewPager = findViewById(R.id.recipe_viewPager);
+        servings_icon = findViewById(R.id.iv_servings_big_view);
+        chipGroup = findViewById(R.id.chipGroup);
+        chip_1 = findViewById(R.id.chip_1);
+        chip_2 = findViewById(R.id.chip_2);
+        chip_3 = findViewById(R.id.chip_3);
+        chip_4 = findViewById(R.id.chip_4);
         List<String> images = mRecipe.getImages();
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, images);
         mViewPager.setAdapter(adapter);
@@ -74,11 +85,38 @@ public class DetailedRecipeActivity extends AppCompatActivity {
         String servingsStr = (lastChar > '1')
                 ? getApplicationContext().getString(R.string.num_people_value)
                 : getApplicationContext().getString(R.string.num_person_value);
+        int imageResId = (lastChar > '1')
+                ? R.drawable.ic_people_newrecipe
+                : R.drawable.ic_person_newrecipe;
+
+        servings_icon.setImageResource(imageResId);
         tvRecipeServings.setText(servings + " " + servingsStr);
 
         recipeIngredients.setText(mRecipe.getRecipeIngredients());
         recipeElaboration.setText(mRecipe.getRecipeElaboration());
         tvRecipeTime.setText(mRecipe.getTvRecipeTime());
+        // Verificar si la lista de etiquetas está vacía
+        if (mRecipe.getTags() != null && mRecipe.getTags().size() > 0) {
+            for (int i = 0; i < mRecipe.getTags().size(); i++) {
+                String tag = mRecipe.getTags().get(i);
+
+                if (i == 0) {
+                    chip_1.setText(tag);
+                    chip_1.setVisibility(View.VISIBLE);
+                } else if (i == 1) {
+                    chip_2.setText(tag);
+                    chip_2.setVisibility(View.VISIBLE);
+                } else if (i == 2) {
+                    chip_3.setText(tag);
+                    chip_3.setVisibility(View.VISIBLE);
+                } else if (i == 3) {
+                    chip_4.setText(tag);
+                    chip_4.setVisibility(View.VISIBLE);
+                }
+            }
+        } else {
+            chipGroup.setVisibility(View.GONE);
+        }
         ratingBar.setRating(mRecipe.getRating());
         tvRecipeCreatorUsername.setText(getString(R.string.created_by) + " " + mRecipe.getCreatorUsername());
         // Format date value into a proper date
@@ -182,7 +220,6 @@ public class DetailedRecipeActivity extends AppCompatActivity {
                     .load(Uri.parse(mImages.get(position)))
                     .into(imageView);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setAdjustViewBounds(true);
             container.addView(imageView);
             return imageView;
         }

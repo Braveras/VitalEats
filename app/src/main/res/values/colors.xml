@@ -60,4 +60,7 @@
     <color name="chipCloseIconTint">#8A8A8A</color>
     <color name="chipStroke">#EF6C00</color>
 
+    <color name="switch_track_color">#b3b3b3</color>
+    <color name="switch_thumb_color">#ffffff</color>
+
 </resources>
