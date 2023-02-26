@@ -99,7 +99,7 @@
     <string name="addRecipe">ADD RECIPE</string>
     <string name="searchRecipe">Search a recipe</string>
     <string name="enterFood">Enter a food</string>
-    <string name="defaultStatus">Say something...</string>
+    <string name="defaultStatus">Say something…</string>
     <string name="userData">User data saved</string>
     <string name="userName">Enter a valid name</string>
     <string name="userAge">Enter a valid age</string>
@@ -107,22 +107,27 @@
     <string name="userHeight">Enter a valid height</string>
     <string name="fields">Fill in all required fields</string>
 
+    <string name="user_updated">Profile picture updated</string>
+    <string name="user_not_updated">Error on updating profile</string>
+
     <!-- Recipe Title -->
     <string name="recipe_title">Título</string>
-    <string name="recipe_title_hint">Introduzca el título de la receta</string>
+    <string name="recipe_title_hint">Input the recipe title…</string>
 
     <!-- Recipe Photo -->
     <string name="recipe_photo">Images</string>
-    <string name="select_photo">Seleccionar Foto</string>
+    <string name="select_photo">Choose a picture</string>
+    <string name="no_image_selected">No image was chosen</string>
+    <string name="upload_picture_error">Error on image upload</string>
 
     <!-- Ingredients -->
     <string name="ingredients">Ingredients</string>
-    <string name="ingredient_hint">Write the list of ingredients…</string>
-    <string name="add_ingredient">Añadir</string>
+    <string name="ingredient_hint">Input the list of ingredients…</string>
+    <string name="add_ingredient">Add</string>
 
     <!-- Recipe Elaboration -->
-    <string name="elaboration">Elaboración</string>
-    <string name="elaboration_hint">Introduzca la elaboración de la receta</string>
+    <string name="elaboration">Elaboration</string>
+    <string name="elaboration_hint">Input the recipe elaboration…</string>
 
     <!-- Time and Number of People -->
     <string name="time">Time</string>
@@ -152,7 +157,7 @@
 
     <string name="create_recipe">Create recipe</string>
     <string name="create_recipe_error_emptyfields">Fill in all the fields</string>
-
+    <string name="create_recipe_progress">Creating recipe…</string>
     <string name="update_status">Here you can update your status…</string>
     <string name="status_save">Save</string>
 
@@ -168,6 +173,8 @@
 
     <string name="private_recipe_toggle">Private recipe</string>
 
-    <string name="create_recipe_progress">Creating recipe...</string>
+    <!-- Profile -->
+    <string name="profile_recipe_count">Your recipes:</string>
+    <string name="profile_creation_time">Member since:</string>
 
 </resources>

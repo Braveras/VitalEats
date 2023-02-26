@@ -108,13 +108,18 @@
     <string name="userHeight">Introduce una altura válida</string>
     <string name="fields">Rellena los campos obligatorios</string>
 
+    <string name="user_updated">Foto de perfil actualizada</string>
+    <string name="user_not_updated">Error al actualizar perfil</string>
+
     <!-- Recipe Title -->
     <string name="recipe_title">Título</string>
     <string name="recipe_title_hint">Introduzca el nombre de la receta…</string>
 
     <!-- Recipe Photo -->
     <string name="recipe_photo">Imágenes</string>
-    <string name="select_photo">Seleccionar Foto</string>
+    <string name="select_photo">Seleccionar foto</string>
+    <string name="no_image_selected">Ninguna imagen seleccionada</string>
+    <string name="upload_picture_error">Error al subir la imagen</string>
 
     <!-- Ingredients -->
     <string name="ingredients">Ingredientes</string>
@@ -152,6 +157,8 @@
     <string name="lactose_free">Sin Lactosa</string>
 
     <string name="create_recipe">Crear receta</string>
+    <string name="private_recipe_toggle">Receta privada</string>
+    <string name="create_recipe_progress">Creando receta…</string>
     <string name="create_recipe_error_emptyfields">Rellena todos los campos</string>
 
     <string name="update_status">Aqui puedes actualizar tu estado…</string>
@@ -167,8 +174,8 @@
     <string name="bottom_menu_searchbar">Recetas</string>
     <string name="bottom_menu_profile">Perfil</string>
 
-    <string name="private_recipe_toggle">Receta privada</string>
-
-    <string name="create_recipe_progress">Creando receta...</string>
+    <!-- Profile -->
+    <string name="profile_recipe_count">Tus recetas:</string>
+    <string name="profile_creation_time">Miembro desde:</string>
 
 </resources>
