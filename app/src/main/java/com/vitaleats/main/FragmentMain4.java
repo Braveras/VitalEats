@@ -1,6 +1,5 @@
 package com.vitaleats.main;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
@@ -11,6 +10,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -28,14 +28,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-import com.vitaleats.utilities.User;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,8 +45,16 @@ import com.vitaleats.R;
 import com.vitaleats.login.MainActivity;
 import com.vitaleats.utilities.StorageUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -98,6 +101,7 @@ public class FragmentMain4 extends Fragment {
         firebaseStorage = FirebaseStorage.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         currentUserId = user.getUid();
+        loadUserData();
         StorageUtil.OnReadUserInformationListener listener = userInformation -> {
             userInfo = userInformation;
             userStatus.setText(userInfo.get("status"));
@@ -187,7 +191,6 @@ public class FragmentMain4 extends Fragment {
                 saveUserData();
             }
         });
-        loadUserData();
 
         return view;
     }
@@ -261,7 +264,6 @@ public class FragmentMain4 extends Fragment {
     }
 
     private void saveUserData() {
-
         // Comprobar si todos los campos están rellenos
         if (TextUtils.isEmpty(editTextName.getText().toString().trim())) {
             editTextName.setError(getString(R.string.fields));
@@ -284,12 +286,12 @@ public class FragmentMain4 extends Fragment {
         // Obtener los valores de los campos
         String name = editTextName.getText().toString().trim();
         int age, weight, height;
+
         try {
             age = Integer.parseInt(editTextAge.getText().toString().trim());
             weight = Integer.parseInt(editTextWeight.getText().toString().trim());
             height = Integer.parseInt(editTextHeight.getText().toString().trim());
         } catch (NumberFormatException e) {
-            // Mostrar un mensaje de error si los campos no son números
             if (!TextUtils.isDigitsOnly(editTextAge.getText().toString().trim())) {
                 editTextAge.setError(getString(R.string.userAge));
                 editTextAge.requestFocus();
@@ -305,54 +307,60 @@ public class FragmentMain4 extends Fragment {
             return;
         }
 
-        // Comprobar si el nombre es válido (solo letras y espacios)
         if (!name.matches("[a-zA-Z\\s]+")) {
             editTextName.setError(getString(R.string.userName));
             editTextName.requestFocus();
             return;
         }
 
-        User user = new User(name, age, weight, height);
+        // Crear un objeto JSON con los valores del usuario
+        JSONObject userJson = new JSONObject();
+        try {
+            userJson.put("name", name);
+            userJson.put("age", age);
+            userJson.put("weight", weight);
+            userJson.put("height", height);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
 
-        String userId = firebaseAuth.getCurrentUser().getUid();
-
-        // Guardar el objeto User en Firebase
-        databaseReference.child(userId).setValue(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(getContext(), R.string.userData, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        // Guardar el objeto JSON en un archivo
+        try {
+            FileOutputStream fos = getActivity().openFileOutput("user_data.json", Context.MODE_PRIVATE);
+            fos.write(userJson.toString().getBytes());
+            fos.close();
+            Toast.makeText(getContext(), R.string.userData, Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+        }
     }
-
 
     private void loadUserData() {
-        String userId = firebaseAuth.getCurrentUser().getUid();
-
-        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    User user = snapshot.getValue(User.class);
-                    editTextName.setText(user.getName());
-                    editTextAge.setText(String.valueOf(user.getAge()));
-                    editTextWeight.setText(String.valueOf(user.getWeight()));
-                    editTextHeight.setText(String.valueOf(user.getHeight()));
-                }
+        try {
+            FileInputStream fis = getActivity().openFileInput("user_data.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
             }
+            reader.close();
+            fis.close();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-            }
-        });
+            JSONObject userJson = new JSONObject(sb.toString());
+            String name = userJson.getString("name");
+            int age = userJson.getInt("age");
+            int weight = userJson.getInt("weight");
+            int height = userJson.getInt("height");
+
+            editTextName.setText(name);
+            editTextAge.setText(String.valueOf(age));
+            editTextWeight.setText(String.valueOf(weight));
+            editTextHeight.setText(String.valueOf(height));
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
     }
-
 }
