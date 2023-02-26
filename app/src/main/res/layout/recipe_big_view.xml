@@ -198,7 +198,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="18dp"
                 android:layout_marginStart="-30dp"
-                android:textColor="@color/grey"
+                android:textColor="?attr/colorSurface"
                 android:text="(number)"/>
 
         </LinearLayout>

@@ -314,11 +314,8 @@ public class newRecipeActivity extends AppCompatActivity {
                             progressDialog.show();
 
                             new Thread(() -> {
-                                createRecipe();
-                                runOnUiThread(() -> {
-                                    progressDialog.dismiss();
-                                    btnCreateRecipe.setEnabled(true);
-                                });
+                                createRecipe(progressDialog);
+                                runOnUiThread(() -> {});
                             }).start();
                         }
                     }
@@ -363,7 +360,7 @@ public class newRecipeActivity extends AppCompatActivity {
         return currentDrawable.getConstantState().equals(defaultDrawable.getConstantState());
     }
 
-    private void createRecipe() {
+    private void createRecipe(ProgressDialog progressDialog) {
         //selectedRecipeType
 
         recipeTitle = etRecipeTitle.getText().toString().trim();
@@ -439,6 +436,7 @@ public class newRecipeActivity extends AppCompatActivity {
                 CollectionReference recipesRef = db.collection("recipes");
                 recipesRef.add(recipe).addOnSuccessListener(documentReference -> Toast.makeText(this, "New recipe created!", Toast.LENGTH_SHORT).show())//documentReference.getId() para obtener el ID del objeto subido
                         .addOnFailureListener(e -> Toast.makeText(this, "Error creating recipe!", Toast.LENGTH_SHORT).show());
+                progressDialog.dismiss();
                 // Finish activity
                 finish();
             } else {
