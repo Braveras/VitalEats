@@ -177,4 +177,11 @@
     <string name="profile_recipe_count">Your recipes:</string>
     <string name="profile_creation_time">Member since:</string>
 
+    <!-- Gestión de votos -->
+    <string name="already_voted">Ya has votado esta receta</string>
+    <string name="vote_confirm">¿Quieres valorar la receta con %f estrellas?</string>
+    <string name="vote_retrieve_error">Error al consultar votos</string>
+    <string name="voted_correctly">Voto registrado correctamente</string>
+    <string name="vote_add_error">Error al registrar voto</string>
+
 </resources>

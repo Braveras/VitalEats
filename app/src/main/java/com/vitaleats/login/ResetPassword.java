@@ -41,6 +41,7 @@ public class ResetPassword extends AppCompatActivity {
         reset = findViewById(R.id.reset);
         lMail = findViewById(R.id.lResetMail);
 
+        // Manejamos el envío de correo de recuperación
         reset.setOnClickListener(view -> {
 
             if (editmail.getText().toString().isEmpty()) {
