@@ -188,5 +188,12 @@
     <string name="new_recipe_error">Error al crear receta!</string>
     <string name="new_recipe_image_error">Error al crear receta (error de imagenes)</string>
 
+    <!-- Perfil -->
+    <string name="icm_fill_all">Rellena peso y altura</string>
+
+    <!-- Signout -->
+    <string name="sign_out">Cerrar sesión</string>
+    <string name="sign_out_confirm">¿Está seguro que desea cerrar sesión?</string>
+
 
 </resources>

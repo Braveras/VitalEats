@@ -17,6 +17,8 @@ public class NonSweepViewPager extends ViewPager {
         super(context, attrs);
     }
 
+    // Overrideamos los eventos de sweep y toques en la pantalla para que el usuario
+    // solo pueda pasar de fragmentos con los botones, obligando a pasar por los checks
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
         return false;

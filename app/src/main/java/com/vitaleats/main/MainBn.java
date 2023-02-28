@@ -20,12 +20,14 @@ public class MainBn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainbn);
 
+        // Configuramos adapter para manejar el bottom nav menu
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+        // Lo manejamos
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.inicio:

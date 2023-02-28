@@ -190,4 +190,11 @@
     <string name="new_recipe_error">Error creating recipe!</string>
     <string name="new_recipe_image_error">Error creating recipe (images error)</string>
 
+    <!-- Perfil -->
+    <string name="icm_fill_all">Fill in weight and height!</string>
+
+    <!-- Signout -->
+    <string name="sign_out">Sign Out</string>
+    <string name="sign_out_confirm">¿Are you sure you want to sign out?</string>
+
 </resources>

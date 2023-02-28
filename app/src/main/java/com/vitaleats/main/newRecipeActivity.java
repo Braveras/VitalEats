@@ -318,7 +318,7 @@ public class newRecipeActivity extends AppCompatActivity {
                             progressDialog.setMessage(getString(R.string.create_recipe_progress));
                             progressDialog.setCancelable(false);
                             progressDialog.show();
-
+                            // Tras manejar campos vacíos, abrimos nuevo hilo para crear la receta y bloqueamos el principal con el processDialog
                             new Thread(() -> {
                                 createRecipe(progressDialog);
                                 runOnUiThread(() -> {});
@@ -367,8 +367,8 @@ public class newRecipeActivity extends AppCompatActivity {
     }
 
     private void createRecipe(ProgressDialog progressDialog) {
-        //selectedRecipeType
 
+        // Cargamos datos para crear receta
         recipeTitle = etRecipeTitle.getText().toString().trim();
         recipeIngredients = etRecipeIngredients.getText().toString().trim();
         recipeElaboration = etRecipeDirections.getText().toString().trim();
@@ -379,6 +379,7 @@ public class newRecipeActivity extends AppCompatActivity {
         final String[] image2 = new String[1];
         final String[] image3 = new String[1];
 
+        // Comprobamos los chips seleccionados y los añadimos
         List<String> selectedTags = new ArrayList<>();
         GridLayout gridLayout = (GridLayout) chipGroup.getChildAt(0);
         for (int i = 0; i < gridLayout.getChildCount(); i++) {
@@ -391,6 +392,7 @@ public class newRecipeActivity extends AppCompatActivity {
             }
         }
 
+        // Comprobamos las imagenes añadidas, las procesamos y las añadimos
         List<byte[]> imageBytesList = new ArrayList<>();
         if (!isDefaultImage(recipe_imageButton1)) {
             Drawable drawable = recipe_imageButton1.getDrawable();
@@ -413,11 +415,13 @@ public class newRecipeActivity extends AppCompatActivity {
             imageBytesList.add(recipe_image3);
         }
 
+        // Convertimos la lista de imagenes a array de bytes para pasarlos al objeto receta
         byte[][] imageBytes = new byte[imageBytesList.size()][];
         for (int i = 0; i < imageBytesList.size(); i++) {
             imageBytes[i] = imageBytesList.get(i);
         }
 
+        // Obtenemos el valor de los comensales comprobando si es rango o no
         String recipeServingsStr;
         if (isRange) {
             recipeServingsStr = servings + " - " + (servings+1);
@@ -425,9 +429,11 @@ public class newRecipeActivity extends AppCompatActivity {
             recipeServingsStr = Integer.toString(servings);
         }
 
+        // Manejamos la tarea de subir las imagenes primero
         Task<String> uploadTask = uploadImages(imageBytes);
         uploadTask.addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                // Si se han subido las imagenes correctamente, obtenemos su referencia, la añadimos a la receta y la subimos
                 List<String> imageUrlList = Arrays.asList(task.getResult().split(","));
 
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -443,7 +449,6 @@ public class newRecipeActivity extends AppCompatActivity {
                 recipesRef.add(recipe).addOnSuccessListener(documentReference -> Toast.makeText(this, getString(R.string.new_recipe_created), Toast.LENGTH_SHORT).show())//documentReference.getId() para obtener el ID del objeto subido
                         .addOnFailureListener(e -> Toast.makeText(this, getString(R.string.new_recipe_error), Toast.LENGTH_SHORT).show());
                 progressDialog.dismiss();
-                // Finish activity
                 finish();
             } else {
                 Toast.makeText(this, getString(R.string.new_recipe_image_error), Toast.LENGTH_SHORT).show();
@@ -514,6 +519,7 @@ public class newRecipeActivity extends AppCompatActivity {
         return taskCompletionSource.getTask();
     }
 
+    // Convertir imaganes a png para manejarlas todas mejor
     private byte[] bitmapToPng(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);

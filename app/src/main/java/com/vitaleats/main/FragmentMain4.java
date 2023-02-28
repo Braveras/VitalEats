@@ -177,7 +177,7 @@ public class FragmentMain4 extends Fragment {
         icm_result.setOnClickListener(v -> {
             // Comprobar que hay valores en los campos
             if (icm_weight.getText().toString().trim().isEmpty() || icm_height.getText().toString().trim().isEmpty()) {
-                Toast.makeText(getActivity(), "Rellena peso y altura", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.icm_fill_all), Toast.LENGTH_LONG).show();
             } else {
                 // Guardar valores en la información del usuario en firebase
                 Map<String, String> valuesMap = new HashMap<>();
@@ -198,9 +198,9 @@ public class FragmentMain4 extends Fragment {
         // Sign out button
         signout_btn.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Cerrar sesión");
-            builder.setMessage("¿Está seguro que desea cerrar sesión?");
-            builder.setPositiveButton("Sí", (dialog, which) -> {
+            builder.setTitle(getString(R.string.sign_out));
+            builder.setMessage(getString(R.string.sign_out_confirm));
+            builder.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
                 // Sign-out from firebase
                 FirebaseAuth.getInstance().signOut();
                 // Start login activity
@@ -212,7 +212,7 @@ public class FragmentMain4 extends Fragment {
                 userTextView.setText("");
                 requireActivity().finish();
             });
-            builder.setNegativeButton("No", (dialog, which) -> {
+            builder.setNegativeButton(getString(R.string.no), (dialog, which) -> {
                 // User clicked "No", do nothing
             });
             AlertDialog dialog = builder.create();
