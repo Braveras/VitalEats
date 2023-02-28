@@ -1,5 +1,6 @@
 package com.vitaleats.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,19 +11,18 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.vitaleats.R;
+import com.vitaleats.login.Login;
 import com.vitaleats.utilities.FirebaseHandler;
 import com.vitaleats.utilities.FoodListAdapter;
 
@@ -39,6 +39,9 @@ public class FragmentMain2 extends Fragment {
 
     private DatabaseReference databaseReference;
     private ArrayList<HashMap<String, Object>> foodList;
+
+    // Identificador único del usuario actual
+    private String currentUserUid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,57 +61,17 @@ public class FragmentMain2 extends Fragment {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("foodList");
 
-        // Add child event listener to receive real-time updates
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String foodName = dataSnapshot.getKey();
-                if (!isFoodAlreadyExist(foodName)) {
-                    HashMap<String, Object> food = new HashMap<>();
-                    food.put("key", foodName);
-                    food.put("name", dataSnapshot.getValue());
-                    foodList.add(food);
-                    adapter.notifyDataSetChanged();
-                    Log.d("TAG", "Data synchronized successfully.");
-                } else {
-                    Log.d("TAG", "Data already exists in the list.");
-                }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull com.google.firebase.database.DataSnapshot dataSnapshot, @Nullable String s) {
-                Log.d("TAG", "Data changed successfully.");
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull com.google.firebase.database.DataSnapshot dataSnapshot) {
-                String foodKey = dataSnapshot.getKey();
-                int position = -1;
-                for (int i = 0; i < foodList.size(); i++) {
-                    HashMap<String, Object> food = foodList.get(i);
-                    if (food.containsKey("key") && food.get("key").equals(foodKey)) {
-                        position = i;
-                        break;
-                    }
-                }
-                if (position != -1) {
-                    foodList.remove(position);
-                    adapter.notifyDataSetChanged();
-                    Log.d("TAG", "Data removed successfully from local list.");
-                }
-                Log.d("TAG", "Data removed successfully.");
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Log.d("TAG", "onChildMoved: " + dataSnapshot.getKey());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("TAG", "onCancelled: " + databaseError.getMessage());
-            }
-        });
+        // Obtener el UID del usuario actual
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            currentUserUid = currentUser.getUid();
+        } else {
+            // Si no hay usuario logueado, redirigir a pantalla de login
+            Intent intent = new Intent(getActivity(), Login.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +82,7 @@ public class FragmentMain2 extends Fragment {
                     firebaseHandler.addFood(foodName);
                     newItemEditText.setText("");
                     food.put("name", foodName);
+                    food.put("userId", currentUserUid); // Agregar UID del usuario actual
                     db.collection("foodList")
                             .add(food)
                             .addOnSuccessListener(documentReference -> {
@@ -130,21 +94,27 @@ public class FragmentMain2 extends Fragment {
                                 Log.w("Firebase", "Error adding document", e);
                             });
                 } else {
-                    Toast.makeText(getActivity(), getString(R.string.enterFood
-                    ), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.enterFood), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-        return view;
-    }
+        // Obtener los alimentos del usuario actual
+        db.collection("foodList")
+                .whereEqualTo("userId", currentUserUid)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (DocumentSnapshot document : queryDocumentSnapshots) {
+                        HashMap<String, Object> food = new HashMap<>();
+                        food.put("name", document.getString("name"));
+                        foodList.add(food);
+                    }
+                    adapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    Log.w("Firebase", "Error getting documents.", e);
+                });
 
-    private boolean isFoodAlreadyExist(String foodName) {
-        for (HashMap<String, Object> food : foodList) {
-            if (food.get("name").equals(foodName)) {
-                return true;
-            }
-        }
-        return false;
+        return view;
     }
 }
