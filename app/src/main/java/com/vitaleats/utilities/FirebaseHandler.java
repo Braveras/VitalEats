@@ -1,45 +1,28 @@
 package com.vitaleats.utilities;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseHandler {
 
+    // Referencia a la base de datos de Firebase
     private DatabaseReference databaseReference;
 
     public FirebaseHandler() {
+        // Obtiene la instancia de la base de datos de Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     public void addFood(String foodName) {
+        // Agrega un elemento a la lista de alimentos en la base de datos de Firebase
         databaseReference.child("foodList").push().setValue(foodName);
     }
 
-    public void removeFood(String foodItemId) {
-        databaseReference.child("foodList").child(foodItemId)
-                .removeValue()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("FirebaseHandler", "Food item deleted from Firebase");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("FirebaseHandler", "Error deleting food item from Firebase", e);
-                    }
-                });
-    }
-
-    public void updateFoodCount(String foodId, int count) {
-        DatabaseReference foodRef = databaseReference.child("foods").child(foodId).child("count");
-        foodRef.setValue(count);
+    public void removeFood(String foodId) {
+        if (foodId != null) {
+            // Elimina un elemento de la lista de alimentos en la base de datos de Firebase
+            DatabaseReference foodRef = databaseReference.child("foodList").child(foodId);
+            foodRef.removeValue();
+        }
     }
 }
