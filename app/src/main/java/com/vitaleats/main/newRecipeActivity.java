@@ -103,6 +103,7 @@ public class newRecipeActivity extends AppCompatActivity {
         person = findViewById(R.id.newrecipe_person);
         group = findViewById(R.id.newrecipe_group);
 
+        // Listeners para añadir imagenes
         recipe_imageButton1.setOnClickListener(view -> {
             selectedImageButton = recipe_imageButton1;
             openGallery();
@@ -116,6 +117,7 @@ public class newRecipeActivity extends AppCompatActivity {
             openGallery();
         });
 
+        // Declaración de chips y asignación de colores
         chipHighProtein = findViewById(R.id.chip_high_protein);
         chipHighProtein.setChipBackgroundColorResource(R.color.chip_background_high_protein_unselected);
         chipHighProtein.setChipStrokeColorResource(R.color.chip_stroke_high_protein_unselected);
@@ -184,11 +186,12 @@ public class newRecipeActivity extends AppCompatActivity {
             }
         });
 
-
+        // Establecemos los valores por defecto en los menús de tiempo y comensales
         tvRecipeTime.setText(recipeTime + " " + getString(R.string.time_value));
         tvTimeModifier.setText("±" + time_modifier_value + " " + getString(R.string.time_value));
         tvRecipeServings.setText(servings + " " + getString(R.string.num_person_value));
 
+        // Sistema para modificador del tiempo
         ConstraintLayout time_modifier = findViewById(R.id.time_layout_clickable);
         time_modifier.setOnClickListener(v -> {
             if (time_modifier_value == 5) {
@@ -202,6 +205,7 @@ public class newRecipeActivity extends AppCompatActivity {
 
         });
 
+        // Sistema para aumentar o disminuir tiempo basado en el modificador
         increase_time.setOnClickListener(v -> {
             recipeTime += time_modifier_value;
             if (recipeTime >= 60) {
@@ -225,6 +229,7 @@ public class newRecipeActivity extends AppCompatActivity {
             }
         });
 
+        // Sistema para el modificador de comensales
         ConstraintLayout servings_modifier = findViewById(R.id.servings_layout_clickable);
         servings_modifier.setOnClickListener(v -> {
             isRange = !isRange;
@@ -244,6 +249,7 @@ public class newRecipeActivity extends AppCompatActivity {
             }
         });
 
+        // Sistema para aumentar o disminuir comensales basado en el modificador
         increase_servings.setOnClickListener(v -> {
             if (isRange) {
                 if (servings < 8) {
@@ -434,13 +440,13 @@ public class newRecipeActivity extends AppCompatActivity {
                 // Subimos la receta a Firebase Firestore
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 CollectionReference recipesRef = db.collection("recipes");
-                recipesRef.add(recipe).addOnSuccessListener(documentReference -> Toast.makeText(this, "New recipe created!", Toast.LENGTH_SHORT).show())//documentReference.getId() para obtener el ID del objeto subido
-                        .addOnFailureListener(e -> Toast.makeText(this, "Error creating recipe!", Toast.LENGTH_SHORT).show());
+                recipesRef.add(recipe).addOnSuccessListener(documentReference -> Toast.makeText(this, getString(R.string.new_recipe_created), Toast.LENGTH_SHORT).show())//documentReference.getId() para obtener el ID del objeto subido
+                        .addOnFailureListener(e -> Toast.makeText(this, getString(R.string.new_recipe_error), Toast.LENGTH_SHORT).show());
                 progressDialog.dismiss();
                 // Finish activity
                 finish();
             } else {
-                Toast.makeText(this, "Error al crear receta (error de imagenes)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.new_recipe_image_error), Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Failed to upload images: ", task.getException());
             }
         });

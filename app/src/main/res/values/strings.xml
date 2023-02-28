@@ -183,4 +183,10 @@
     <string name="voted_correctly">Voto registrado correctamente</string>
     <string name="vote_add_error">Error al registrar voto</string>
 
+    <!-- Creación de recetas -->
+    <string name="new_recipe_created">Nueva receta creada!</string>
+    <string name="new_recipe_error">Error al crear receta!</string>
+    <string name="new_recipe_image_error">Error al crear receta (error de imagenes)</string>
+
+
 </resources>
