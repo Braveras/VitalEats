@@ -8,12 +8,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class FirebaseHandler {
 
@@ -24,11 +18,11 @@ public class FirebaseHandler {
     }
 
     public void addFood(String foodName) {
-        databaseReference.child("foods").push().setValue(foodName);
+        databaseReference.child("foodList").push().setValue(foodName);
     }
 
     public void removeFood(String foodItemId) {
-        databaseReference.child("foods").child(foodItemId)
+        databaseReference.child("foodList").child(foodItemId)
                 .removeValue()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -42,5 +36,10 @@ public class FirebaseHandler {
                         Log.w("FirebaseHandler", "Error deleting food item from Firebase", e);
                     }
                 });
+    }
+
+    public void updateFoodCount(String foodId, int count) {
+        DatabaseReference foodRef = databaseReference.child("foods").child(foodId).child("count");
+        foodRef.setValue(count);
     }
 }

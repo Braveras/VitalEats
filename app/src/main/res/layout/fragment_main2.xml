@@ -40,7 +40,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout="@layout/list_item_layout"
         app:layout_constraintTop_toBottomOf="@+id/new_item_edit_text" />
 
     <Button
