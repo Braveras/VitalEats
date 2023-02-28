@@ -177,4 +177,24 @@
     <string name="profile_recipe_count">Your recipes:</string>
     <string name="profile_creation_time">Member since:</string>
 
+    <!-- Gestión de votos -->
+    <string name="already_voted">Ya has votado esta receta</string>
+    <string name="vote_confirm">¿Quieres valorar la receta con %f estrellas?</string>
+    <string name="vote_retrieve_error">Error al consultar votos</string>
+    <string name="voted_correctly">Voto registrado correctamente</string>
+    <string name="vote_add_error">Error al registrar voto</string>
+
+    <!-- Creación de recetas -->
+
+    <string name="new_recipe_created">New recipe created!</string>
+    <string name="new_recipe_error">Error creating recipe!</string>
+    <string name="new_recipe_image_error">Error creating recipe (images error)</string>
+
+    <!-- Perfil -->
+    <string name="icm_fill_all">Fill in weight and height!</string>
+
+    <!-- Signout -->
+    <string name="sign_out">Sign Out</string>
+    <string name="sign_out_confirm">¿Are you sure you want to sign out?</string>
+
 </resources>

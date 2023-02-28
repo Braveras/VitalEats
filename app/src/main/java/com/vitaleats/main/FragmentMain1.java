@@ -32,11 +32,13 @@ public class FragmentMain1 extends Fragment implements OnRecipeClickListener, On
         newRecipe_btn = view.findViewById(R.id.new_recipe);
         feed_recetas = view.findViewById(R.id.recipes_feed_recycler_view);
 
+        // Listener para nueva receta
         newRecipe_btn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), newRecipeActivity.class);
             startActivity(intent);
         });
 
+        // Cargamos las recetas por orden de creación ascendente
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         CollectionReference recipeRef = firestore.collection("recipes");
         Query query = recipeRef.orderBy("createdAt", Query.Direction.DESCENDING);
@@ -49,6 +51,7 @@ public class FragmentMain1 extends Fragment implements OnRecipeClickListener, On
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         feed_recetas.setLayoutManager(layoutManager);
 
+        // Configuramos el firestore recycler adapter
         FirestoreRecyclerAdapter<Recipe, RecipeViewHolder> adapter = new FirestoreRecyclerAdapter<Recipe, RecipeViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull RecipeViewHolder holder, int position, @NonNull Recipe model) {
@@ -74,6 +77,7 @@ public class FragmentMain1 extends Fragment implements OnRecipeClickListener, On
         return view;
     }
 
+    // Manejamos el click del recycler para abrir la vista detallada
     @Override
     public void onRecipeClick(int position) {
         // Obtener el adaptador del RecyclerView
@@ -89,6 +93,6 @@ public class FragmentMain1 extends Fragment implements OnRecipeClickListener, On
 
     @Override
     public void onRecipeLongClick(int position) {
-        System.out.println("hehe");
+        // LongClick
     }
 }

@@ -176,4 +176,24 @@
     <string name="profile_recipe_count">Tus recetas:</string>
     <string name="profile_creation_time">Miembro desde:</string>
 
+    <!-- Gestión de votos -->
+    <string name="already_voted">Ya has votado esta receta</string>
+    <string name="vote_confirm">¿Quieres valorar la receta con %f estrellas?</string>
+    <string name="vote_retrieve_error">Error al consultar votos</string>
+    <string name="voted_correctly">Voto registrado correctamente</string>
+    <string name="vote_add_error">Error al registrar voto</string>
+
+    <!-- Creación de recetas -->
+    <string name="new_recipe_created">Nueva receta creada!</string>
+    <string name="new_recipe_error">Error al crear receta!</string>
+    <string name="new_recipe_image_error">Error al crear receta (error de imagenes)</string>
+
+    <!-- Perfil -->
+    <string name="icm_fill_all">Rellena peso y altura</string>
+
+    <!-- Signout -->
+    <string name="sign_out">Cerrar sesión</string>
+    <string name="sign_out_confirm">¿Está seguro que desea cerrar sesión?</string>
+
+
 </resources>

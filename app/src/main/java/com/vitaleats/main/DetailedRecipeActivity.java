@@ -56,6 +56,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
         // Obtener el objeto Recipe enviado desde la actividad anterior
         mRecipe = getIntent().getParcelableExtra("recipe");
 
+        // Declaración de campos
         recipeTitle = findViewById(R.id.tvRecipeTitle);
         ratingBar = findViewById(R.id.recipe_rating);
         recipeIngredients = findViewById(R.id.tvRecipeIngredients);
@@ -73,13 +74,16 @@ public class DetailedRecipeActivity extends AppCompatActivity {
         chip_3 = findViewById(R.id.chip_3);
         chip_4 = findViewById(R.id.chip_4);
         separador_chip = findViewById(R.id.separador_chip);
+
+        // Manejar el adaptador del recycler
         List<String> images = mRecipe.getImages();
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, images);
         mViewPager.setAdapter(adapter);
 
+        // Cargar título de la receta
         recipeTitle.setText(mRecipe.getRecipeTitle());
 
-        // Checks para comprobar si es singular o plural, y poner persona o personas de forma correspondiente
+        // Checks para comprobar si el número de comensales es singular o plural, y poner tanto el string como el recurso drawable correspondiente
         String servings = mRecipe.getTvRecipeServings();
         char lastChar = servings.charAt(servings.length() - 1);
         String servingsStr = (lastChar > '1')
@@ -92,14 +96,15 @@ public class DetailedRecipeActivity extends AppCompatActivity {
         servings_icon.setImageResource(imageResId);
         tvRecipeServings.setText(servings + " " + servingsStr);
 
+        // Cargamos mas datos de la receta
         recipeIngredients.setText(mRecipe.getRecipeIngredients());
         recipeElaboration.setText(mRecipe.getRecipeElaboration());
         tvRecipeTime.setText(mRecipe.getTvRecipeTime());
-        // Verificar si la lista de etiquetas está vacía
+
+        // Verificar si la lista de etiquetas está vacía y cargarla según lo que haya
         if (mRecipe.getTags() != null && mRecipe.getTags().size() > 0) {
             for (int i = 0; i < mRecipe.getTags().size(); i++) {
                 String tag = mRecipe.getTags().get(i);
-
                 if (i == 0) {
                     chip_1.setText(tag);
                     chip_1.setVisibility(View.VISIBLE);
@@ -118,14 +123,22 @@ public class DetailedRecipeActivity extends AppCompatActivity {
             chipGroup.setVisibility(View.GONE);
             separador_chip.setVisibility(View.GONE);
         }
+
+        // Cargamos el rating.
         ratingBar.setRating(mRecipe.getRating());
+
+        // Cargamos el creador
         tvRecipeCreatorUsername.setText(getString(R.string.created_by) + " " + mRecipe.getCreatorUsername());
-        // Format date value into a proper date
+
+        // Formateamos el Date y lo mostramos
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
         String createdAtString = sdf.format(mRecipe.getCreatedAt());
         tvRecipeCreatedAt.setText(createdAtString);
+
+        // Mostramos el contador de votos
         tvVoteCounter.setText("(" + mRecipe.getVoteCounter() + ")");
 
+        // Manejar listener de ratingBar
         ratingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
             if (fromUser) {
                 mostrarConfirmacion(rating);
@@ -146,11 +159,13 @@ public class DetailedRecipeActivity extends AppCompatActivity {
                 QuerySnapshot result = task.getResult();
                 if (result != null && !result.isEmpty()) {
                     // Si ya existe un voto, mostrar mensaje de error
-                    Toast.makeText(this, "Ya has votado esta receta", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.already_voted), Toast.LENGTH_SHORT).show();
+                    // Devolver el valor del ratingBar a antes de que el usuario intentara votar
+                    ratingBar.setRating(mRecipe.getRating());
                 } else {
                     // Si no existe un voto, mostrar la confirmación al usuario
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage("¿Quieres valorar la receta con " + rating + " estrellas?")
+                    builder.setMessage(String.format(getString(R.string.vote_confirm), rating))
                             .setCancelable(false)
                             .setPositiveButton("Sí", (dialog, id) -> guardarValoracion(rating))
                             .setNegativeButton("No", (dialog, id) -> dialog.cancel());
@@ -158,7 +173,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
                     alert.show();
                 }
             } else {
-                Toast.makeText(this, "Error al consultar votos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.vote_retrieve_error), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -185,14 +200,11 @@ public class DetailedRecipeActivity extends AppCompatActivity {
         voteData.put("userId", userId);
         voteData.put("rating", valoracion);
         votesRef.add(voteData)
-                .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(this, "Voto registrado correctamente", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error al registrar voto", Toast.LENGTH_SHORT).show();
-                });
+                .addOnSuccessListener(documentReference -> Toast.makeText(this, getString(R.string.voted_correctly), Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(this, getString(R.string.vote_add_error), Toast.LENGTH_SHORT).show());
     }
 
+    // Gestión del viewPager para cargar y mostrar las imagenes scrolleables.
     public class ViewPagerAdapter extends PagerAdapter {
 
         private Context mContext;

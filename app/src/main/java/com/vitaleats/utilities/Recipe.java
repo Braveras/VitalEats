@@ -77,6 +77,7 @@ public class Recipe implements Parcelable {
         }
     }
 
+    // Definimos métodos para implementar Parcelable en la clase (para poder pasarlo como objeto entre actividades)
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
         @Override
         public Recipe createFromParcel(Parcel in) {

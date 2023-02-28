@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         googleAccess_btn = findViewById(R.id.google_logo_button);
         mAuth = FirebaseAuth.getInstance();
 
+        // Cargamos el fondo
         Glide.with(this)
                 .load(R.drawable.fondo)
                 .transition(DrawableTransitionOptions.withCrossFade(100))
@@ -77,17 +78,16 @@ public class MainActivity extends AppCompatActivity {
 
         googleAccess_btn.setOnClickListener(view -> signInWithGoogle());
 
-        crearCuenta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, NewAccount.class);
-                startActivity(i);
+        // Iniciar actividad de crear cuenta nueva.
+        crearCuenta.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, NewAccount.class);
+            startActivity(i);
 
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         });
 
+        // Iniciar actividad de logeo.
         tengoCuenta.setOnClickListener(view -> {
 
             Intent i = new Intent(MainActivity.this, Login.class);
@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Manejamos el logeo con google
     private void signInWithGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
