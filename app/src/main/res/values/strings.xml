@@ -45,7 +45,6 @@
     <string name="cancel">Cancelar</string>
     <string name="confirm">Confirmar</string>
 
-
     <string name="register_textview">Registro</string>
     <string name="emptyFields">Este campo es obligatorio</string>
     <string name="invalidEmail">Introduce un correo válido</string>
@@ -96,7 +95,6 @@
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="result">Resultado</string>
-    <string name="foodScanner">Scaneador de alimentos</string>
     <string name="addRecipe">AÑADIR RECETA</string>
     <string name="searchRecipe">Busca una receta</string>
     <string name="enterFood">Introduzca un alimento</string>

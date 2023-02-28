@@ -7,10 +7,8 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
-    import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -47,6 +45,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private ChipGroup chipGroup;
     private Chip chip_1, chip_2, chip_3, chip_4;
+    private View separador_chip;
     private ImageView servings_icon;
 
     @Override
@@ -73,6 +72,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
         chip_2 = findViewById(R.id.chip_2);
         chip_3 = findViewById(R.id.chip_3);
         chip_4 = findViewById(R.id.chip_4);
+        separador_chip = findViewById(R.id.separador_chip);
         List<String> images = mRecipe.getImages();
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, images);
         mViewPager.setAdapter(adapter);
@@ -116,6 +116,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
             }
         } else {
             chipGroup.setVisibility(View.GONE);
+            separador_chip.setVisibility(View.GONE);
         }
         ratingBar.setRating(mRecipe.getRating());
         tvRecipeCreatorUsername.setText(getString(R.string.created_by) + " " + mRecipe.getCreatorUsername());

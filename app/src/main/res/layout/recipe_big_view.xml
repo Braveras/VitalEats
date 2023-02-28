@@ -2,8 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:backgroundTint="?attr/backgroundColor"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="?attr/backgroundColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,13 +13,13 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/recipe_viewPager"
             android:layout_width="match_parent"
-            android:backgroundTint="?attr/popupMenuBackground"
-            android:layout_height="250dp" />
+            android:layout_height="250dp"
+            android:backgroundTint="?attr/popupMenuBackground" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey" />
+            android:background="?attr/colorSurface" />
 
         <TextView
             android:id="@+id/tvRecipeTitle"
@@ -74,7 +74,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey" />
+            android:layout_margin="10dp"
+            android:background="?attr/colorSurface" />
 
         <TextView
             android:id="@+id/tvRecipeIngredients"
@@ -82,36 +83,40 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:text="ingredients listlist list more more moremo emroem oemroemr oemr oefoijoiejf pwoqif jpio wefjpwoi"
-            android:textSize="18sp"
             android:textColor="?attr/colorSurface"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey" />
+            android:layout_margin="10dp"
+            android:background="?attr/colorSurface" />
 
         <TextView
             android:id="@+id/tvRecipeElaboration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.2"
             android:padding="16dp"
             android:text="elaboration biiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiig elaboration iehfi  uhewuiewhf iuhewf iuhw iuhwe ifuhwe iufhiw euhi eufhue h"
-            android:textSize="18sp"
+            android:textAlignment="viewStart"
             android:textColor="?attr/colorSurface"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <View
+            android:id="@+id/separador_chip"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey" />
+            android:layout_margin="10dp"
+            android:background="?attr/colorSurface" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp">
-
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
@@ -174,7 +179,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey" />
+            android:layout_margin="10dp"
+            android:background="?attr/colorSurface" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -196,17 +202,18 @@
                 android:id="@+id/tvVoteCounter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="18dp"
                 android:layout_marginStart="-30dp"
-                android:textColor="?attr/colorSurface"
-                android:text="(number)"/>
+                android:paddingTop="18dp"
+                android:text="(number)"
+                android:textColor="?attr/colorSurface" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/grey" />
+            android:layout_margin="10dp"
+            android:background="?attr/colorSurface" />
 
         <TextView
             android:id="@+id/tvRecipeCreatorUsername"
@@ -214,8 +221,8 @@
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
             android:text="created by: pepepepe"
-            android:textSize="18sp"
             android:textColor="?attr/colorSurface"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -228,5 +235,13 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <View
+            android:id="@+id/separador2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#00000000"
+            app:layout_constraintTop_toBottomOf="@id/tvRecipeCreatedAt" />
+
     </LinearLayout>
+
 </ScrollView>
